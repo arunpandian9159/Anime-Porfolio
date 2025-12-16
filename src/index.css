@@ -1,68 +1,234 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Custom Color Palette */
+@theme {
+  --color-punch-red: #e63946;
+  --color-punch-red-light: #eb5f6b;
+  --color-punch-red-dark: #cb1928;
+  --color-honeydew: #f1faee;
+  --color-honeydew-dim: #b4e4a3;
+  --color-frosted-blue: #a8dadc;
+  --color-frosted-blue-light: #cae9ea;
+  --color-cerulean: #457b9d;
+  --color-cerulean-light: #6097b9;
+  --color-oxford-navy: #1d3557;
+  --color-oxford-navy-light: #315a93;
+  --color-oxford-navy-dark: #0c1623;
+
+  --font-family-main: 'Outfit', sans-serif;
+  --font-family-display: 'Orbitron', sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
+  font-family: var(--font-family-main);
+  background: var(--color-oxford-navy-dark);
+  color: var(--color-honeydew);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Loader Styles */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-oxford-navy-dark);
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s, visibility 0.5s;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.loader-letter {
+  font-family: var(--font-family-display);
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--color-punch-red);
+  text-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.loader-progress {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-punch-red), var(--color-frosted-blue));
+  border-radius: 2px;
+}
+
+/* Speed Lines Animation */
+@keyframes speedLine {
+  0% {
+    transform: translateX(0);
   }
-  a:hover {
-    color: #747bff;
+
+  100% {
+    transform: translateX(100%);
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+.speed-line {
+  position: absolute;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-punch-red), transparent);
+  animation: speedLine 3s infinite;
+  opacity: 0.3;
+}
+
+/* Avatar Aura Animation */
+@keyframes auraPulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
   }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.avatar-aura {
+  animation: auraPulse 2s ease-in-out infinite;
+}
+
+/* Frame Pulse Animation */
+@keyframes framePulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.02);
+  }
+}
+
+.frame-pulse {
+  animation: framePulse 3s ease-in-out infinite;
+}
+
+/* Marker Pulse Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.marker-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Scroll Arrow Animation */
+@keyframes scrollDot {
+  0% {
+    opacity: 1;
+    top: 8px;
+  }
+
+  100% {
+    opacity: 0;
+    top: 30px;
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+/* Certification Shine Effect */
+.cert-shine {
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(25deg);
+  transition: 0.5s;
+}
+
+.cert-card:hover .cert-shine {
+  left: 150%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-oxford-navy-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-cerulean);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-punch-red);
+}
+
+/* Particle Styles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Font Display Class */
+.font-display {
+  font-family: var(--font-family-display);
+}
+
+/* Glow Effects */
+.glow-red {
+  box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+}
+
+.text-glow-red {
+  text-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(168, 218, 220, 0.5);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 20px rgba(168, 218, 220, 0.5);
 }
