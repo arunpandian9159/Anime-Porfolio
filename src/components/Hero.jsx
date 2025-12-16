@@ -7,74 +7,89 @@ const Hero = () => {
   const particlesRef = useRef(null);
 
   useEffect(() => {
-    // Hero animation timeline - sequential animations
+    // Hero animation timeline - smooth sequential animations
     const runAnimations = async () => {
+      // Profile frame enters with spring effect
       await animate('.profile-frame', {
         opacity: [0, 1],
-        scale: [0.8, 1],
-        duration: 1000,
-        easing: 'easeOutExpo'
+        scale: [0.7, 1.02, 1],
+        rotate: [-5, 0],
+        duration: 1200,
+        easing: 'easeOutElastic(1, .8)'
       }).finished;
 
+      // Frame border pulses in
       animate('.frame-border-anim', {
         opacity: [0, 1],
-        scale: [1.2, 1],
-        duration: 600,
-        easing: 'easeOutExpo'
+        scale: [1.3, 1],
+        duration: 800,
+        easing: 'easeOutQuart'
       });
 
+      // Quick stats slide up with stagger
       animate('.quick-stat', {
         opacity: [0, 1],
-        translateY: [20, 0],
-        delay: stagger(100),
-        duration: 600,
-        easing: 'easeOutExpo'
+        translateY: [30, 0],
+        delay: stagger(150),
+        duration: 800,
+        easing: 'easeOutQuart'
       });
 
+      // Hero intro slides in smoothly
       animate('.hero-intro', {
         opacity: [0, 1],
-        translateX: [-30, 0],
-        duration: 600,
-        easing: 'easeOutExpo'
+        translateX: [-50, 0],
+        duration: 800,
+        easing: 'easeOutQuart'
       });
 
+      // Name with spring effect
       await animate('.hero-name', {
         opacity: [0, 1],
-        translateX: [-30, 0],
-        duration: 800,
-        easing: 'easeOutExpo'
+        translateX: [-60, 0],
+        translateY: [20, 0],
+        duration: 1000,
+        easing: 'easeOutQuart'
       }).finished;
 
+      // Role fades in
       animate('.hero-role', {
         opacity: [0, 1],
-        translateX: [-20, 0],
-        duration: 600,
-        easing: 'easeOutExpo'
+        translateX: [-30, 0],
+        duration: 700,
+        easing: 'easeOutQuart'
       });
 
+      // Underline draws with smooth ease
       animate('.role-underline', {
-        width: [0, 100],
-        duration: 600,
-        easing: 'easeOutExpo'
+        width: [0, 200],
+        duration: 800,
+        easing: 'easeOutQuart'
       });
 
+      // Bio and CTA slide up
       animate('.hero-bio', {
         opacity: [0, 1],
-        translateY: [20, 0],
-        duration: 600,
-        easing: 'easeOutExpo'
+        translateY: [30, 0],
+        duration: 800,
+        delay: 100,
+        easing: 'easeOutQuart'
       });
 
       animate('.hero-cta', {
         opacity: [0, 1],
-        translateY: [20, 0],
-        duration: 600,
-        easing: 'easeOutExpo'
+        translateY: [30, 0],
+        duration: 800,
+        delay: 200,
+        easing: 'easeOutQuart'
       });
     };
 
-    runAnimations();
-    createParticles();
+    // Small delay to ensure DOM is ready after loader
+    setTimeout(() => {
+      runAnimations();
+      createParticles();
+    }, 100);
   }, []);
 
   const createParticles = () => {
@@ -110,7 +125,10 @@ const Hero = () => {
       duration,
       delay: Math.random() * 2000,
       easing: 'easeInOutSine',
-      complete: () => animateParticle(particle)
+      complete: () => {
+        // Use setTimeout to break synchronous recursion and prevent stack overflow
+        setTimeout(() => animateParticle(particle), 0);
+      }
     });
   };
 
