@@ -232,11 +232,54 @@ section {
   background: var(--color-punch-red);
 }
 
-/* Particle Styles */
+/* CSS-Only Particle Animation System - GPU Accelerated */
+.particles-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .particle {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
+  will-change: transform, opacity;
+  animation: particleFloat var(--duration, 6s) var(--delay, 0s) infinite ease-in-out;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.particle--red {
+  background: var(--color-punch-red);
+}
+
+.particle--blue {
+  background: var(--color-frosted-blue);
+}
+
+@keyframes particleFloat {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.5);
+    opacity: 0.2;
+  }
+
+  25% {
+    transform: translate3d(var(--move-x, 50px), var(--move-y, -30px), 0) scale(1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translate3d(calc(var(--move-x, 50px) * 1.5), calc(var(--move-y, -30px) * 0.5), 0) scale(1.2);
+    opacity: 0.4;
+  }
+
+  75% {
+    transform: translate3d(calc(var(--move-x, 50px) * 0.5), calc(var(--move-y, -30px) * 1.2), 0) scale(0.8);
+    opacity: 0.5;
+  }
 }
 
 /* Font Display Class */

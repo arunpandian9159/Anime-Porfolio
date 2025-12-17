@@ -1,10 +1,27 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { animate, stagger } from 'animejs';
 import { profileData } from '../data/profileData';
 
+// Pre-generated particle configurations for CSS-only animation
+const PARTICLES = [
+  { size: 4, color: 'red', left: 10, top: 20, duration: 5, delay: 0, moveX: 60, moveY: -40 },
+  { size: 6, color: 'blue', left: 25, top: 15, duration: 7, delay: 1, moveX: -50, moveY: 30 },
+  { size: 3, color: 'red', left: 40, top: 80, duration: 6, delay: 0.5, moveX: 40, moveY: -60 },
+  { size: 5, color: 'blue', left: 60, top: 30, duration: 8, delay: 2, moveX: -70, moveY: 20 },
+  { size: 4, color: 'red', left: 80, top: 60, duration: 5.5, delay: 1.5, moveX: 30, moveY: -50 },
+  { size: 7, color: 'blue', left: 15, top: 70, duration: 9, delay: 0.8, moveX: -40, moveY: 40 },
+  { size: 3, color: 'red', left: 55, top: 10, duration: 6.5, delay: 2.5, moveX: 50, moveY: -30 },
+  { size: 5, color: 'blue', left: 90, top: 40, duration: 7.5, delay: 0.3, moveX: -60, moveY: 50 },
+  { size: 4, color: 'red', left: 35, top: 50, duration: 5, delay: 1.8, moveX: 45, moveY: -45 },
+  { size: 6, color: 'blue', left: 70, top: 85, duration: 8.5, delay: 1.2, moveX: -55, moveY: 35 },
+  { size: 3, color: 'red', left: 5, top: 45, duration: 6, delay: 2.2, moveX: 65, moveY: -25 },
+  { size: 5, color: 'blue', left: 45, top: 5, duration: 7, delay: 0.7, moveX: -35, moveY: 55 },
+  { size: 4, color: 'red', left: 85, top: 75, duration: 5.8, delay: 1.6, moveX: 25, moveY: -70 },
+  { size: 6, color: 'blue', left: 20, top: 90, duration: 9, delay: 2.8, moveX: -45, moveY: 25 },
+  { size: 3, color: 'red', left: 65, top: 55, duration: 6.2, delay: 0.4, moveX: 55, moveY: -35 },
+];
+
 const Hero = () => {
-  const heroRef = useRef(null);
-  const particlesRef = useRef(null);
 
   useEffect(() => {
     // Hero animation timeline - smooth sequential animations
@@ -88,54 +105,14 @@ const Hero = () => {
     // Small delay to ensure DOM is ready after loader
     setTimeout(() => {
       runAnimations();
-      createParticles();
     }, 100);
   }, []);
 
-  const createParticles = () => {
-    const container = particlesRef.current;
-    if (!container) return;
-
-    for (let i = 0; i < 25; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.cssText = `
-        width: ${Math.random() * 6 + 2}px;
-        height: ${Math.random() * 6 + 2}px;
-        background: ${Math.random() > 0.5 ? '#e63946' : '#a8dadc'};
-        opacity: ${Math.random() * 0.5 + 0.2};
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-      `;
-      container.appendChild(particle);
-      animateParticle(particle);
-    }
-  };
-
-  const animateParticle = (particle) => {
-    const duration = Math.random() * 5000 + 3000;
-    const randomX = (Math.random() - 0.5) * 200;
-    const randomY = (Math.random() - 0.5) * 200;
-    
-    animate(particle, {
-      translateX: randomX,
-      translateY: randomY,
-      opacity: [0.1, 0.6, 0.1],
-      scale: [0.5, 1.5, 0.5],
-      duration,
-      delay: Math.random() * 2000,
-      easing: 'easeInOutSine',
-      complete: () => {
-        // Use setTimeout to break synchronous recursion and prevent stack overflow
-        setTimeout(() => animateParticle(particle), 0);
-      }
-    });
-  };
 
   const { profile, socials, stats } = profileData;
 
   return (
-    <section id="hero" ref={heroRef} className="min-h-screen relative flex overflow-hidden">
+    <section id="hero" className="min-h-screen relative flex overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-linear-to-br from-oxford-navy-dark via-oxford-navy to-cerulean/30">
         {/* Diagonal slice */}
@@ -144,8 +121,25 @@ const Hero = () => {
         {/* Speed lines */}
         <div className="speed-line" style={{ top: '30%', left: '-100%' }}></div>
         <div className="speed-line" style={{ top: '70%', left: '-100%', animationDelay: '1.5s' }}></div>
-        {/* Particles container */}
-        <div ref={particlesRef} className="absolute inset-0 overflow-hidden"></div>
+        {/* CSS-Only Particles - GPU Accelerated */}
+        <div className="particles-container">
+          {PARTICLES.map((p, i) => (
+            <div
+              key={i}
+              className={`particle particle--${p.color}`}
+              style={{
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                left: `${p.left}%`,
+                top: `${p.top}%`,
+                '--duration': `${p.duration}s`,
+                '--delay': `${p.delay}s`,
+                '--move-x': `${p.moveX}px`,
+                '--move-y': `${p.moveY}px`,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Content */}

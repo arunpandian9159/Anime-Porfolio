@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 import { animate, stagger } from 'animejs';
 import { profileData } from '../data/profileData';
 import { useIntersectionAnimate } from '../hooks/useIntersectionAnimate';

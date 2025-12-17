@@ -1,5 +1,5 @@
-import { useEffect, useRef, useCallback } from 'react';
-import { animate, stagger } from 'animejs';
+import { useEffect, useRef } from 'react';
+import { animate } from 'animejs';
 
 /**
  * Custom hook for intersection-based animations
@@ -55,7 +55,7 @@ export const useIntersectionAnimate = (animationConfig, options = {}) => {
  * @returns {React.RefObject} - Ref to attach to the section element
  */
 export const useSectionHeaderAnimation = (headerClass) => {
-  const runAnimations = useCallback((element) => {
+  const runAnimations = () => {
     animate(`${headerClass} .section-tag`, {
       opacity: [0, 1],
       translateY: [-20, 0],
@@ -75,7 +75,7 @@ export const useSectionHeaderAnimation = (headerClass) => {
       delay: 200,
       easing: 'easeOutExpo'
     });
-  }, [headerClass]);
+  };
 
   return useIntersectionAnimate(runAnimations);
 };
@@ -143,4 +143,4 @@ export const useCountUp = (targetValue, duration = 1000) => {
   return ref;
 };
 
-export { animate, stagger };
+export { animate };
