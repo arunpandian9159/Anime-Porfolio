@@ -18,9 +18,9 @@ const ProjectCardContent = memo(({ project, index }) => {
   }, [project.images]);
 
   return (
-    <div className={`h-full grid md:grid-cols-2 ${index % 2 === 1 ? '' : ''} h-full`}>
+    <div className="h-full grid md:grid-cols-2">
       {/* Image/Icon Section */}
-      <div className={`relative bg-linear-to-br from-cerulean to-oxford-navy-light flex items-center justify-center overflow-hidden ${index % 2 === 1 ? 'md:order-2' : ''} ${!project.images ? 'p-6' : ''}`}>
+      <div className={`relative bg-linear-to-br from-cerulean to-oxford-navy-light flex items-center justify-center overflow-hidden ${!project.images ? 'p-6' : ''}`}>
         {project.images && project.images.length > 0 ? (
           <div className="absolute inset-0 w-full h-full">
             {project.images.map((img, i) => (
@@ -28,7 +28,7 @@ const ProjectCardContent = memo(({ project, index }) => {
                 key={i} 
                 src={img} 
                 alt={`${project.title} preview ${i + 1}`} 
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+                className={`absolute inset-0 w-full h-full object-cover object-top-left transition-opacity duration-1000 ${i === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
               />
             ))}
             {/* Gradient Overlay for text readability if needed, or just style */}
@@ -43,7 +43,7 @@ const ProjectCardContent = memo(({ project, index }) => {
       </div>
       
       {/* Info Section */}
-      <div className={`p-8 md:p-12 flex flex-col justify-center bg-oxford-navy/50 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+      <div className="p-8 md:p-12 flex flex-col justify-center bg-oxford-navy/50">
         <div className="flex gap-2 flex-wrap mb-6">
           {project.featured && (
             <span className="bg-punch-red text-honeydew px-3 py-1 rounded-full text-xs font-semibold">Featured</span>
