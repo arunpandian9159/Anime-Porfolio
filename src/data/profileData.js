@@ -92,6 +92,7 @@ export const profileData = {
       teamSize: 1,
       role: "Full Stack Developer",
       featured: true,
+      images: ["/Jezcabs.png"],
       icon: "fas fa-car"
     },
     {
@@ -103,6 +104,7 @@ export const profileData = {
       teamSize: 3,
       featured: true,
       isPublished: true,
+      images: ["/SRM Conference image.jpg", "/certificate-presentation.webp"],
       icon: "fas fa-certificate"
     },
     {
@@ -111,6 +113,7 @@ export const profileData = {
       tech: ["Python", "Mistral AI", "Google Gemini", "Langchain"],
       role: "AI Engineer Intern",
       featured: false,
+      images: ["/tariff extraction 1.png", "/tariff extraction 2.png"],
       icon: "fas fa-robot",
       teamSize: 1
     },
@@ -121,6 +124,7 @@ export const profileData = {
       liveLink: "https://internbyte.com",
       teamSize: 4,
       role: "Frontend Developer",
+      images: ["/internbyte 1.png"],
       featured: false
     },
     {
@@ -129,6 +133,7 @@ export const profileData = {
       tech: ["React", "TypeScript", "Redux"],
       teamSize: 5,
       role: "Frontend Developer",
+      images: ["/crm tripxplo 1.png", "/crm tripxplo 2.png"],
       featured: false
     }
   ],

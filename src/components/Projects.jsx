@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useState, useEffect } from 'react';
 import { animate } from 'animejs';
 import { profileData } from '../data/profileData';
 import { useIntersectionAnimate } from '../hooks/useIntersectionAnimate';
@@ -6,12 +6,40 @@ import SectionHeader from './SectionHeader';
 import ScrollStack from './ScrollStack';
 
 const ProjectCardContent = memo(({ project, index }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (project.images && project.images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [project.images]);
+
   return (
     <div className={`h-full grid md:grid-cols-2 ${index % 2 === 1 ? '' : ''} h-full`}>
       {/* Image/Icon Section */}
-      <div className={`relative bg-linear-to-br from-cerulean to-oxford-navy-light flex items-center justify-center p-6 ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-        <i className={`${project.icon || 'fas fa-code'} text-9xl text-honeydew/30`}></i>
-        <div className="absolute inset-0 bg-linear-to-br from-punch-red/20 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
+      <div className={`relative bg-linear-to-br from-cerulean to-oxford-navy-light flex items-center justify-center overflow-hidden ${index % 2 === 1 ? 'md:order-2' : ''} ${!project.images ? 'p-6' : ''}`}>
+        {project.images && project.images.length > 0 ? (
+          <div className="absolute inset-0 w-full h-full">
+            {project.images.map((img, i) => (
+              <img 
+                key={i} 
+                src={img} 
+                alt={`${project.title} preview ${i + 1}`} 
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+              />
+            ))}
+            {/* Gradient Overlay for text readability if needed, or just style */}
+            <div className="absolute inset-0 bg-oxford-navy/10 group-hover:bg-transparent transition-colors duration-300"></div>
+          </div>
+        ) : (
+          <>
+            <i className={`${project.icon || 'fas fa-code'} text-9xl text-honeydew/30`}></i>
+            <div className="absolute inset-0 bg-linear-to-br from-punch-red/20 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
+          </>
+        )}
       </div>
       
       {/* Info Section */}
