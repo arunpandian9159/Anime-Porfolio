@@ -20,7 +20,7 @@ const ProjectCardContent = memo(({ project, index }) => {
   return (
     <div className="h-full grid md:grid-cols-2">
       {/* Image/Icon Section */}
-      <div className={`relative bg-linear-to-br from-cerulean to-oxford-navy-light flex items-center justify-center overflow-hidden ${!project.images ? 'p-6' : ''}`}>
+      <div className={`relative bg-linear-to-br from-cerulean to-oxford-navy-light hidden md:flex items-center justify-center overflow-hidden ${!project.images ? 'p-6' : ''}`}>
         {project.images && project.images.length > 0 ? (
           <div className="absolute inset-0 w-full h-full">
             {project.imageLayout === 'split-vertical' ? (
@@ -57,7 +57,7 @@ const ProjectCardContent = memo(({ project, index }) => {
       </div>
       
       {/* Info Section */}
-      <div className="p-2 md:p-5 flex flex-col justify-center bg-oxford-navy/50">
+      <div className="p-4 md:p-5 flex flex-col justify-center bg-oxford-navy/50">
         <div className="flex gap-2 flex-wrap mb-6">
           {project.featured && (
             <span className="bg-punch-red text-honeydew px-3 py-1 rounded-full text-xs font-semibold">Featured</span>
@@ -72,15 +72,15 @@ const ProjectCardContent = memo(({ project, index }) => {
           )}
         </div>
         
-        <h3 className="font-display text-3xl font-bold mb-4 text-white">{project.title}</h3>
+        <h3 className="font-display text-2xl md:text-3xl font-bold mb-4 text-white">{project.title}</h3>
         {Array.isArray(project.description) ? (
           <ul className="list-disc list-outside ml-5 text-frosted-blue/80 mb-4 space-y-2">
             {project.description.map((point, idx) => (
-              <li key={idx}>{point}</li>
+              <li key={idx} className={idx >= 1 ? "hidden md:list-item" : ""}>{point}</li>
             ))}
           </ul>
         ) : (
-        <p className="text-frosted-blue/80 mb-6 text-lg leading-relaxed">{project.description}</p>
+        <p className="text-frosted-blue/80 mb-6 text-base md:text-lg leading-relaxed">{project.description}</p>
         )}
         <div className="flex flex-wrap gap-2 mb-8">
           {project.tech.map((t, i) => (
@@ -90,12 +90,12 @@ const ProjectCardContent = memo(({ project, index }) => {
         
         <div className="flex gap-6 mt-auto">
           {project.liveLink && (
-            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center text-lg">
+            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center text-base md:text-lg">
               <i className="fas fa-external-link-alt mr-2"></i>Live Demo
             </a>
           )}
           {project.repoLink && (
-            <a href={project.repoLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center text-lg">
+            <a href={project.repoLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center text-base md:text-lg">
               <i className="fab fa-github mr-2"></i>Code
             </a>
           )}
@@ -140,7 +140,7 @@ const Projects = () => {
   const { projects } = profileData;
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 bg-oxford-navy-dark">
+    <section id="projects" ref={sectionRef} className="py-16 md:py-24 bg-oxford-navy-dark">
       <div className="w-full px-5">
         <div className="max-w-6xl mx-auto">
           {/* Header */}

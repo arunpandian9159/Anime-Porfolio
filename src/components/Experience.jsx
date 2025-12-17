@@ -24,16 +24,16 @@ const TimelineItem = memo(({ exp, index }) => {
       </div>
       
       {/* Card */}
-      <div className="bg-oxford-navy/60 border border-frosted-blue/20 rounded-2xl p-6 transition-all hover:border-punch-red hover:glow-red">
+      <div className="bg-oxford-navy/60 border border-frosted-blue/20 rounded-2xl p-4 md:p-6 transition-all hover:border-punch-red hover:glow-red">
         <div className="flex justify-between items-center flex-wrap gap-3 mb-4">
           <span className="bg-punch-red/20 text-punch-red px-4 py-1 rounded-full text-sm font-semibold">{exp.company}</span>
           <span className="text-frosted-blue text-sm">{exp.duration}</span>
         </div>
-        <h3 className="text-xl font-bold mb-3">{exp.role}</h3>
+        <h3 className="text-lg md:text-xl font-bold mb-3">{exp.role}</h3>
         {Array.isArray(exp.description) ? (
           <ul className="list-disc list-outside ml-5 text-frosted-blue/80 mb-4 space-y-2">
             {exp.description.map((point, idx) => (
-              <li key={idx}>{point}</li>
+              <li key={idx} className={idx >= 2 ? "hidden md:list-item" : ""}>{point}</li>
             ))}
           </ul>
         ) : (
@@ -79,7 +79,7 @@ const Experience = () => {
   const { experience } = profileData;
 
   return (
-    <section id="experience" ref={sectionRef} className="py-24 relative">
+    <section id="experience" ref={sectionRef} className="py-16 md:py-24 relative">
       <div className="absolute inset-0 bg-linear-to-b from-oxford-navy-dark to-oxford-navy -z-10"></div>
       
       <div className="max-w-6xl mx-auto px-5">

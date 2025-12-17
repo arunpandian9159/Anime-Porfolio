@@ -13,7 +13,7 @@ const StatCard = memo(({ icon, value, label, index }) => {
       <div className="text-3xl text-frosted-blue mb-3">
         <i className={icon}></i>
       </div>
-      <div className="font-display text-4xl font-bold text-punch-red">
+      <div className="font-display text-3xl md:text-4xl font-bold text-punch-red">
         <span ref={countRef}>0</span>+
       </div>
       <div className="text-frosted-blue/80 text-sm uppercase tracking-wider mt-1">{label}</div>
@@ -58,7 +58,7 @@ const About = () => {
   const { profile, stats } = profileData;
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 relative">
+    <section id="about" ref={sectionRef} className="py-16 md:py-24 relative">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-radial from-cerulean/10 at-20% via-transparent to-transparent"></div>
@@ -77,14 +77,14 @@ const About = () => {
         {/* Content */}
         <div className="grid lg:grid-cols-[1.5fr_1fr] gap-10 items-start">
           {/* Card */}
-          <div className="about-card bg-oxford-navy/50 border border-frosted-blue/20 rounded-2xl p-8 relative overflow-hidden opacity-0">
+          <div className="about-card bg-oxford-navy/50 border border-frosted-blue/20 rounded-2xl p-6 md:p-8 relative overflow-hidden opacity-0">
             <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-radial from-punch-red/10 to-transparent pointer-events-none"></div>
             
             <div className="relative z-10">
-              <p className="text-frosted-blue/90 text-lg mb-5 leading-relaxed">
+              <p className="text-frosted-blue/90 text-base md:text-lg mb-5 leading-relaxed">
                 An aspiring full-stack developer with a strong foundation in front-end and back-end technologies. I have a passion for building responsive, scalable, and user-focused web applications.
               </p>
-              <p className="text-frosted-blue/90 text-lg mb-8 leading-relaxed">
+              <p className="text-frosted-blue/90 text-base md:text-lg mb-8 leading-relaxed">
                 I am committed to writing clean, efficient code and continuously learning new tools and frameworks. My goal is to deliver seamless user experiences through intuitive interfaces and robust server-side logic.
               </p>
 

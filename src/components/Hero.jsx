@@ -149,7 +149,7 @@ const Hero = ({ isLoading }) => {
       </div>
 
       {/* Content */}
-      <div className="grid md:grid-cols-[1fr_1.2fr] gap-10 md:gap-16 items-center min-h-screen px-6 md:px-12 py-24 max-w-7xl mx-auto z-10 w-full">
+      <div className="grid md:grid-cols-[1fr_1.2fr] gap-8 md:gap-16 items-center min-h-screen px-4 md:px-12 py-16 md:py-24 max-w-7xl mx-auto z-10 w-full">
         {/* Left - Profile */}
         <div className="text-center">
           <div className="profile-frame relative inline-block opacity-0">
@@ -157,7 +157,7 @@ const Hero = ({ isLoading }) => {
             <div className="frame-border-anim absolute -inset-3 border-3 border-punch-red rounded-2xl frame-pulse opacity-0"></div>
             
             {/* Avatar */}
-            <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden relative">
+            <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden relative">
               <picture>
                 {/* Optimized WebP images with responsive sizes */}
                 <source 
@@ -183,7 +183,7 @@ const Hero = ({ isLoading }) => {
                 />
               </picture>
               <div className="w-full h-full bg-linear-to-br from-cerulean to-oxford-navy-light items-center justify-center hidden">
-                <span className="font-display text-6xl md:text-7xl font-black text-honeydew text-glow-blue">AC</span>
+                <span className="font-display text-5xl md:text-7xl font-black text-honeydew text-glow-blue">AC</span>
               </div>
               {/* Aura */}
               <div className="absolute -inset-5 bg-gradient-radial from-punch-red/30 to-transparent avatar-aura -z-10"></div>
@@ -214,7 +214,7 @@ const Hero = ({ isLoading }) => {
             <span className="text-frosted-blue text-lg tracking-wider">Hello, I'm</span>
           </div>
           
-          <h1 className="hero-name font-display text-4xl md:text-5xl lg:text-7xl font-black leading-tight mb-4 opacity-0 whitespace-nowrap">
+          <h1 className="hero-name font-display text-3xl md:text-5xl lg:text-7xl font-black leading-tight mb-4 opacity-0 whitespace-nowrap">
             <span className="text-honeydew">{profile.firstName}</span>{' '}
             <span className="text-punch-red text-glow-red">{profile.lastName}</span>
           </h1>
@@ -224,18 +224,18 @@ const Hero = ({ isLoading }) => {
             <div className="role-underline h-0.5 bg-linear-to-r from-punch-red to-frosted-blue mt-2 w-0"></div>
           </div>
           
-          <p className="hero-bio text-frosted-blue/80 text-lg mb-8 max-w-lg mx-auto md:mx-0 opacity-0">
+          <p className="hero-bio text-frosted-blue/80 text-base md:text-lg mb-8 max-w-lg mx-auto md:mx-0 opacity-0">
             {profile.shortBio}
           </p>
           
           <div className="hero-cta flex flex-wrap items-center gap-4 justify-center md:justify-start opacity-0">
-            <a href="#projects" className="inline-flex items-center gap-3 bg-punch-red text-honeydew px-7 py-4 rounded font-semibold glow-red transition-all hover:bg-punch-red-light hover:-translate-y-1 hover:shadow-lg">
+            <a href="#projects" className="inline-flex items-center gap-3 bg-punch-red text-honeydew px-5 py-3 md:px-7 md:py-4 rounded font-semibold glow-red transition-all hover:bg-punch-red-light hover:-translate-y-1 hover:shadow-lg">
               <span>Explore Work</span>
               <i className="fas fa-rocket"></i>
             </a>
             
             <a href={profile.resume} target="_blank" rel="noopener noreferrer" 
-               className="inline-flex items-center gap-3 bg-transparent border-2 border-frosted-blue text-frosted-blue px-7 py-4 rounded font-semibold transition-all hover:bg-frosted-blue hover:text-oxford-navy-dark hover:-translate-y-1">
+               className="inline-flex items-center gap-3 bg-transparent border-2 border-frosted-blue text-frosted-blue px-5 py-3 md:px-7 md:py-4 rounded font-semibold transition-all hover:bg-frosted-blue hover:text-oxford-navy-dark hover:-translate-y-1">
               <span>Resume</span>
               <i className="fas fa-download"></i>
             </a>

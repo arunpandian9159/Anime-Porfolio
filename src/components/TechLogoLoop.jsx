@@ -32,7 +32,7 @@ const TechLogoLoop = () => {
           speed={80}
           direction="left"
           logoHeight={52}
-          gap={64}
+          gap={48}
           hoverSpeed={40}
           fadeOut={true}
           fadeOutColor="#1d3557"

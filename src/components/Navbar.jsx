@@ -55,7 +55,7 @@ const Navbar = () => {
         {/* Nav Menu */}
         <ul className={`md:flex gap-8 list-none ${
           isMenuOpen
-            ? 'flex flex-col absolute top-16 left-0 right-0 bg-oxford-navy/98 p-8 gap-5'
+            ? 'flex flex-col absolute top-16 left-0 right-0 bg-oxford-navy/98 p-6 gap-4 border-b border-frosted-blue/10'
             : 'hidden md:flex'
         }`}>
           {navLinks.map(link => (

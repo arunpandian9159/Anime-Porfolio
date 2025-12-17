@@ -25,16 +25,16 @@ const SkillCategory = memo(({ title, icon, skills, index }) => {
   const categoryRef = useIntersectionAnimate(runAnimation);
 
   return (
-    <div ref={categoryRef} className="opacity-0 bg-oxford-navy-dark/50 border border-frosted-blue/15 rounded-2xl p-7 transition-all hover:border-punch-red hover:-translate-y-1">
+    <div ref={categoryRef} className="opacity-0 bg-oxford-navy-dark/50 border border-frosted-blue/15 rounded-2xl p-5 md:p-7 transition-all hover:border-punch-red hover:-translate-y-1">
       <div className="flex items-center gap-4 mb-5">
-        <div className="w-12 h-12 bg-linear-to-br from-punch-red to-cerulean rounded-xl flex items-center justify-center text-xl text-honeydew">
+        <div className="w-10 h-10 md:w-12 md:h-12 bg-linear-to-br from-punch-red to-cerulean rounded-xl flex items-center justify-center text-xl text-honeydew">
           <i className={icon}></i>
         </div>
-        <h3 className="font-display text-xl font-bold">{title}</h3>
+        <h3 className="font-display text-lg md:text-xl font-bold">{title}</h3>
       </div>
       <div className="flex flex-wrap gap-3">
         {skills.map((skill, i) => (
-          <span key={i} className="skill-tag opacity-0 px-4 py-2 bg-frosted-blue/10 border border-frosted-blue/30 rounded-full text-sm text-frosted-blue transition-all cursor-default hover:bg-punch-red hover:border-punch-red hover:text-honeydew hover:scale-105">
+          <span key={i} className="skill-tag opacity-0 px-3 py-1.5 md:px-4 md:py-2 bg-frosted-blue/10 border border-frosted-blue/30 rounded-full text-sm text-frosted-blue transition-all cursor-default hover:bg-punch-red hover:border-punch-red hover:text-honeydew hover:scale-105">
             {skill}
           </span>
         ))}
@@ -80,7 +80,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" ref={sectionRef} className="pt-15 bg-oxford-navy">
+    <section id="skills" ref={sectionRef} className="py-16 md:py-24 bg-oxford-navy">
       <div className="max-w-6xl mx-auto px-5">
         {/* Header */}
         <SectionHeader
