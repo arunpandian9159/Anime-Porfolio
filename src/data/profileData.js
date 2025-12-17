@@ -54,9 +54,10 @@ export const profileData = {
     {
       role: "Frontend Development Intern",
       company: "Tripmilestone Tours Pvt Ltd",
-      duration: "6 months",
-      description: "Developed and maintained responsive UI components for tripxplo.com using React and Tailwind CSS. Collaborated with senior developers on coding and debugging tasks.",
-      tech: ["React", "Tailwind CSS"]
+      location: "Vellore (tripxplo.com)",
+      duration: "June 2025 - Dec 2025 (7 months)",
+      description: "Completed a 7-month frontend developer internship contributing to real-world SaaS products in the travel domain. Built core UI components for an Internship Management System (Internbyte) using Next.js and TypeScript, focusing on student onboarding, course management, and academic tracking workflows. Collaborated in a 4-member team to translate product requirements into responsive, user-friendly pages backed by SQL-driven data flows. Worked on a Travel Industry CRM Platform, implementing React and Tailwind CSS interfaces tailored for lead, customer, and booking management. Practiced Git-based collaboration, API integration, and UI refinement in cross-functional teams.",
+      tech: ["Next.js", "TypeScript", "React", "Tailwind CSS", "SQL", "Git"]
     },
     {
       role: "Full Stack Development Intern",
@@ -103,6 +104,15 @@ export const profileData = {
       featured: true,
       isPublished: true,
       icon: "fas fa-certificate"
+    },
+    {
+      title: "Tariff Extraction Process",
+      description: "Engineered an AI-powered pipeline to extract and structure hotel tariff data from PDFs using Mistral OCR and Google Gemini. Implemented a multi-stage LLM orchestration system for parsing rates, surcharges, and pricing rules into queryable JSON, enabling dynamic price calculations. Developed a pricing engine with fuzzy matching to automate complex booking quotes, significantly reducing manual tariff processing time for TripXplo.",
+      tech: ["Python", "Mistral AI", "Google Gemini", "Langchain"],
+      role: "AI Engineer Intern",
+      featured: false,
+      icon: "fas fa-robot",
+      teamSize: 1
     },
     {
       title: "Internship Management System",

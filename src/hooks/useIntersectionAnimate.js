@@ -119,21 +119,25 @@ export const useCountUp = (targetValue, duration = 1000) => {
             hasAnimated.current = true;
             
             requestAnimationFrame(() => {
-              const obj = { value: 0 };
-              animate(obj, {
-                value: targetValue,
+              animate(element, {
                 duration,
                 easing: 'easeInOutExpo',
-                update: () => {
-                  element.textContent = Math.round(obj.value);
+                onUpdate: (self) => {
+                  // Calculate progress (0 to 1)
+                  const progress = self.currentTime / self.duration;
+                  element.textContent = Math.round(targetValue * progress);
                 },
+                onComplete: () => {
+                  // Ensure final value is exactly the target
+                  element.textContent = targetValue;
+                }
               });
             });
             observer.unobserve(element);
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
 
     observer.observe(element);
