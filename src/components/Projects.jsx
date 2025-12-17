@@ -1,32 +1,25 @@
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback } from 'react';
 import { animate } from 'animejs';
 import { profileData } from '../data/profileData';
-import { useIntersectionAnimate, useCardReveal } from '../hooks/useIntersectionAnimate';
+import { useIntersectionAnimate } from '../hooks/useIntersectionAnimate';
 import SectionHeader from './SectionHeader';
+import ScrollStack from './ScrollStack';
 
-const FeaturedProject = memo(({ project, index }) => {
-  const animationConfig = {
-    opacity: [0, 1],
-    translateY: [50, 0],
-    duration: 400,
-    delay: index * 100,
-    easing: 'easeOutExpo'
-  };
-
-  const cardRef = useIntersectionAnimate(animationConfig);
-
+const ProjectCardContent = memo(({ project, index }) => {
   return (
-    <div ref={cardRef} className={`opacity-0 grid md:grid-cols-[1fr_1.2fr] bg-oxford-navy/50 border border-frosted-blue/20 rounded-2xl overflow-hidden transition-all hover:border-punch-red hover:-translate-y-1 hover:shadow-2xl ${index % 2 === 1 ? 'md:grid-cols-[1.2fr_1fr]' : ''}`}>
-      {/* Image */}
-      <div className={`relative min-h-72 bg-linear-to-br from-cerulean to-oxford-navy-light flex items-center justify-center ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-        <i className={`${project.icon} text-7xl text-honeydew/30`}></i>
+    <div className={`h-full grid md:grid-cols-2 ${index % 2 === 1 ? '' : ''} h-full`}>
+      {/* Image/Icon Section */}
+      <div className={`relative bg-linear-to-br from-cerulean to-oxford-navy-light flex items-center justify-center p-6 ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+        <i className={`${project.icon || 'fas fa-code'} text-9xl text-honeydew/30`}></i>
         <div className="absolute inset-0 bg-linear-to-br from-punch-red/20 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
       </div>
       
-      {/* Info */}
-      <div className={`p-7 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
-        <div className="flex gap-3 flex-wrap mb-4">
-          <span className="bg-punch-red text-honeydew px-3 py-1 rounded-full text-xs font-semibold">Featured</span>
+      {/* Info Section */}
+      <div className={`p-8 md:p-12 flex flex-col justify-center bg-oxford-navy/50 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+        <div className="flex gap-2 flex-wrap mb-6">
+          {project.featured && (
+            <span className="bg-punch-red text-honeydew px-3 py-1 rounded-full text-xs font-semibold">Featured</span>
+          )}
           <span className="bg-frosted-blue/20 text-frosted-blue px-3 py-1 rounded-full text-xs font-semibold">
             <i className={project.teamSize === 1 ? 'fas fa-user' : 'fas fa-users'}></i> {project.teamSize === 1 ? 'Solo' : `Team of ${project.teamSize}`}
           </span>
@@ -37,29 +30,29 @@ const FeaturedProject = memo(({ project, index }) => {
           )}
         </div>
         
-        <h3 className="font-display text-2xl font-bold mb-4">{project.title}</h3>
-        <p className="text-frosted-blue/80 mb-5">{project.description}</p>
+        <h3 className="font-display text-3xl font-bold mb-4 text-white">{project.title}</h3>
+        <p className="text-frosted-blue/80 mb-6 text-lg leading-relaxed">{project.description}</p>
         
-        <div className="flex flex-wrap gap-2 mb-5">
+        <div className="flex flex-wrap gap-2 mb-8">
           {project.tech.map((t, i) => (
-            <span key={i} className="px-3 py-1 bg-punch-red/15 border border-punch-red/30 rounded-full text-xs text-punch-red">{t}</span>
+            <span key={i} className="px-3 py-1 bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red">{t}</span>
           ))}
         </div>
         
-        <div className="flex gap-5">
+        <div className="flex gap-6 mt-auto">
           {project.liveLink && (
-            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium">
+            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center text-lg">
               <i className="fas fa-external-link-alt mr-2"></i>Live Demo
             </a>
           )}
           {project.repoLink && (
-            <a href={project.repoLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium">
-              <i className="fab fa-github mr-2"></i>Source Code
+            <a href={project.repoLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center text-lg">
+              <i className="fab fa-github mr-2"></i>Code
             </a>
           )}
           {project.ieeeLink && (
-            <a href={project.ieeeLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium">
-              <i className="fas fa-file-alt mr-2"></i>IEEE Paper
+            <a href={project.ieeeLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center text-lg">
+              <i className="fas fa-file-alt mr-2"></i>Paper
             </a>
           )}
         </div>
@@ -68,42 +61,7 @@ const FeaturedProject = memo(({ project, index }) => {
   );
 });
 
-FeaturedProject.displayName = 'FeaturedProject';
-
-const MiniProject = memo(({ project, index }) => {
-  const cardRef = useCardReveal(index);
-
-  return (
-    <div ref={cardRef} className="opacity-0 bg-oxford-navy/50 border border-frosted-blue/15 rounded-2xl p-6 transition-all hover:border-punch-red hover:-translate-y-1">
-      <div className="flex justify-between mb-5">
-        <div className="text-4xl text-frosted-blue">
-          <i className="fas fa-folder-open"></i>
-        </div>
-        {project.liveLink && (
-          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-frosted-blue/60 hover:text-punch-red text-xl">
-            <i className="fas fa-external-link-alt"></i>
-          </a>
-        )}
-      </div>
-      
-      <h4 className="text-lg font-bold mb-3">{project.title}</h4>
-      <p className="text-frosted-blue/70 text-sm mb-5">{project.description}</p>
-      
-      <div className="flex flex-wrap gap-2 text-sm text-frosted-blue mb-4">
-        {project.tech.map((t, i) => (
-          <span key={i}>{t}{i < project.tech.length - 1 && <span className="ml-2 text-frosted-blue/40">•</span>}</span>
-        ))}
-      </div>
-      
-      <div className="flex justify-between text-sm text-frosted-blue/60">
-        <span><i className="fas fa-users mr-2"></i>Team of {project.teamSize}</span>
-        <span className="text-punch-red">{project.role}</span>
-      </div>
-    </div>
-  );
-});
-
-MiniProject.displayName = 'MiniProject';
+ProjectCardContent.displayName = 'ProjectCardContent';
 
 const Projects = () => {
   const runHeaderAnimation = useCallback(() => {
@@ -131,35 +89,28 @@ const Projects = () => {
   const sectionRef = useIntersectionAnimate(runHeaderAnimation);
 
   const { projects } = profileData;
-  
-  // Memoize filtered arrays to prevent recalculation on re-renders
-  const featured = useMemo(() => projects.filter(p => p.featured), [projects]);
-  const other = useMemo(() => projects.filter(p => !p.featured), [projects]);
 
   return (
     <section id="projects" ref={sectionRef} className="py-24 bg-oxford-navy-dark">
-      <div className="max-w-6xl mx-auto px-5">
-        {/* Header */}
-        <SectionHeader
-          tag="Portfolio"
-          title="Featured"
-          highlight="Projects"
-          className="proj-header"
-        />
-
-        {/* Featured Projects */}
-        <div className="space-y-10 mb-16">
-          {featured.map((project, i) => (
-            <FeaturedProject key={project.title} project={project} index={i} />
-          ))}
+      <div className="w-full px-5">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <SectionHeader
+            tag="Portfolio"
+            title="Projects"
+            highlight="Showcase"
+            className="proj-header"
+          />
         </div>
 
-        {/* Other Projects */}
-        <h3 className="font-display text-2xl text-frosted-blue text-center mb-8">Other Projects</h3>
-        <div className="grid md:grid-cols-2 gap-6">
-          {other.map((project, i) => (
-            <MiniProject key={project.title} project={project} index={i} />
-          ))}
+        {/* Scroll Stack */}
+        <div className="w-full flex justify-center">
+            <ScrollStack 
+                items={projects} 
+                itemContent={(project, index) => (
+                    <ProjectCardContent project={project} index={index} />
+                )} 
+            />
         </div>
       </div>
     </section>
