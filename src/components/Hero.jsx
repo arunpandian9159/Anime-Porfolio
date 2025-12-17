@@ -158,7 +158,16 @@ const Hero = () => {
             
             {/* Avatar */}
             <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden relative">
-              <div className="w-full h-full bg-linear-to-br from-cerulean to-oxford-navy-light flex items-center justify-center">
+              <img 
+                src={profile.profileImage} 
+                alt={profile.name}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="w-full h-full bg-linear-to-br from-cerulean to-oxford-navy-light items-center justify-center hidden">
                 <span className="font-display text-6xl md:text-7xl font-black text-honeydew text-glow-blue">AC</span>
               </div>
               {/* Aura */}
@@ -204,10 +213,16 @@ const Hero = () => {
             {profile.shortBio}
           </p>
           
-          <div className="hero-cta flex items-center gap-6 justify-center md:justify-start opacity-0">
+          <div className="hero-cta flex flex-wrap items-center gap-4 justify-center md:justify-start opacity-0">
             <a href="#projects" className="inline-flex items-center gap-3 bg-punch-red text-honeydew px-7 py-4 rounded font-semibold glow-red transition-all hover:bg-punch-red-light hover:-translate-y-1 hover:shadow-lg">
               <span>Explore Work</span>
               <i className="fas fa-rocket"></i>
+            </a>
+            
+            <a href={profile.resume} target="_blank" rel="noopener noreferrer" 
+               className="inline-flex items-center gap-3 bg-transparent border-2 border-frosted-blue text-frosted-blue px-7 py-4 rounded font-semibold transition-all hover:bg-frosted-blue hover:text-oxford-navy-dark hover:-translate-y-1">
+              <span>Resume</span>
+              <i className="fas fa-download"></i>
             </a>
             
             <div className="flex gap-4">

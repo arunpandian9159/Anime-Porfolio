@@ -8,7 +8,10 @@ export const profileData = {
     shortBio: "Building responsive, scalable, and user-focused web applications with passion and precision.",
     location: "Puducherry, India",
     email: "arunpandiancse25@gmail.com",
-    phone: "+91 8072396488"
+    phone: "+91 8072396488",
+    profileImage: "/profile.jpg",
+    icon: "/icon-144.png",
+    resume: "/Arunpandian_C_Resume.pdf"
   },
   socials: {
     github: "https://github.com/arunpandian9159",
@@ -64,14 +67,17 @@ export const profileData = {
     }
   ],
   certifications: [
-    { title: "Python (Certiport)", icon: "fab fa-python" },
-    { title: "ICT Learnathon 2023", icon: "fas fa-laptop-code" },
-    { title: "Skill-a-thon 2024", icon: "fas fa-trophy" },
-    { title: "Fullstack Capgemini", icon: "fas fa-layer-group" }
+    { title: "Python (Certiport)", icon: "fab fa-python", image: "/python-certiport.png" },
+    { title: "ICT Learnathon 2023", icon: "fas fa-laptop-code", image: "/Learnathon.png" },
+    { title: "Skill-a-thon 2024", icon: "fas fa-trophy", image: "/Skill la thon.png" },
+    { title: "Fullstack Capgemini", icon: "fas fa-layer-group", image: "/Capgemini.png" },
+    { title: "MongoDB Certification", icon: "fas fa-database", image: "/mongoDB.png" }
   ],
   achievements: [
     { text: "Typewriting-Distinction (Senior)", icon: "fas fa-medal" },
-    { text: "Published IEEE Paper (ICDSBS 2025)", icon: "fas fa-file-alt" },
+    { text: "Published IEEE Paper (ICDSBS 2025)", icon: "fas fa-file-alt", image: "/certificate of presentation.png", paperLink: "/622_Final Camera Ready Copy.pdf" },
+    { text: "Tripxplo Internship Certificate", icon: "fas fa-certificate", image: "/tripxplo intern certificate.png" },
+    { text: "VEI Technologies Certificate", icon: "fas fa-certificate", image: "/VEI technologies.jpg" },
     { text: "NSS Activities - Cycle Rally", icon: "fas fa-bicycle" },
     { text: "NCC Air Force", icon: "fas fa-plane" }
   ],
@@ -120,6 +126,6 @@ export const profileData = {
     projects: 6,
     technologies: 10,
     internships: 2,
-    certifications: 4
+    certifications: 5
   }
 };
