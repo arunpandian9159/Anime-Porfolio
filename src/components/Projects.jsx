@@ -23,14 +23,28 @@ const ProjectCardContent = memo(({ project, index }) => {
       <div className={`relative bg-linear-to-br from-cerulean to-oxford-navy-light flex items-center justify-center overflow-hidden ${!project.images ? 'p-6' : ''}`}>
         {project.images && project.images.length > 0 ? (
           <div className="absolute inset-0 w-full h-full">
-            {project.images.map((img, i) => (
-              <img 
-                key={i} 
-                src={img} 
-                alt={`${project.title} preview ${i + 1}`} 
-                className={`absolute inset-0 w-full h-full object-cover object-top-left transition-opacity duration-1000 ${i === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
-              />
-            ))}
+            {project.imageLayout === 'split-vertical' ? (
+              <div className="flex flex-col h-full w-full">
+                {project.images.slice(0, 2).map((img, i) => (
+                  <div key={i} className="h-1/2 w-full relative overflow-hidden border-b last:border-b-0 border-frosted-blue/10">
+                    <img 
+                      src={img} 
+                      alt={`${project.title} part ${i + 1}`} 
+                      className="w-full h-full object-cover object-top-left"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              project.images.map((img, i) => (
+                <img 
+                  key={i} 
+                  src={img} 
+                  alt={`${project.title} preview ${i + 1}`} 
+                  className={`absolute inset-0 w-full h-full object-cover object-top-left transition-opacity duration-1000 ${i === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+                />
+              ))
+            )}
             {/* Gradient Overlay for text readability if needed, or just style */}
             <div className="absolute inset-0 bg-oxford-navy/10 group-hover:bg-transparent transition-colors duration-300"></div>
           </div>
@@ -43,7 +57,7 @@ const ProjectCardContent = memo(({ project, index }) => {
       </div>
       
       {/* Info Section */}
-      <div className="p-8 md:p-12 flex flex-col justify-center bg-oxford-navy/50">
+      <div className="p-2 md:p-5 flex flex-col justify-center bg-oxford-navy/50">
         <div className="flex gap-2 flex-wrap mb-6">
           {project.featured && (
             <span className="bg-punch-red text-honeydew px-3 py-1 rounded-full text-xs font-semibold">Featured</span>
@@ -59,8 +73,15 @@ const ProjectCardContent = memo(({ project, index }) => {
         </div>
         
         <h3 className="font-display text-3xl font-bold mb-4 text-white">{project.title}</h3>
+        {Array.isArray(project.description) ? (
+          <ul className="list-disc list-outside ml-5 text-frosted-blue/80 mb-4 space-y-2">
+            {project.description.map((point, idx) => (
+              <li key={idx}>{point}</li>
+            ))}
+          </ul>
+        ) : (
         <p className="text-frosted-blue/80 mb-6 text-lg leading-relaxed">{project.description}</p>
-        
+        )}
         <div className="flex flex-wrap gap-2 mb-8">
           {project.tech.map((t, i) => (
             <span key={i} className="px-3 py-1 bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red">{t}</span>

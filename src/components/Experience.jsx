@@ -30,7 +30,15 @@ const TimelineItem = memo(({ exp, index }) => {
           <span className="text-frosted-blue text-sm">{exp.duration}</span>
         </div>
         <h3 className="text-xl font-bold mb-3">{exp.role}</h3>
-        <p className="text-frosted-blue/80 mb-4">{exp.description}</p>
+        {Array.isArray(exp.description) ? (
+          <ul className="list-disc list-outside ml-5 text-frosted-blue/80 mb-4 space-y-2">
+            {exp.description.map((point, idx) => (
+              <li key={idx}>{point}</li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-frosted-blue/80 mb-4">{exp.description}</p>
+        )}
         <div className="flex gap-3 flex-wrap">
           {exp.tech.map((t, i) => (
             <span key={i} className="px-3 py-1 bg-frosted-blue/10 rounded-full text-sm text-frosted-blue">{t}</span>
