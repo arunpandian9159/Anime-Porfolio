@@ -10,7 +10,7 @@ export const profileData = {
     email: "arunpandiancse25@gmail.com",
     phone: "+91 8072396488",
     profileImage: "/profile.jpg",
-    icon: "/icon-144.png",
+    icon: "/icon-144.webp",
     resume: "/Arunpandian_C_Resume.pdf"
   },
   socials: {
@@ -68,17 +68,17 @@ export const profileData = {
     }
   ],
   certifications: [
-    { title: "Python (Certiport)", icon: "fab fa-python", image: "/python-certiport.png" },
-    { title: "ICT Learnathon 2023", icon: "fas fa-laptop-code", image: "/Learnathon.png" },
-    { title: "Skill-a-thon 2024", icon: "fas fa-trophy", image: "/Skill la thon.png" },
-    { title: "Fullstack Capgemini", icon: "fas fa-layer-group", image: "/Capgemini.png" },
-    { title: "MongoDB Certification", icon: "fas fa-database", image: "/mongoDB.png" }
+    { title: "Python (Certiport)", icon: "fab fa-python", image: "/python-certiport.webp" },
+    { title: "ICT Learnathon 2023", icon: "fas fa-laptop-code", image: "/learnathon.webp" },
+    { title: "Skill-a-thon 2024", icon: "fas fa-trophy", image: "/skill-la-thon.webp" },
+    { title: "Fullstack Capgemini", icon: "fas fa-layer-group", image: "/capgemini.webp" },
+    { title: "MongoDB Certification", icon: "fas fa-database", image: "/mongodb.webp" }
   ],
   achievements: [
     { text: "Typewriting-Distinction (Senior)", icon: "fas fa-medal" },
-    { text: "Published IEEE Paper (ICDSBS 2025)", icon: "fas fa-file-alt", image: "/certificate of presentation.png", paperLink: "/622_Final Camera Ready Copy.pdf" },
-    { text: "Tripxplo Internship Certificate", icon: "fas fa-certificate", image: "/tripxplo intern certificate.png" },
-    { text: "VEI Technologies Certificate", icon: "fas fa-certificate", image: "/VEI technologies.jpg" },
+    { text: "Published IEEE Paper (ICDSBS 2025)", icon: "fas fa-file-alt", image: "/certificate-presentation.webp", paperLink: "/622_Final Camera Ready Copy.pdf" },
+    { text: "Tripxplo Internship Certificate", icon: "fas fa-certificate", image: "/tripxplo-intern-certificate.webp" },
+    { text: "VEI Technologies Certificate", icon: "fas fa-certificate", image: "/vei-technologies.webp" },
     { text: "NSS Activities - Cycle Rally", icon: "fas fa-bicycle" },
     { text: "NCC Air Force", icon: "fas fa-plane" }
   ],

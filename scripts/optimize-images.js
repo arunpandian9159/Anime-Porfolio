@@ -20,6 +20,42 @@ const optimizations = [
       { name: 'profile-512.webp', width: 512, height: 512, format: 'webp' },
       { name: 'profile.webp', width: 512, height: 512, format: 'webp' },
     ]
+  },
+  {
+    input: 'Capgemini.png',
+    outputs: [{ name: 'capgemini.webp', format: 'webp', width: 800 }]
+  },
+  {
+    input: 'Learnathon.png',
+    outputs: [{ name: 'learnathon.webp', format: 'webp', width: 800 }]
+  },
+  {
+    input: 'Skill la thon.png',
+    outputs: [{ name: 'skill-la-thon.webp', format: 'webp', width: 800 }]
+  },
+  {
+    input: 'python-certiport.png',
+    outputs: [{ name: 'python-certiport.webp', format: 'webp', width: 800 }]
+  },
+  {
+    input: 'mongoDB.png',
+    outputs: [{ name: 'mongodb.webp', format: 'webp', width: 800 }]
+  },
+  {
+    input: 'certificate of presentation.png',
+    outputs: [{ name: 'certificate-presentation.webp', format: 'webp', width: 800 }]
+  },
+  {
+    input: 'tripxplo intern certificate.png',
+    outputs: [{ name: 'tripxplo-intern-certificate.webp', format: 'webp', width: 800 }]
+  },
+  {
+    input: 'VEI technologies.jpg',
+    outputs: [{ name: 'vei-technologies.webp', format: 'webp', width: 800 }]
+  },
+  {
+    input: 'icon-144.png',
+    outputs: [{ name: 'icon-144.webp', format: 'webp' }]
   }
 ];
 
