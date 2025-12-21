@@ -54,7 +54,7 @@ const Contact = () => {
         <SectionHeader
           tag="Get In Touch"
           title="Let's"
-          highlight="Connect"
+          highlight="Connect" 
           className="contact-header"
         />
 
