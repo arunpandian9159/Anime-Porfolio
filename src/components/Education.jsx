@@ -11,7 +11,7 @@ const EducationCard = memo(({ edu, index }) => {
     scale: [0.95, 1],
     duration: 350,
     delay: index * 75,
-    easing: 'easeOutExpo'
+    easing: 'easeOutExpo' 
   };
 
   const cardRef = useIntersectionAnimate(animationConfig, { threshold: 0.2 });
