@@ -220,7 +220,7 @@ const Hero = ({ isLoading }) => {
           </h1>
           
           <div className="hero-role mb-5 opacity-0">
-            <span className="text-frosted-blue text-xl font-semibold">{profile.headline}</span>
+            <span className="text-frosted-blue text-xl font-semibold">{profile.headline} Developer</span>
             <div className="role-underline h-0.5 bg-linear-to-r from-punch-red to-frosted-blue mt-2 w-0"></div>
           </div>
           

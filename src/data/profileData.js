@@ -3,7 +3,7 @@ export const profileData = {
     name: "Arunpandian C",
     firstName: "Arunpandian",
     lastName: "C",
-    headline: "Full Stack Developer",
+    headline: "Full Stack",
     bio: "An aspiring full-stack developer with a strong foundation in front-end and back-end technologies. I have a passion for building responsive, scalable, and user-focused web applications. I am committed to writing clean, efficient code and continuously learning new tools and frameworks. My goal is to deliver seamless user experiences through intuitive interfaces and robust server-side logic to drive functionality, performance, and user satisfaction.",
     shortBio: "Building responsive, scalable, and user-focused web applications with passion and precision.",
     location: "Puducherry, India",
