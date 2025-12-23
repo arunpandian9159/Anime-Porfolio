@@ -66,14 +66,6 @@ const About = () => {
         <div className="absolute inset-0 bg-gradient-radial from-punch-red/10 at-80% via-transparent to-transparent"></div>
       </div>
 
-      {/* Curved Loop Animation - Full Width */}
-      <CurvedLoop
-        marqueeText="Arun ✦ Pandian ✦ Full ✦ Stack ✦ Developer ✦ "
-        curveAmount={0}
-        interactive={false}
-        speed={2}
-      />
-
       <div className="max-w-6xl mx-auto px-5">
         {/* Header */}
         <SectionHeader
@@ -123,6 +115,15 @@ const About = () => {
           </div>
         </div>
       </div>
+
+    {/* Curved Loop Animation - Full Width */}
+      <CurvedLoop
+        marqueeText="Arun ✦ Pandian ✦ Full ✦ Stack ✦ Developer ✦ "
+        curveAmount={0}
+        interactive={false}
+        speed={2}
+      />
+      
     </section>
   );
 };

@@ -3,7 +3,7 @@ import { animate } from 'animejs';
 import { profileData } from '../data/profileData';
 import { useIntersectionAnimate } from '../hooks/useIntersectionAnimate';
 import SectionHeader from './ui/SectionHeader';
-import ScrollStack from './ScrollStack';
+import ScrollStack from './ui/ScrollStack';
 
 const ProjectCardContent = memo(({ project, index }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
