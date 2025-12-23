@@ -3,7 +3,7 @@ import {
   Loader,
   Navbar,
   Hero,
-} from './components';
+} from './components/ui';
 
 // Lazy load below-the-fold components
 const About = lazy(() => import('./components/About'));

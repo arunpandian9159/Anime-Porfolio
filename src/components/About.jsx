@@ -3,7 +3,7 @@ import { animate } from 'animejs';
 import { profileData } from '../data/profileData';
 import { useCountUp, useCardReveal, useIntersectionAnimate } from '../hooks/useIntersectionAnimate';
 import SectionHeader from './SectionHeader';
-import CurvedLoop from './CurvedLoop';
+import CurvedLoop from './ui/CurvedLoop';
  
 const StatCard = memo(({ icon, value, label, index }) => {
   const countRef = useCountUp(value);
