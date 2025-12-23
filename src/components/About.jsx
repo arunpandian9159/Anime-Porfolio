@@ -66,15 +66,15 @@ const About = () => {
         <div className="absolute inset-0 bg-gradient-radial from-punch-red/10 at-80% via-transparent to-transparent"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-5">
-        {/* Curved Loop Animation */}
-        <CurvedLoop
-          marqueeText="Arun ✦ Pandian ✦ Full ✦ Stack ✦ Developer ✦ "
-          curveAmount={0}
-          interactive={false}
-          speed={2}
-        />
+      {/* Curved Loop Animation - Full Width */}
+      <CurvedLoop
+        marqueeText="Arun ✦ Pandian ✦ Full ✦ Stack ✦ Developer ✦ "
+        curveAmount={0}
+        interactive={false}
+        speed={2}
+      />
 
+      <div className="max-w-6xl mx-auto px-5">
         {/* Header */}
         <SectionHeader
           tag="Introduction"
