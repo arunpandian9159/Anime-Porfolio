@@ -21,7 +21,7 @@ const CurvedLoop = ({
   const [offset, setOffset] = useState(0);
   const uid = useId();
   const pathId = `curve-${uid}`;
-  const pathD = `M0,160 Q820,${160 + curveAmount} 1640,160`;
+  const pathD = `M-200,160 Q820,${160 + curveAmount} 1840,160`;
 
   const dragRef = useRef(false);
   const lastXRef = useRef(0);
@@ -30,7 +30,7 @@ const CurvedLoop = ({
 
   const textLength = spacing;
   const totalText = textLength
-    ? Array(Math.ceil(1800 / textLength) + 2)
+    ? Array(Math.ceil(2400 / textLength) + 2)
         .fill(text)
         .join('')
     : text;
@@ -113,7 +113,7 @@ const CurvedLoop = ({
       onPointerUp={endDrag}
       onPointerLeave={endDrag}
     >
-      <svg className="curved-loop-svg" viewBox="0 0 1640 150" preserveAspectRatio="none">
+      <svg className="curved-loop-svg" viewBox="0 0 1640 150" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
         <text ref={measureRef} xmlSpace="preserve" style={{ visibility: 'hidden', opacity: 0, pointerEvents: 'none' }}>
           {text}
         </text>
