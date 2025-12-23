@@ -2,7 +2,7 @@ import { memo, useState, useCallback } from 'react';
 import { animate } from 'animejs';
 import { profileData } from '../data/profileData';
 import { useIntersectionAnimate } from '../hooks/useIntersectionAnimate';
-import SectionHeader from './SectionHeader';
+import SectionHeader from './ui/SectionHeader';
 
 const CertCard = memo(({ cert, index, onImageClick }) => {
   const animationConfig = {

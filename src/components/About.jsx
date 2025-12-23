@@ -2,7 +2,7 @@ import { memo, useCallback } from 'react';
 import { animate } from 'animejs';
 import { profileData } from '../data/profileData';
 import { useCountUp, useCardReveal, useIntersectionAnimate } from '../hooks/useIntersectionAnimate';
-import SectionHeader from './SectionHeader';
+import SectionHeader from './ui/SectionHeader';
 import CurvedLoop from './ui/CurvedLoop';
  
 const StatCard = memo(({ icon, value, label, index }) => {

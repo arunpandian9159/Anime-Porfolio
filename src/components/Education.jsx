@@ -2,7 +2,7 @@ import { memo, useCallback } from 'react';
 import { animate } from 'animejs';
 import { profileData } from '../data/profileData';
 import { useIntersectionAnimate } from '../hooks/useIntersectionAnimate';
-import SectionHeader from './SectionHeader';
+import SectionHeader from './ui/SectionHeader';
 
 const EducationCard = memo(({ edu, index }) => {
   const animationConfig = {

@@ -2,7 +2,7 @@ import { memo, useCallback, useState, useEffect } from 'react';
 import { animate } from 'animejs';
 import { profileData } from '../data/profileData';
 import { useIntersectionAnimate } from '../hooks/useIntersectionAnimate';
-import SectionHeader from './SectionHeader';
+import SectionHeader from './ui/SectionHeader';
 import ScrollStack from './ScrollStack';
 
 const ProjectCardContent = memo(({ project, index }) => {

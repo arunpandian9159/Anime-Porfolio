@@ -14,7 +14,7 @@ const Education = lazy(() => import('./components/Education'));
 const Certifications = lazy(() => import('./components/Certifications'));
 const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
-const TechLogoLoop = lazy(() => import('./components/TechLogoLoop'));
+const TechLogoLoop = lazy(() => import('./components/ui/TechLogoLoop'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
