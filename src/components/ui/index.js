@@ -5,7 +5,7 @@ export { default as TechLogoLoop } from './TechLogoLoop';
 export { default as LogoLoop } from './LogoLoop';
 export { default as ScrollStack } from './ScrollStack';
 
-// Components in parent folder
+// Components in parent folder 
 export { default as Navbar } from '../Navbar';
 export { default as Hero } from '../Hero';
 export { default as About } from '../About';
