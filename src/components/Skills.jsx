@@ -61,7 +61,7 @@ const Skills = () => {
       easing: 'easeOutExpo'
     });
     animate('.skills-header .title-decoration', {
-      width: [0, 80],
+      width: [0, 80], 
       duration: 300,
       delay: 200,
       easing: 'easeOutExpo'
