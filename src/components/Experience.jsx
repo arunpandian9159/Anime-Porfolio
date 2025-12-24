@@ -9,10 +9,10 @@ const TimelineItem = memo(({ exp, index }) => {
     opacity: [0, 1],
     translateX: [-30, 0],
     duration: 400, 
-    delay: index * 100,
+    delay: index * 100, 
     easing: 'easeOutExpo'
   };
-
+ 
   const itemRef = useIntersectionAnimate(animationConfig);
 
   return (
