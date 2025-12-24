@@ -110,7 +110,7 @@ const CurvedLoop = ({
       style={{ visibility: ready ? 'visible' : 'hidden', cursor: cursorStyle }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
-      onPointerUp={endDrag}
+      onPointerUp={endDrag} 
       onPointerLeave={endDrag}
     >
       <svg className="curved-loop-svg" viewBox="0 0 1640 150" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
