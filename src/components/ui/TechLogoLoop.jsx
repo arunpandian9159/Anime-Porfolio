@@ -25,7 +25,7 @@ const TechLogoLoop = () => {
       <div className="text-center mb-8">
         <span className="text-frosted-blue/60 text-sm uppercase tracking-widest">Technologies I Work With</span>
       </div>
-      
+       
       <LogoLoop
         logos={techLogos}
         speed={80}
