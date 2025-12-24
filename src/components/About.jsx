@@ -77,7 +77,7 @@ const About = () => {
 
         {/* Content */}
         <div className="grid lg:grid-cols-[1.5fr_1fr] gap-10">
-          {/* Card */}
+          {/* Card */} 
           <div className="about-card bg-oxford-navy/50 border border-frosted-blue/20 rounded-2xl p-6 md:p-8 relative overflow-hidden opacity-0">
             <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-radial from-punch-red/10 to-transparent pointer-events-none"></div>
             
