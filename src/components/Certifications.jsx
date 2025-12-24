@@ -186,10 +186,10 @@ const Certifications = () => {
           {/* Header */}
           <SectionHeader
             tag="Credentials"
-            title="Certifications &"
+            title="Certifications &" 
             highlight="Achievements"
             className="cert-header"
-          />
+          /> 
 
           {/* Certifications Grid */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-5 mb-16">
