@@ -4,7 +4,7 @@ import {
   Navbar,
   Hero,
 } from './components/ui';
-
+ 
 // Lazy load below-the-fold components
 const About = lazy(() => import('./components/About'));
 const Skills = lazy(() => import('./components/Skills'));
