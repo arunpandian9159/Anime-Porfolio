@@ -36,7 +36,7 @@ const Contact = () => {
       opacity: [0, 1],
       scale: [0.9, 1],
       duration: 400,
-      delay: 400,
+      delay: 400, 
       easing: 'easeOutExpo'
     });
   }, []);
