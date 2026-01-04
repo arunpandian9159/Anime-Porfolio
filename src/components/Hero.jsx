@@ -206,7 +206,7 @@ const Hero = ({ isLoading }) => {
               <span>{stats.certifications}+ Certifications</span>
             </div>
           </div> 
-        </div>
+        </div> 
  
         {/* Right - Info */}
         <div className="md:pr-12 text-center md:text-left">
