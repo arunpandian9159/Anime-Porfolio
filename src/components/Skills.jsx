@@ -66,7 +66,7 @@ const Skills = () => {
       delay: 200,
       easing: 'easeOutExpo'
     });
-  }, []);
+  }, []); 
 
   const sectionRef = useIntersectionAnimate(runHeaderAnimation);
 
