@@ -75,7 +75,7 @@ const About = () => {
           className="about-header"
         />
 
-        {/* Content */}
+        {/* Content */} 
         <div className="grid lg:grid-cols-[1.5fr_1fr] gap-10">
           {/* Card */} 
           <div className="about-card bg-oxford-navy/50 border border-frosted-blue/20 rounded-2xl p-6 md:p-8 relative overflow-hidden opacity-0">
