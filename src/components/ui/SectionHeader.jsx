@@ -4,7 +4,7 @@ import { memo } from 'react';
  * Reusable Section Header Component
  * Standardizes the header structure across all sections 
  */
-const SectionHeader = memo(({ tag, title, highlight, className = '' }) => {
+const SectionHeader = memo(({ tag, title, highlight, className = '' }) => { 
   return (
     <div className={`${className} text-center mb-10 md:mb-16`}>
       <span className="section-tag inline-block px-5 py-2 bg-punch-red/15 rounded-full text-punch-red text-sm font-semibold uppercase tracking-wider mb-4 opacity-0">
