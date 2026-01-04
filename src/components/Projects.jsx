@@ -6,7 +6,7 @@ import SectionHeader from './ui/SectionHeader';
 import ScrollStack from './ui/ScrollStack';
  
 const ProjectCardContent = memo(({ project, index }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); 
 
   useEffect(() => {
     if (project.images && project.images.length > 1) {
