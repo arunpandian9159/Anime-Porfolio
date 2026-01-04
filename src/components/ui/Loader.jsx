@@ -41,7 +41,7 @@ const Loader = ({ onComplete }) => {
         easing: 'easeOutQuart'
       });
 
-      // Step 2: Animate progress bar (0ms - 700ms) 
+      // Step 2: Animate progress bar (0ms - 700ms)  
       animate(progress, {
         width: '100%',
         duration: 800,
