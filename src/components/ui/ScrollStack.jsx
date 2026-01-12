@@ -8,7 +8,7 @@ const Card = ({ children, index, progress, range, targetScale }) => {
     <div className="sticky top-0 h-screen flex items-center justify-center">
       <motion.div
         style={{ scale, top: `calc(-5vh + ${index * 25}px)` }}
-        className="relative flex flex-col w-full max-w-5xl h-[70vh] rounded-3xl overflow-hidden bg-oxford-navy border border-frosted-blue/20 origin-top shadow-2xl hover:border-punch-red transition-colors"
+        className="relative flex flex-col w-full max-w-7xl h-[60vh] rounded-3xl overflow-hidden bg-oxford-navy border border-frosted-blue/20 origin-top shadow-2xl hover:border-punch-red transition-colors"
       >
         {children}
       </motion.div>
@@ -24,7 +24,7 @@ const ScrollStack = ({ items, itemContent }) => {
   });
 
   return (
-    <div ref={container} className="relative mt-[10vh]">
+    <div ref={container} className="relative">
       {items.map((item, i) => {
         const targetScale = 1 - (items.length - i) * 0.05;
         return (
