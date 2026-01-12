@@ -160,6 +160,9 @@ export const profileData = {
       role: "Full Stack Developer",
       featured: true,
       images: ["/Jezcabs.png"],
+      // Video preview support - add actual video file when available
+      videoSrc: "/videos/jezcabs-demo.mp4",
+      videoPoster: "/Jezcabs.png",
       icon: "fas fa-car",
     },
     {
