@@ -96,7 +96,7 @@ const ProjectCardContent = memo(({ project, index, onVideoExpand }) => {
 
       {/* Info Section */}
       <div className="p-4 md:p-5 flex flex-col justify-center bg-oxford-navy/50">
-        <div className="flex gap-2 flex-wrap mb-6">
+        <div className="flex gap-2 flex-wrap lg:mb-6 mb-2">
           {project.featured && (
             <span className="bg-punch-red text-honeydew px-3 py-1 rounded-full text-xs font-semibold">
               Featured
@@ -117,7 +117,7 @@ const ProjectCardContent = memo(({ project, index, onVideoExpand }) => {
           )}
         </div>
 
-        <h3 className="font-display text-2xl md:text-3xl font-bold mb-4 text-white">
+        <h3 className="font-display text-2xl md:text-3xl font-bold lg:mb-4 mb-2 text-white">
           {project.title}
         </h3>
         {Array.isArray(project.description) ? (
@@ -170,7 +170,7 @@ const ProjectCardContent = memo(({ project, index, onVideoExpand }) => {
               href={project.ieeeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center text-lg"
+              className="text-frosted-blue hover:text-punch-red transition-colors font-medium hidden md:flex items-center text-lg"
             >
               <i className="fas fa-file-alt mr-2"></i>Paper
             </a>
