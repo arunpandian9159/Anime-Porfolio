@@ -1,5 +1,4 @@
 import { useEffect, useCallback } from "react";
-import { useTheme } from "../contexts/ThemeContext";
 
 /**
  * Section IDs mapped to number keys 1-9
@@ -22,7 +21,7 @@ const SECTION_MAP = {
  * Shortcuts:
  * - Ctrl+K: Open terminal (prepared for future implementation)
  * - 1-9: Navigate to corresponding section
- * - T: Toggle theme
+
  * - Escape: Close modals
  * 
  * @param {Object} options - Configuration options
@@ -32,7 +31,6 @@ const SECTION_MAP = {
  */
 export const useKeyboardNavigation = (options = {}) => {
   const { onTerminalToggle, onEscape } = options;
-  const { toggleTheme } = useTheme();
 
   /**
    * Navigate to a section by ID with smooth scrolling
@@ -74,21 +72,15 @@ export const useKeyboardNavigation = (options = {}) => {
         return;
       }
 
-      // T - Toggle theme (only when not holding modifier keys)
+      // Number keys 1-9 - Navigate to sections
+      const num = parseInt(event.key, 10);
       if (
-        event.key.toLowerCase() === "t" &&
+        num >= 1 &&
+        num <= 9 &&
         !event.ctrlKey &&
         !event.altKey &&
         !event.metaKey
       ) {
-        event.preventDefault();
-        toggleTheme();
-        return;
-      }
-
-      // Number keys 1-9 - Navigate to sections
-      const num = parseInt(event.key, 10);
-      if (num >= 1 && num <= 9 && !event.ctrlKey && !event.altKey && !event.metaKey) {
         const sectionId = SECTION_MAP[num];
         if (sectionId) {
           event.preventDefault();
@@ -96,7 +88,7 @@ export const useKeyboardNavigation = (options = {}) => {
         }
       }
     },
-    [onTerminalToggle, onEscape, toggleTheme, navigateToSection]
+    [onTerminalToggle, onEscape, navigateToSection]
   );
 
   // Attach keyboard event listener

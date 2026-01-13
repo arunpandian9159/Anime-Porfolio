@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ThemeToggle from "./ui/ThemeToggle";
 
 const Navbar = ({ onTerminalOpen }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -79,7 +78,6 @@ const Navbar = ({ onTerminalOpen }) => {
               Ctrl+K
             </span>
           </button>
-          <ThemeToggle />
         </div>
 
         {/* Mobile Toggle */}
@@ -106,24 +104,32 @@ const Navbar = ({ onTerminalOpen }) => {
               <line x1="12" y1="19" x2="20" y2="19" />
             </svg>
           </button>
-          <ThemeToggle />
+
           <button
             className="flex flex-col gap-1.5 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={
+              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav-menu"
           >
             <span
-              className={`w-6 h-0.5 bg-honeydew transition-all ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+              className={`w-6 h-0.5 bg-honeydew transition-all ${
+                isMenuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
               aria-hidden="true"
             ></span>
             <span
-              className={`w-6 h-0.5 bg-honeydew transition-all ${isMenuOpen ? "opacity-0" : ""}`}
+              className={`w-6 h-0.5 bg-honeydew transition-all ${
+                isMenuOpen ? "opacity-0" : ""
+              }`}
               aria-hidden="true"
             ></span>
             <span
-              className={`w-6 h-0.5 bg-honeydew transition-all ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+              className={`w-6 h-0.5 bg-honeydew transition-all ${
+                isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
               aria-hidden="true"
             ></span>
           </button>

@@ -61,24 +61,7 @@
   --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
-/* Light theme */
-[data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #e2e8f0;
-  --bg-tertiary: #cbd5e1;
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --border-color: rgba(30, 41, 59, 0.15);
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --shadow-color: rgba(0, 0, 0, 0.1);
-}
 
-/* Theme transition for smooth switching */
-:root,
-[data-theme] {
-  transition: background-color 300ms ease, color 300ms ease;
-}
 
 /* Base Styles */
 html {
