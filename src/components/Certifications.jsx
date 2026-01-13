@@ -24,11 +24,11 @@ const CertCard = memo(({ cert, index, onImageClick }) => {
   return (
     <div
       ref={cardRef}
-      className="cert-card opacity-0 bg-linear-to-br from-oxford-navy/80 to-cerulean/20 border border-frosted-blue/20 rounded-2xl p-4 text-center transition-all hover:border-punch-red hover:-translate-y-1 relative overflow-hidden cursor-pointer group"
+      className="cert-card opacity-0 bg-linear-to-br from-oxford-navy/80 to-cerulean/20 border border-frosted-blue/20 rounded-xl md:rounded-2xl p-3 md:p-4 text-center transition-all hover:border-punch-red hover:-translate-y-1 relative overflow-hidden cursor-pointer group"
       onClick={handleClick}
     >
       {cert.image ? (
-        <div className="aspect-4/3 rounded-lg overflow-hidden mb-3">
+        <div className="aspect-4/3 rounded-lg overflow-hidden mb-2 md:mb-3">
           <img
             src={cert.image}
             alt={cert.title}
@@ -37,14 +37,14 @@ const CertCard = memo(({ cert, index, onImageClick }) => {
           />
         </div>
       ) : (
-        <div className="text-4xl text-frosted-blue mb-4 py-4">
+        <div className="text-3xl md:text-4xl text-frosted-blue mb-3 md:mb-4 py-3 md:py-4">
           <i className={cert.icon}></i>
         </div>
       )}
-      <h4 className="font-semibold text-sm">{cert.title}</h4>
+      <h4 className="font-semibold text-xs md:text-sm">{cert.title}</h4>
       {cert.image && (
         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-          <i className="fas fa-expand text-honeydew text-2xl"></i>
+          <i className="fas fa-expand text-honeydew text-xl md:text-2xl"></i>
         </div>
       )}
       <div className="cert-shine"></div>
@@ -78,42 +78,77 @@ const AchievementItem = memo(({ item, index, onImageClick }) => {
   return (
     <div
       ref={itemRef}
-      className={`opacity-0 flex items-center gap-4 bg-oxford-navy/50 border border-frosted-blue/15 rounded-xl p-5 transition-all hover:border-punch-red hover:translate-x-1 ${item.image ? "cursor-pointer" : ""}`}
+      className={`opacity-0 flex flex-col md:flex-row md:items-center gap-3 md:gap-4 bg-oxford-navy/50 border border-frosted-blue/15 rounded-lg md:rounded-xl p-4 md:p-5 transition-all hover:border-punch-red hover:translate-x-1 ${
+        item.image
+          ? "cursor-pointer"
+          : "text-center md:text-left items-center md:items-start"
+      }`}
       onClick={handleClick}
     >
-      {item.image ? (
-        <div className="w-16 h-12 rounded-lg overflow-hidden shrink-0">
-          <img
-            src={item.image}
-            alt={item.text}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
+      <div
+        className={`flex items-center gap-3 w-full ${
+          !item.image ? "justify-center md:justify-start" : ""
+        }`}
+      >
+        {item.image ? (
+          <div className="w-12 h-9 md:w-16 md:h-12 rounded-lg overflow-hidden shrink-0">
+            <img
+              src={item.image}
+              alt={item.text}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <div className="w-9 h-9 md:w-11 md:h-11 bg-linear-to-br from-punch-red to-cerulean rounded-lg md:rounded-xl flex items-center justify-center shrink-0">
+            <i
+              className={`${item.icon} text-honeydew text-sm md:text-base`}
+            ></i>
+          </div>
+        )}
+        <div className="flex-1 min-w-0 md:hidden text-left">
+          <span className="text-frosted-blue/90 text-sm font-semibold block whitespace-normal leading-tight">
+            {item.text}
+          </span>
         </div>
-      ) : (
-        <div className="w-11 h-11 bg-linear-to-br from-punch-red to-cerulean rounded-xl flex items-center justify-center shrink-0">
-          <i className={`${item.icon} text-honeydew`}></i>
-        </div>
-      )}
-      <div className="flex-1">
-        <span className="text-frosted-blue/90">{item.text}</span>
+      </div>
+
+      <div className="hidden md:block flex-1 min-w-0">
+        <span className="text-frosted-blue/90 text-sm md:text-base block whitespace-normal leading-tight">
+          {item.text}
+        </span>
         {item.image && (
           <span className="block text-xs text-frosted-blue/50 mt-1">
-            Click to view certificate
+            Click to view
           </span>
         )}
       </div>
-      {item.paperLink && (
-        <a
-          href={item.paperLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-punch-red hover:text-punch-red-light transition-colors"
-          onClick={handleLinkClick}
-        >
-          <i className="fas fa-file-pdf text-xl"></i>
-        </a>
-      )}
+
+      <div
+        className={`flex items-center justify-between md:justify-end gap-4 mt-1 md:mt-0 ${
+          !item.image ? "hidden md:flex" : "w-full md:w-auto"
+        }`}
+      >
+        <div className="md:hidden">
+          {item.image && (
+            <span className="block text-xs text-frosted-blue/50">
+              Click to view certificate
+            </span>
+          )}
+        </div>
+        {item.paperLink && (
+          <a
+            href={item.paperLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-punch-red hover:text-punch-red-light transition-colors shrink-0 flex items-center gap-2 px-3 py-1 bg-punch-red/10 rounded-full md:bg-transparent md:p-0"
+            onClick={handleLinkClick}
+          >
+            <span className="text-xs md:hidden">View PDF</span>
+            <i className="fas fa-file-pdf text-lg md:text-xl"></i>
+          </a>
+        )}
+      </div>
     </div>
   );
 });
@@ -195,9 +230,9 @@ const Certifications = () => {
       <section
         id="certifications"
         ref={sectionRef}
-        className="py-24 bg-oxford-navy-dark"
+        className="py-12 md:py-24 bg-oxford-navy-dark"
       >
-        <div className="max-w-6xl mx-auto px-5">
+        <div className="max-w-6xl mx-auto px-4 md:px-5">
           {/* Header */}
           <SectionHeader
             tag="Credentials"
@@ -207,7 +242,7 @@ const Certifications = () => {
           />
 
           {/* Certifications Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-5 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-5 mb-10 md:mb-16 px-1">
             {certifications.map((cert, i) => (
               <CertCard
                 key={cert.title}
@@ -219,10 +254,10 @@ const Certifications = () => {
           </div>
 
           {/* Achievements */}
-          <h3 className="font-display text-2xl text-frosted-blue text-center mb-8">
+          <h3 className="font-display text-xl md:text-2xl text-frosted-blue text-center mb-5 md:mb-8">
             Achievements & Activities
           </h3>
-          <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4 md:max-w-4xl md:mx-auto px-1">
             {achievements.map((item, i) => (
               <AchievementItem
                 key={item.text}
