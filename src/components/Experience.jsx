@@ -16,24 +16,31 @@ const TimelineItem = memo(({ exp, index }) => {
   const itemRef = useIntersectionAnimate(animationConfig);
 
   return (
-    <div ref={itemRef} className="relative pl-10 pb-10 opacity-0">
+    <div
+      ref={itemRef}
+      className="relative pl-6 md:pl-10 pb-6 md:pb-10 opacity-0"
+    >
       {/* Marker */}
       <div className="absolute left-[-9px] top-1">
-        <div className="w-5 h-5 bg-punch-red rounded-full border-3 border-oxford-navy-dark"></div>
+        <div className="w-4 h-4 md:w-5 md:h-5 bg-punch-red rounded-full border-2 md:border-3 border-oxford-navy-dark"></div>
         <div className="absolute -inset-1 border-2 border-punch-red rounded-full marker-pulse"></div>
       </div>
 
       {/* Card */}
-      <div className="bg-oxford-navy/60 border border-frosted-blue/20 rounded-2xl p-4 md:p-6 transition-all hover:border-punch-red hover:glow-red">
-        <div className="flex justify-between items-center flex-wrap gap-3 mb-4">
-          <span className="bg-punch-red/20 text-punch-red px-4 py-1 rounded-full text-sm font-semibold">
+      <div className="bg-oxford-navy/60 border border-frosted-blue/20 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all hover:border-punch-red hover:glow-red">
+        <div className="flex justify-between items-center flex-wrap gap-2 md:gap-3 mb-2 md:mb-4">
+          <span className="bg-punch-red/20 text-punch-red px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-semibold">
             {exp.company}
           </span>
-          <span className="text-frosted-blue text-sm">{exp.duration}</span>
+          <span className="text-frosted-blue text-xs md:text-sm">
+            {exp.duration}
+          </span>
         </div>
-        <h3 className="text-lg md:text-xl font-bold mb-3">{exp.role}</h3>
+        <h3 className="text-base md:text-xl font-bold mb-2 md:mb-3">
+          {exp.role}
+        </h3>
         {Array.isArray(exp.description) ? (
-          <ul className="list-disc list-outside ml-5 text-frosted-blue/80 mb-4 space-y-2">
+          <ul className="list-disc list-outside ml-4 md:ml-5 text-frosted-blue/80 text-sm md:text-base mb-3 md:mb-4 space-y-1 md:space-y-2">
             {exp.description.map((point, idx) => (
               <li key={idx} className={idx >= 2 ? "hidden md:list-item" : ""}>
                 {point}
@@ -41,13 +48,15 @@ const TimelineItem = memo(({ exp, index }) => {
             ))}
           </ul>
         ) : (
-          <p className="text-frosted-blue/80 mb-4">{exp.description}</p>
+          <p className="text-frosted-blue/80 text-sm md:text-base mb-3 md:mb-4">
+            {exp.description}
+          </p>
         )}
-        <div className="flex gap-3 flex-wrap">
+        <div className="flex gap-2 md:gap-3 flex-wrap">
           {exp.tech.map((t, i) => (
             <span
               key={i}
-              className="px-3 py-1 bg-frosted-blue/10 rounded-full text-sm text-frosted-blue"
+              className="px-2 md:px-3 py-0.5 md:py-1 bg-frosted-blue/10 rounded-full text-xs md:text-sm text-frosted-blue"
             >
               {t}
             </span>
@@ -95,7 +104,7 @@ const Experience = () => {
     >
       <div className="absolute inset-0 bg-linear-to-b from-oxford-navy-dark to-oxford-navy -z-10"></div>
 
-      <div className="max-w-6xl mx-auto px-5">
+      <div className="max-w-6xl mx-auto px-4 md:px-5">
         {/* Header */}
         <SectionHeader
           tag="Journey"
@@ -105,7 +114,7 @@ const Experience = () => {
         />
 
         {/* Timeline */}
-        <div className="relative max-w-3xl mx-auto pl-8">
+        <div className="relative max-w-3xl mx-auto pl-5 md:pl-8">
           {/* Line */}
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-linear-to-b from-punch-red to-frosted-blue"></div>
 
