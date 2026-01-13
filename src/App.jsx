@@ -1,6 +1,6 @@
 import { useState, lazy, Suspense, useCallback } from "react";
 import { Loader, Navbar, Hero } from "./components/ui";
-import { Terminal } from "./components/ui/Terminal";
+import { Terminal, TerminalPreview } from "./components/ui/Terminal";
 import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation";
 
 // Lazy load below-the-fold components
@@ -61,6 +61,12 @@ function App() {
           <Footer />
         </Suspense>
       </div>
+
+      {/* Terminal Preview Widget */}
+      <TerminalPreview
+        onClick={handleTerminalToggle}
+        isTerminalOpen={isTerminalOpen}
+      />
 
       {/* Terminal Modal */}
       <Terminal isOpen={isTerminalOpen} onClose={handleTerminalClose} />

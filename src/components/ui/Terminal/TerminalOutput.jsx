@@ -51,7 +51,7 @@ const TerminalOutput = ({ type, content, isWelcome, isHint }) => {
   if (type === "command") {
     return (
       <div className="flex items-center gap-2 mb-1">
-        <span className="text-[#27c93f] select-none flex-shrink-0">
+        <span className="text-[#27c93f] select-none shrink-0">
           <span className="text-[#58a6ff]">visitor</span>
           <span className="text-[#8b949e]">@</span>
           <span className="text-[#f0883e]">portfolio</span>

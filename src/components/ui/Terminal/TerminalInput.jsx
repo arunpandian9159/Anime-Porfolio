@@ -56,7 +56,7 @@ const TerminalInput = ({ onSubmit, onHistoryNavigation }) => {
       onClick={handleContainerClick}
     >
       {/* Prompt */}
-      <span className="text-[#27c93f] select-none flex-shrink-0">
+      <span className="text-[#27c93f] select-none shrink-0">
         <span className="text-[#58a6ff]">visitor</span>
         <span className="text-[#8b949e]">@</span>
         <span className="text-[#f0883e]">portfolio</span>
