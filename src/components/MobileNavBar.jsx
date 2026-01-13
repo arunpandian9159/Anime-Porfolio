@@ -125,46 +125,7 @@ const MobileNavBar = () => {
     >
       {/* Main Navigation Card */}
       <div className="mx-3 mb-3 bg-oxford-navy/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-frosted-blue/10 overflow-hidden">
-        {/* Wave Banner with Projects */}
-        <button
-          onClick={handleBannerClick}
-          className="relative w-full h-12 overflow-hidden cursor-pointer group"
-          aria-label="Navigate to Projects section"
-        >
-          {/* Wave Shape SVG */}
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 400 50"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#457b9d" />
-                <stop offset="50%" stopColor="#6097b9" />
-                <stop offset="100%" stopColor="#457b9d" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0,50 L0,25 Q50,10 100,20 T200,15 T300,25 T400,20 L400,50 Z"
-              fill="url(#waveGradient)"
-              className="transition-all duration-300 group-hover:opacity-90"
-            />
-          </svg>
-          
-          {/* Projects Text */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-honeydew font-semibold text-sm tracking-wide drop-shadow-lg bg-linear-to-r from-honeydew to-frosted-blue-light bg-clip-text">
-              Projects
-            </span>
-          </div>
 
-          {/* HOT Badge */}
-          <div className="absolute top-1 right-4 animate-pulse-badge">
-            <span className="px-2 py-0.5 bg-amber-400 text-oxford-navy-dark text-xs font-bold rounded-full shadow-lg">
-              HOT
-            </span>
-          </div>
-        </button>
 
         {/* Navigation Icons */}
         <div className="flex items-center justify-around px-2 py-3">
