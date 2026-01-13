@@ -22,7 +22,7 @@ const SkillCategory = memo(({ title, icon, skills, index }) => {
         easing: "easeOutExpo",
       });
     },
-    [index],
+    [index]
   );
 
   const categoryRef = useIntersectionAnimate(runAnimation);
@@ -30,19 +30,19 @@ const SkillCategory = memo(({ title, icon, skills, index }) => {
   return (
     <div
       ref={categoryRef}
-      className="opacity-0 bg-oxford-navy-dark/50 border border-frosted-blue/15 rounded-2xl p-5 md:p-7 transition-all hover:border-punch-red hover:-translate-y-1"
+      className="opacity-0 bg-oxford-navy-dark/50 border border-frosted-blue/15 rounded-xl md:rounded-2xl p-4 md:p-7 transition-all hover:border-punch-red hover:-translate-y-1"
     >
-      <div className="flex items-center gap-4 mb-5">
-        <div className="w-10 h-10 md:w-12 md:h-12 bg-linear-to-br from-punch-red to-cerulean rounded-xl flex items-center justify-center text-xl text-honeydew">
+      <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-5">
+        <div className="w-9 h-9 md:w-12 md:h-12 bg-linear-to-br from-punch-red to-cerulean rounded-lg md:rounded-xl flex items-center justify-center text-lg md:text-xl text-honeydew">
           <i className={icon}></i>
         </div>
-        <h3 className="font-display text-lg md:text-xl font-bold">{title}</h3>
+        <h3 className="font-display text-base md:text-xl font-bold">{title}</h3>
       </div>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-2 md:gap-3">
         {skills.map((skill, i) => (
           <span
             key={i}
-            className="skill-tag opacity-0 px-3 py-1.5 md:px-4 md:py-2 bg-frosted-blue/10 border border-frosted-blue/30 rounded-full text-sm text-frosted-blue transition-all cursor-default hover:bg-punch-red hover:border-punch-red hover:text-honeydew hover:scale-105"
+            className="skill-tag opacity-0 px-2.5 py-1 md:px-4 md:py-2 bg-frosted-blue/10 border border-frosted-blue/30 rounded-full text-xs md:text-sm text-frosted-blue transition-all cursor-default hover:bg-punch-red hover:border-punch-red hover:text-honeydew hover:scale-105"
           >
             {skill}
           </span>
@@ -92,9 +92,9 @@ const Skills = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-16 md:py-24 md:pb-0 bg-oxford-navy"
+      className="py-16 md:py-24 pb-0 bg-oxford-navy"
     >
-      <div className="max-w-6xl mx-auto px-5">
+      <div className="max-w-6xl mx-auto px-4 md:px-5">
         {/* Header */}
         <SectionHeader
           tag="Expertise"
@@ -104,7 +104,7 @@ const Skills = () => {
         />
 
         {/* Categories Grid */}
-        <div className="grid md:grid-cols-2 gap-7">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-7">
           {categories.map((cat, i) => (
             <SkillCategory key={cat.title} {...cat} index={i} />
           ))}
