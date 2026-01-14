@@ -11,7 +11,7 @@ const GitHubActivity = ({ username, className = "" }) => {
     visible: false,
     x: 0,
     y: 0,
-    date: "",
+    date: "", 
     count: 0,
   });
 
