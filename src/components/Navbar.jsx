@@ -17,7 +17,7 @@ const Navbar = ({ onTerminalOpen }) => {
     "$ experience",
   ];
 
-  useEffect(() => {
+  useEffect(() => { 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
