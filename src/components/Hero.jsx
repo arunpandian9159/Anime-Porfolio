@@ -16,7 +16,7 @@ const PARTICLES = [
     moveX: 60,
     moveY: -40,
   },
-  {
+  { 
     size: 6,
     color: "blue",
     left: 25,
