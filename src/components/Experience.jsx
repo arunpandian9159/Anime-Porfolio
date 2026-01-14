@@ -13,7 +13,7 @@ const TimelineItem = memo(({ exp, index }) => {
     delay: index * 100,
     easing: "easeOutExpo",
   };
-
+ 
   const itemRef = useIntersectionAnimate(animationConfig);
 
   return (
