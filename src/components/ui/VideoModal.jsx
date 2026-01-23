@@ -21,7 +21,7 @@ const VideoModal = memo(
 
     // Video controls
     const togglePlay = useCallback(() => {
-      if (!videoRef.current) return;
+      if (!videoRef.current) return; 
       if (videoRef.current.paused) {
         videoRef.current.play().catch(() => {});
       } else {
