@@ -15,7 +15,7 @@ const TimelineItem = memo(({ exp, index }) => {
   };
  
   const itemRef = useIntersectionAnimate(animationConfig);
-
+ 
   return (
     <div
       ref={itemRef}
