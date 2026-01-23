@@ -7,7 +7,7 @@ import SectionHeader from "./ui/SectionHeader";
 const SkillCategory = memo(({ title, icon, skills, index }) => {
   const runAnimation = useCallback(
     (element) => {
-      animate(element, {
+      animate(element, { 
         opacity: [0, 1],
         translateY: [30, 0],
         duration: 300,
