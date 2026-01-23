@@ -14,7 +14,7 @@ const MobileNavBar = () => {
 
   const navItems = [
     { id: "about", label: "About", icon: "home" },
-    { id: "skills", label: "Skills", icon: "skills" },
+    { id: "skills", label: "Skills", icon: "skills" }, 
     { id: "experience", label: "Experience", icon: "experience" },
     { id: "projects", label: "Projects", icon: "projects" },
     { id: "contact", label: "Contact", icon: "contact" }, 
