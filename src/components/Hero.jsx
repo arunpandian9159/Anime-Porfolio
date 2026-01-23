@@ -18,7 +18,7 @@ const PARTICLES = [
   },
   { 
     size: 6,
-    color: "blue",
+    color: "blue", 
     left: 25,
     top: 15,
     duration: 7,
