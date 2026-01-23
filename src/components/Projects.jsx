@@ -4,7 +4,7 @@ import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
 import SectionHeader from "./ui/SectionHeader";
 import ScrollStack from "./ui/ScrollStack";
-import VideoPreview from "./ui/VideoPreview";
+import VideoPreview from "./ui/VideoPreview"; 
 import VideoModal from "./ui/VideoModal";
 import { formatBoldText } from "../utils/formatText";
 
