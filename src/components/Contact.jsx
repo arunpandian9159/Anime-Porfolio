@@ -12,8 +12,8 @@ const Contact = () => {
       duration: 300,
       easing: "easeOutExpo",
     }); 
-    animate(".contact-header .section-title", {
-      opacity: [0, 1],
+    animate(".contact-header .section-title", { 
+      opacity: [0, 1], 
       translateY: [30, 0],
       duration: 400,
       delay: 100,
