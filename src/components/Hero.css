@@ -20,7 +20,7 @@
             var(--color-punch-red),
             transparent);
     animation: speedLine 3s infinite;
-    opacity: 0.3;
+    opacity: 0.3; 
 }
 
 /* Avatar Aura Animation */
