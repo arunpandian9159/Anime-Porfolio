@@ -9,11 +9,11 @@ import { useState, useEffect, useRef } from "react";
  * @param {string} props.type - "command" or "output"
  * @param {string|JSX.Element} props.content - Content to display
  * @param {boolean} props.isWelcome - Whether this is the welcome message
- * @param {boolean} props.isHint - Whether this is a hint message
+ * @param {boolean} props.isHint - Whether this is a hint message 
  */
 const TerminalOutput = ({ type, content, isWelcome, isHint }) => {
   const [displayedContent, setDisplayedContent] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [isTyping, setIsTyping] = useState(false); 
   const contentRef = useRef(null);
 
   // Check if content is JSX (React element)
