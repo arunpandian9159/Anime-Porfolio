@@ -5,7 +5,7 @@ import { profileData } from "../../../data/profileData";
  * Each command has a name, description, and execute function
  */
 export const COMMANDS = {
-  help: {
+  help: { 
     description: "List all available commands",
     execute: () => (
       <div className="space-y-1">
