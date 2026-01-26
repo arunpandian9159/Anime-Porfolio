@@ -5,7 +5,7 @@ import { memo, useRef, useState, useEffect, useCallback } from "react";
  * Falls back to poster image if video is unavailable
  */
 const VideoPreview = memo(
-  ({
+  ({ 
     videoSrc,
     posterSrc,
     alt = "Video preview",
