@@ -7,7 +7,7 @@ const toCssLength = (value) =>
   typeof value === "number" ? `${value}px` : (value ?? undefined);
 
 const useResizeObserver = (callback, elements, dependencies) => {
-  useEffect(() => {
+  useEffect(() => { 
     if (!window.ResizeObserver) {
       const handleResize = () => callback(); 
       window.addEventListener("resize", handleResize);
