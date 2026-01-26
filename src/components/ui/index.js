@@ -6,7 +6,7 @@ export { default as ScrollStack } from "./ScrollStack";
 
 export { default as PerformanceBadge } from "./PerformanceBadge"; 
 export { default as VideoPreview } from "./VideoPreview";
-export { default as VideoModal } from "./VideoModal";
+export { default as VideoModal } from "./VideoModal"; 
 
 // Components in parent folder
 export { default as Navbar } from "../Navbar";
