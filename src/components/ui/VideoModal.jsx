@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
  * Supports full video controls, keyboard navigation, and click outside to close
  */
 const VideoModal = memo(
-  ({ isOpen, onClose, videoSrc, posterSrc, title = "Video" }) => {
+  ({ isOpen, onClose, videoSrc, posterSrc, title = "Video" }) => { 
     const modalRef = useRef(null);
     const videoRef = useRef(null);
     const videoContainerRef = useRef(null);
