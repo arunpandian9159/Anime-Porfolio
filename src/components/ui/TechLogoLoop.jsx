@@ -6,7 +6,7 @@ const techLogos = [
     node: <i className="fab fa-html5" style={{ color: "#E34F26" }}></i>,
     title: "HTML5",
   },
-  {
+  { 
     node: <i className="fab fa-css3-alt" style={{ color: "#1572B6" }}></i>,
     title: "CSS3",
   },
