@@ -2,7 +2,7 @@ import { memo } from "react";
 
 /**
  * Reusable Section Header Component
- * Standardizes the header structure across all sections
+ * Standardizes the header structure across all sections 
  */
 const SectionHeader = memo(({ tag, title, highlight, className = "" }) => {
   return (
