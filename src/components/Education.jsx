@@ -15,7 +15,7 @@ const EducationCard = memo(({ edu, index }) => {
   };
 
   const cardRef = useIntersectionAnimate(animationConfig, { threshold: 0.2 });
-
+ 
   return (
     <div
       ref={cardRef}
