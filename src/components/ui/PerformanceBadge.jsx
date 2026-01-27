@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 const PerformanceBadge = ({ className = "" }) => {
   const [loadTime, setLoadTime] = useState(null);
 
-  useEffect(() => {
+  useEffect(() => { 
     // Use Performance API to get page load time 
     const measureLoadTime = () => {
       try {
