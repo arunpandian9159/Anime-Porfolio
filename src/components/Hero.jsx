@@ -309,7 +309,7 @@ const Hero = ({ isLoading }) => {
                   type="image/webp"
                   srcSet="/profile-256.webp 256w, /profile-512.webp 512w"
                   sizes="(max-width: 768px) 224px, 256px"
-                />
+                /> 
                 {/* Fallback to original JPG */}
                 <img
                   src={profile.profileImage}
