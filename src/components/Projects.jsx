@@ -17,7 +17,7 @@ const ProjectCardContent = memo(({ project, index, onVideoExpand }) => {
       const interval = setInterval(() => {
         setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
       }, 3000); 
-      return () => clearInterval(interval);
+      return () => clearInterval(interval); 
     }
   }, [project.images, project.videoSrc]);
 
