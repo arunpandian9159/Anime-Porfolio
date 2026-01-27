@@ -14,7 +14,7 @@ const Contact = () => {
     }); 
     animate(".contact-header .section-title", { 
       opacity: [0, 1], 
-      translateY: [30, 0],
+      translateY: [30, 0], 
       duration: 400, 
       delay: 100,
       easing: "easeOutExpo",
