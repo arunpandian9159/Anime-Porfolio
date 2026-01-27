@@ -13,7 +13,7 @@ const Navbar = ({ onTerminalOpen }) => {
     "$ skills",
     "$ projects",
     "$ contact",
-    "$ about",
+    "$ about", 
     "$ experience",
   ];
 
