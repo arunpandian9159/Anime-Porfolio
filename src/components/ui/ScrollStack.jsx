@@ -10,7 +10,7 @@ const Card = ({ children, index, progress, range, targetScale }) => {
         style={{ scale, top: `calc(-5vh + ${index * 25}px)` }}
         className="relative flex flex-col w-full max-w-7xl h-[60vh] rounded-3xl overflow-hidden bg-oxford-navy border border-frosted-blue/20 origin-top shadow-2xl hover:border-punch-red transition-colors"
       >
-        {children} 
+        {children}  
       </motion.div>
     </div>
   );
