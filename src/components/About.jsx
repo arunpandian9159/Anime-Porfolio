@@ -13,7 +13,7 @@ import { formatBoldText } from "../utils/formatText";
 const StatCard = memo(({ icon, value, label, index }) => {
   const countRef = useCountUp(value); 
   const cardRef = useCardReveal(index, { translateY: [20, 0] });  
-
+ 
   return (
     <div
       ref={cardRef}
