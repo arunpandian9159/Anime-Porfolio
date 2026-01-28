@@ -18,7 +18,7 @@ const EducationCard = memo(({ edu, index }) => {
  
   return (
     <div
-      ref={cardRef}
+      ref={cardRef} 
       className={`opacity-0 ${
         edu.isMain
           ? "bg-linear-to-br from-punch-red/10 to-oxford-navy/50 border-punch-red"
