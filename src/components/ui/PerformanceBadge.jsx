@@ -20,7 +20,7 @@ const PerformanceBadge = ({ className = "" }) => {
         }
       } catch (error) {
         // Performance API unavailable - gracefully degrade
-        console.warn("Performance API unavailable:", error);
+        console.warn("Performance API unavailable:", error); 
       }
     };
 
