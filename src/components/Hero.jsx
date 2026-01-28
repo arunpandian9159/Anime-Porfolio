@@ -305,7 +305,7 @@ const Hero = ({ isLoading }) => {
             <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden relative">
               <picture>
                 {/* Optimized WebP images with responsive sizes */}
-                <source
+                <source 
                   type="image/webp"
                   srcSet="/profile-256.webp 256w, /profile-512.webp 512w"
                   sizes="(max-width: 768px) 224px, 256px"
