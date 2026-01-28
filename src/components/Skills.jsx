@@ -15,7 +15,7 @@ const SkillCategory = memo(({ title, icon, skills, index }) => {
         easing: "easeOutExpo",
       });
       animate(element.querySelectorAll(".skill-tag"), {
-        opacity: [0, 1], 
+        opacity: [0, 1],  
         scale: [0.8, 1],
         delay: stagger(30, { start: 150 + index * 50 }),
         duration: 200,
