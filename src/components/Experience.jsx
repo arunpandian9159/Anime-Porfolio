@@ -18,7 +18,7 @@ const TimelineItem = memo(({ exp, index }) => {
  
   return (
     <div
-      ref={itemRef}
+      ref={itemRef} 
       className="relative pl-6 md:pl-10 pb-6 md:pb-10 opacity-0"
     >
       {/* Marker */}
