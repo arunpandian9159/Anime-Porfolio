@@ -158,7 +158,7 @@ export const profileData = {
         "https://github.com/arunpandian9159/Jez-Cabs-Management-Platform",
       teamSize: 1,
       role: "Full Stack Developer",
-      featured: true, 
+      featured: true,
       images: ["/Jezcabs.png"],
       // Video preview support - add actual video file when available
       videoSrc:
@@ -225,9 +225,24 @@ export const profileData = {
       imageLayout: "split-vertical",
       featured: false,
     },
+    {
+      title: "AI Agentic Honeypot - Scam Detection",
+      description: [
+        "Engineered an **agentic scam-fighting system** utilizing a **Scammer Psychology Profiler** and **5 adaptive victim personas**, achieving **>90% accuracy** in detecting and neutralizing malicious actors through high-fidelity social engineering.",
+        "Architected a **single-call optimized LLM pipeline** using **Groq's Llama 3.3 70B** to unify classification, metadata extraction, and persona-driven responses, significantly reducing latency and maximizing throughput under strict rate limits.",
+        "Developed a **proactive intelligence extraction engine** featuring **Intel Gap Analysis** to autonomously steer conversations and capture high-value forensic data (Bank Accounts, UPI IDs, Phishing URLs) for real-time evaluation.",
+      ],
+      tech: ["Python", "FastAPI", "Groq", "Llama 3.3", "LLM", "RAG"],
+      liveLink: "https://agentic-honey-pot-api.up.railway.app",
+      repoLink: "https://github.com/arunpandian9159/agentic-honey-pot-guvi",
+      featured: true,
+      teamSize: 3,
+      images: ["/Ai Agentic honeypot 1.png"],
+      role: "AI Developer",
+    },
   ],
   stats: {
-    projects: 6,
+    projects: 7,
     technologies: 10,
     internships: 2,
     certifications: 5,
