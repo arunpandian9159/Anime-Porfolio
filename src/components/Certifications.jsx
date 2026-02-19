@@ -222,7 +222,7 @@ const Certifications = () => {
           />
 
           {/* Certifications Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-5 mb-10 md:mb-16 px-1">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 mb-10 md:mb-16 px-1">
             {certifications.map((cert, i) => (
               <CertCard
                 key={cert.title}

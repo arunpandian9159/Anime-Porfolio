@@ -122,6 +122,11 @@ export const profileData = {
       icon: "fas fa-database",
       image: "/mongodb.webp",
     },
+    {
+      title: "AI India Summit 2026",
+      icon: "fas fa-shield-alt",
+      image: "/Ai india summit 2026 guvi buildathon 1.jpeg",
+    },
   ],
   achievements: [
     { text: "Typewriting-Distinction (Senior)", icon: "fas fa-medal" },
@@ -142,7 +147,11 @@ export const profileData = {
       image: "/vei-technologies.webp",
     },
     { text: "NSS Activities - Cycle Rally", icon: "fas fa-bicycle" },
-    { text: "NCC Air Force", icon: "fas fa-plane" },
+    {
+      text: "AI India Summit 2026 (GUVI HCL Buildathon)",
+      icon: "fas fa-trophy",
+      image: "/Ai india summit 2026 guvi buildathon 1.jpeg",
+    },
   ],
   projects: [
     {
@@ -245,6 +254,6 @@ export const profileData = {
     projects: 7,
     technologies: 10,
     internships: 2,
-    certifications: 5,
+    certifications: 6,
   },
 };
