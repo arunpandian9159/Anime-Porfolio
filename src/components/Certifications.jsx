@@ -147,16 +147,14 @@ AchievementItem.displayName = "AchievementItem";
 const ImageModal = memo(({ images, title, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (!images || images.length === 0) return null;
-
-  const hasMultiple = images.length > 1;
+  const hasMultiple = images && images.length > 1;
 
   const handlePrev = useCallback(
     (e) => {
       e.stopPropagation();
       setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
     },
-    [images.length],
+    [images],
   );
 
   const handleNext = useCallback(
@@ -164,8 +162,10 @@ const ImageModal = memo(({ images, title, onClose }) => {
       e.stopPropagation();
       setCurrentIndex((prev) => (prev + 1) % images.length);
     },
-    [images.length],
+    [images],
   );
+
+  if (!images || images.length === 0) return null;
 
   return (
     <div
