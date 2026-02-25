@@ -123,9 +123,9 @@ export const profileData = {
       image: "/mongodb.webp",
     },
     {
-      title: "AI India Summit 2026",
+      title: "India AI Impact Summit Buildathon 2026 (HCL GUVI) Finalist Certification",
       icon: "fas fa-shield-alt",
-      image: "/Ai india summit 2026 guvi buildathon 1.jpeg",
+      image: "/Ai india summit 2026 guvi buildathon 2.png",
     },
   ],
   achievements: [
@@ -148,12 +148,27 @@ export const profileData = {
     },
     { text: "NSS Activities - Cycle Rally", icon: "fas fa-bicycle" },
     {
-      text: "AI India Summit 2026 (GUVI HCL Buildathon)",
+      text: "India AI Impact Summit Buildathon 2026 (HCL GUVI) Finalist",
       icon: "fas fa-trophy",
-      image: "/Ai india summit 2026 guvi buildathon 1.jpeg",
+      image: ["/Ai india summit 2026 guvi buildathon  1.jpeg", "/Ai india summit 2026 guvi buildathon 2.png"],
     },
   ],
   projects: [
+    {
+      title: "AI Agentic Honeypot - Scam Detection",
+      description: [
+        "Engineered an **agentic scam-fighting system** utilizing a **Scammer Psychology Profiler** and **5 adaptive victim personas**, achieving **>90% accuracy** in detecting and neutralizing malicious actors through high-fidelity social engineering.",
+        "Architected a **single-call optimized LLM pipeline** using **Groq's Llama 3.3 70B** to unify classification, metadata extraction, and persona-driven responses, significantly reducing latency and maximizing throughput under strict rate limits.",
+        "Developed a **proactive intelligence extraction engine** featuring **Intel Gap Analysis** to autonomously steer conversations and capture high-value forensic data (Bank Accounts, UPI IDs, Phishing URLs) for real-time evaluation.",
+      ],
+      tech: ["Python", "FastAPI", "Groq", "Llama 3.3", "LLM", "RAG"],
+      liveLink: "https://agentic-honey-pot-api.up.railway.app",
+      repoLink: "https://github.com/arunpandian9159/agentic-honey-pot-guvi",
+      featured: true,
+      teamSize: 3,
+      images: ["/Ai Agentic honeypot 1.png", "/Ai india summit 2026 guvi buildathon 2.png"],
+      role: "AI Developer",
+    },
     {
       title: "Jez Cabs Management Platform",
       description: [
@@ -233,21 +248,6 @@ export const profileData = {
       images: ["/crm tripxplo 1.png", "/crm tripxplo 2.png"],
       imageLayout: "split-vertical",
       featured: false,
-    },
-    {
-      title: "AI Agentic Honeypot - Scam Detection",
-      description: [
-        "Engineered an **agentic scam-fighting system** utilizing a **Scammer Psychology Profiler** and **5 adaptive victim personas**, achieving **>90% accuracy** in detecting and neutralizing malicious actors through high-fidelity social engineering.",
-        "Architected a **single-call optimized LLM pipeline** using **Groq's Llama 3.3 70B** to unify classification, metadata extraction, and persona-driven responses, significantly reducing latency and maximizing throughput under strict rate limits.",
-        "Developed a **proactive intelligence extraction engine** featuring **Intel Gap Analysis** to autonomously steer conversations and capture high-value forensic data (Bank Accounts, UPI IDs, Phishing URLs) for real-time evaluation.",
-      ],
-      tech: ["Python", "FastAPI", "Groq", "Llama 3.3", "LLM", "RAG"],
-      liveLink: "https://agentic-honey-pot-api.up.railway.app",
-      repoLink: "https://github.com/arunpandian9159/agentic-honey-pot-guvi",
-      featured: true,
-      teamSize: 3,
-      images: ["/Ai Agentic honeypot 1.png"],
-      role: "AI Developer",
     },
   ],
   stats: {
