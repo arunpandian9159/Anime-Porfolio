@@ -18,7 +18,7 @@ const CertCard = memo(({ cert, index, onImageClick }) => {
 
   const handleClick = useCallback(() => {
     if (cert.image) {
-      onImageClick(cert.image, cert.title);
+      onImageClick([cert.image], cert.title);
     }
   }, [cert.image, cert.title, onImageClick]);
 
