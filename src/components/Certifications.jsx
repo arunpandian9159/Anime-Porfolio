@@ -1,4 +1,4 @@
-import { memo, useState, useCallback } from "react";
+import { memo, useState, useCallback, useMemo } from "react";
 import { animate } from "animejs";
 import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
@@ -14,7 +14,7 @@ const CertCard = memo(({ cert, index, onImageClick }) => {
     easing: "easeOutExpo",
   };
 
-  const cardRef = useIntersectionAnimate(animationConfig); 
+  const cardRef = useIntersectionAnimate(animationConfig);
 
   const handleClick = useCallback(() => {
     if (cert.image) {
@@ -66,11 +66,17 @@ const AchievementItem = memo(({ item, index, onImageClick }) => {
 
   const itemRef = useIntersectionAnimate(animationConfig);
 
+  // Normalize image to always be an array (or null)
+  const images = useMemo(() => {
+    if (!item.image) return null;
+    return Array.isArray(item.image) ? item.image : [item.image];
+  }, [item.image]);
+
   const handleClick = useCallback(() => {
-    if (item.image) {
-      onImageClick(item.image, item.text);
+    if (images) {
+      onImageClick(images, item.text);
     }
-  }, [item.image, item.text, onImageClick]);
+  }, [images, item.text, onImageClick]);
 
   const handleLinkClick = useCallback((e) => {
     e.stopPropagation();
@@ -80,16 +86,16 @@ const AchievementItem = memo(({ item, index, onImageClick }) => {
     <div
       ref={itemRef}
       className={`opacity-0 bg-oxford-navy/50 border border-frosted-blue/15 rounded-lg md:rounded-xl p-4 md:p-5 transition-all hover:border-punch-red hover:translate-x-1 ${
-        item.image ? "cursor-pointer" : ""
+        images ? "cursor-pointer" : ""
       }`}
       onClick={handleClick}
     >
       <div className="flex items-center gap-3 md:gap-4">
         {/* Icon or Image */}
-        {item.image ? (
+        {images ? (
           <div className="w-12 h-9 md:w-16 md:h-12 rounded-lg overflow-hidden shrink-0">
             <img
-              src={item.image}
+              src={images[0]}
               alt={item.text}
               className="w-full h-full object-cover"
               loading="lazy"
@@ -108,9 +114,12 @@ const AchievementItem = memo(({ item, index, onImageClick }) => {
           <span className="text-frosted-blue/90 text-sm md:text-base font-semibold md:font-normal block whitespace-normal leading-tight">
             {item.text}
           </span>
-          {item.image && (
+          {images && (
             <span className="block text-xs text-frosted-blue/50 mt-1">
-              Click to view certificate
+              Click to view{" "}
+              {images.length > 1
+                ? `${images.length} certificates`
+                : "certificate"}
             </span>
           )}
         </div>
@@ -135,29 +144,77 @@ const AchievementItem = memo(({ item, index, onImageClick }) => {
 
 AchievementItem.displayName = "AchievementItem";
 
-const ImageModal = memo(({ image, title, onClose }) => {
-  if (!image) return null;
+const ImageModal = memo(({ images, title, onClose }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  if (!images || images.length === 0) return null;
+
+  const hasMultiple = images.length > 1;
+
+  const handlePrev = useCallback(
+    (e) => {
+      e.stopPropagation();
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    },
+    [images.length],
+  );
+
+  const handleNext = useCallback(
+    (e) => {
+      e.stopPropagation();
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    },
+    [images.length],
+  );
 
   return (
     <div
       className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 animate-fadeIn"
       onClick={onClose}
     >
-      <div className="relative max-w-4xl max-h-[90vh] rounded-2xl overflow-hidden">
+      <div
+        className="relative max-w-4xl max-h-[90vh] rounded-2xl overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
         <img
-          src={image}
+          src={images[currentIndex]}
           alt={title}
           className="max-w-full max-h-[85vh] object-contain"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
           <h3 className="text-honeydew font-semibold text-center">{title}</h3>
+          {hasMultiple && (
+            <p className="text-frosted-blue/70 text-sm text-center mt-1">
+              {currentIndex + 1} / {images.length}
+            </p>
+          )}
         </div>
+
+        {/* Close button */}
         <button
           className="absolute top-4 right-4 w-10 h-10 bg-punch-red rounded-full flex items-center justify-center text-honeydew hover:bg-punch-red-light transition-colors"
           onClick={onClose}
         >
           <i className="fas fa-times"></i>
         </button>
+
+        {/* Navigation arrows */}
+        {hasMultiple && (
+          <>
+            <button
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/60 hover:bg-black/80 rounded-full flex items-center justify-center text-honeydew transition-colors"
+              onClick={handlePrev}
+            >
+              <i className="fas fa-chevron-left"></i>
+            </button>
+            <button
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/60 hover:bg-black/80 rounded-full flex items-center justify-center text-honeydew transition-colors"
+              onClick={handleNext}
+            >
+              <i className="fas fa-chevron-right"></i>
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
@@ -166,16 +223,17 @@ const ImageModal = memo(({ image, title, onClose }) => {
 ImageModal.displayName = "ImageModal";
 
 const Certifications = () => {
-  const [modalImage, setModalImage] = useState(null);
+  const [modalImages, setModalImages] = useState(null);
   const [modalTitle, setModalTitle] = useState("");
 
-  const handleImageClick = useCallback((image, title) => {
-    setModalImage(image);
+  const handleImageClick = useCallback((images, title) => {
+    // images is always an array now (normalized in AchievementItem)
+    setModalImages(images);
     setModalTitle(title);
   }, []);
 
   const handleCloseModal = useCallback(() => {
-    setModalImage(null);
+    setModalImages(null);
     setModalTitle("");
   }, []);
 
@@ -251,7 +309,7 @@ const Certifications = () => {
       </section>
 
       <ImageModal
-        image={modalImage}
+        images={modalImages}
         title={modalTitle}
         onClose={handleCloseModal}
       />
