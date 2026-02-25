@@ -4,11 +4,11 @@ import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
 import SectionHeader from "./ui/SectionHeader";
 import ScrollStack from "./ui/ScrollStack";
-import VideoPreview from "./ui/VideoPreview"; 
+import VideoPreview from "./ui/VideoPreview";
 import VideoModal from "./ui/VideoModal";
 import { formatBoldText } from "../utils/formatText";
 
-const ProjectCardContent = memo(({ project, index, onVideoExpand }) => {
+const ProjectCardContent = memo(({ project, onVideoExpand }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const ProjectCardContent = memo(({ project, index, onVideoExpand }) => {
                     <img
                       src={img}
                       alt={`${project.title} part ${i + 1}`}
-                      className="w-full h-full object-cover object-top-left"
+                      className="w-full h-full object-cover object-center"
                     />
                   </div>
                 ))}
@@ -73,7 +73,7 @@ const ProjectCardContent = memo(({ project, index, onVideoExpand }) => {
                   key={i}
                   src={img}
                   alt={`${project.title} preview ${i + 1}`}
-                  className={`absolute inset-0 w-full h-full object-cover object-top-left transition-opacity duration-1000 ${
+                  className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
                     i === currentImageIndex ? "opacity-100" : "opacity-0"
                   }`}
                 />
