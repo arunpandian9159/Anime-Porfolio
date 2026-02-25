@@ -150,7 +150,7 @@ export const profileData = {
     {
       text: "India AI Impact Summit Buildathon 2026 (HCL GUVI) Finalist",
       icon: "fas fa-trophy",
-      image: ["/Ai india summit 2026 guvi buildathon  1.jpeg", "/Ai india summit 2026 guvi buildathon 2.png"],
+      image: ["/Ai india summit 2026 guvi buildathon 1.jpeg", "/Ai india summit 2026 guvi buildathon 2.png"],
     },
   ],
   projects: [
