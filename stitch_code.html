@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Mosaic Portfolio Projects</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;family=Outfit:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e63946", // Punch Red
+                        "oxford-navy": "#1d3557",
+                        "oxford-navy-light": "#2a4a75", // Lighter variant for borders
+                        "cerulean": "#457b9d",
+                        "frosted-blue": "#a8dadc",
+                        "honeydew": "#f1faee",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#1d3557", // Oxford Navy
+                    },
+                    fontFamily: {
+                        "display": ["Orbitron", "sans-serif"],
+                        "body": ["Outfit", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-body flex flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-oxford-navy-light bg-oxford-navy/95 backdrop-blur-md px-10 py-4 shadow-lg">
+<div class="flex items-center gap-4 text-honeydew">
+<div class="size-8 flex items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-2xl">terminal</span>
+</div>
+<h2 class="text-honeydew text-2xl font-display font-bold leading-tight tracking-wider">DEV.PORTFOLIO</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9 hidden md:flex">
+<a class="text-honeydew hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Projects</a>
+<a class="text-honeydew hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">About</a>
+<a class="text-honeydew hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Contact</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-red-600 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-[0_0_15px_rgba(230,57,70,0.3)]">
+<span class="truncate">Download Resume</span>
+</button>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-10 py-12">
+<div class="mb-16">
+<h1 class="text-primary font-display text-4xl md:text-6xl font-black leading-tight tracking-tighter mb-4 uppercase drop-shadow-[0_4px_8px_rgba(0,0,0,0.4)]">Projects Showcase</h1>
+<p class="text-frosted-blue font-body text-xl max-w-2xl font-light">Exploratory Tech Mosaic</p>
+</div>
+<section class="mb-24">
+<div class="flex items-center gap-6 mb-10">
+<h2 class="text-honeydew font-display text-3xl font-extrabold tracking-widest uppercase border-l-4 border-primary pl-4">AI &amp; Intelligence</h2>
+<div class="h-px bg-gradient-to-r from-oxford-navy-light to-transparent flex-1"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+<article class="md:col-span-8 group rounded-xl bg-oxford-navy-light/30 border border-oxford-navy-light hover:border-primary/50 overflow-hidden shadow-xl transition-all duration-500 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)] flex flex-col h-full">
+<div class="w-full h-[450px] bg-cover bg-center relative overflow-hidden group-hover:scale-105 transition-transform duration-700" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpEV_rF3tQ5ighLcamESqyYJ4IehBGGGXcrcxR38sT6jrUKVWPz73xurNxZ2ZtASPI3kGGHI246YguWRILY_9THHbC437Gw7kCknvak4nCFcUMSQdXZLo0tQTeeKS24hLC3n2rPUHi52E0V46oZKcp7mbvwK-rTx-hgwYt2IXVYtcI7UzdFnmzeZnJ511RSjPXqmMO-_nC85ImdrYzoC3Ps_ZYQnMOAfdig4LWGLnvmgOLmXCZWGBnmn9XKayQhQYS9vWIOn1BFvlO');">
+<div class="absolute inset-0 bg-gradient-to-t from-oxford-navy via-oxford-navy/50 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-oxford-navy to-transparent">
+<div class="flex flex-wrap gap-3 mb-4">
+<span class="px-4 py-1.5 text-xs font-bold rounded-full bg-frosted-blue/20 text-frosted-blue border border-frosted-blue/30 backdrop-blur-md uppercase tracking-wider font-body">Python</span>
+<span class="px-4 py-1.5 text-xs font-bold rounded-full bg-frosted-blue/20 text-frosted-blue border border-frosted-blue/30 backdrop-blur-md uppercase tracking-wider font-body">LangChain</span>
+<span class="px-4 py-1.5 text-xs font-bold rounded-full bg-frosted-blue/20 text-frosted-blue border border-frosted-blue/30 backdrop-blur-md uppercase tracking-wider font-body">OpenAI</span>
+</div>
+<h3 class="text-honeydew font-display text-4xl md:text-5xl font-black mb-4 drop-shadow-lg">AI Agentic Honeypot</h3>
+<p class="text-honeydew/90 font-body text-lg font-normal mb-6 leading-relaxed max-w-3xl">
+                                    A sophisticated active defense system leveraging Large Language Models to simulate vulnerable services. It detects, engages, and neutralizes threats by analyzing attacker behavior in real-time, providing actionable threat intelligence.
+                                </p>
+<div class="flex flex-wrap gap-4">
+<button class="px-8 h-12 rounded-lg bg-primary hover:bg-red-600 text-white font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn uppercase tracking-widest shadow-lg shadow-primary/20 font-body">
+                                        View Live Demo
+                                        <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="px-8 h-12 rounded-lg bg-cerulean/20 hover:bg-cerulean/40 text-frosted-blue border border-cerulean/30 font-bold text-sm transition-all flex items-center justify-center gap-2 uppercase tracking-widest font-body">
+<span class="material-symbols-outlined text-sm">code</span>
+                                        Source
+                                    </button>
+</div>
+</div>
+</div>
+</article>
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="group relative rounded-lg bg-oxford-navy-light/10 border border-oxford-navy-light hover:border-frosted-blue/50 p-8 transition-all duration-300 flex-1 flex flex-col justify-center">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">receipt_long</span>
+</div>
+<div class="flex gap-2">
+<span class="text-[10px] text-cerulean font-bold uppercase tracking-tighter font-body">#OCR</span>
+<span class="text-[10px] text-cerulean font-bold uppercase tracking-tighter font-body">#NLP</span>
+</div>
+</div>
+<h3 class="text-frosted-blue font-body text-2xl font-bold mb-3">Tariff Extraction Process</h3>
+<p class="text-honeydew/70 font-body text-base font-light leading-relaxed mb-6">
+                                Automated system for extracting complex tariff data from unstructured documents using advanced OCR and NLP pipelines to streamline logistics operations.
+                            </p>
+<a class="mt-auto inline-flex items-center text-primary text-xs font-black uppercase tracking-widest hover:text-white transition-colors group/link font-body" href="#">
+                                Explore <span class="material-symbols-outlined text-sm ml-1 group-hover/link:translate-x-1 transition-transform">chevron_right</span>
+</a>
+</div>
+<div class="group relative rounded-lg bg-oxford-navy-light/10 border border-oxford-navy-light hover:border-frosted-blue/50 p-8 transition-all duration-300 flex-1 flex flex-col justify-center">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">analytics</span>
+</div>
+<div class="flex gap-2">
+<span class="text-[10px] text-cerulean font-bold uppercase tracking-tighter font-body">#CV</span>
+<span class="text-[10px] text-cerulean font-bold uppercase tracking-tighter font-body">#EdgeAI</span>
+</div>
+</div>
+<h3 class="text-frosted-blue font-body text-2xl font-bold mb-3">Defect Detection</h3>
+<p class="text-honeydew/70 font-body text-base font-light leading-relaxed mb-6">
+                                Industrial computer vision model deployed on edge devices to identify manufacturing defects with 99.8% accuracy.
+                            </p>
+<a class="mt-auto inline-flex items-center text-primary text-xs font-black uppercase tracking-widest hover:text-white transition-colors group/link font-body" href="#">
+                                Explore <span class="material-symbols-outlined text-sm ml-1 group-hover/link:translate-x-1 transition-transform">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-24">
+<div class="flex items-center gap-6 mb-10">
+<h2 class="text-honeydew font-display text-3xl font-extrabold tracking-widest uppercase border-l-4 border-cerulean pl-4">Full Stack Systems</h2>
+<div class="h-px bg-gradient-to-r from-oxford-navy-light to-transparent flex-1"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+<article class="md:col-span-7 group rounded-xl bg-oxford-navy-light/30 border border-oxford-navy-light hover:border-cerulean/50 overflow-hidden shadow-xl transition-all duration-500 hover:shadow-[0_0_30px_rgba(69,123,157,0.2)] flex flex-col">
+<div class="w-full h-[350px] bg-cover bg-center relative overflow-hidden" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRJd2sJvmLUE4yf0jhT_Ppqs5E50jlDyyrZrzpHwebcfXPeooOukmBJ-zxIGe5Byz3i1nSKoQDVT5rEwAfpDOn8kfJZPIeEkZb1ZIxn1Q6M16T2yDEEXnIzkbcaTHOkLCEOzsis7O-SvnFtvPaRKUBYelfuzHoPOSP_Uh8ySaRHmUnOiRVH98eWkxk3xxh8jOTrqkcRRdSyNzIuG2dv_Z89bf7uh0_bcbqrMhXHnDaVrZiC5CFz4tzYv97xNVij1pBjgesvn2qwcCo');">
+<div class="absolute inset-0 bg-gradient-to-t from-oxford-navy to-transparent opacity-90"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="px-3 py-1 text-[10px] font-bold rounded bg-cerulean/30 text-frosted-blue border border-cerulean/40 uppercase tracking-tighter font-body">React Native</span>
+<span class="px-3 py-1 text-[10px] font-bold rounded bg-cerulean/30 text-frosted-blue border border-cerulean/40 uppercase tracking-tighter font-body">Node.js</span>
+</div>
+<h3 class="text-honeydew font-display text-3xl font-bold">Jez Cabs Management</h3>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-1">
+<p class="text-honeydew/80 font-body text-base font-normal mb-8 leading-relaxed">
+                            A full-stack ride booking platform engineered for reliability. Features real-time driver tracking using WebSockets, secure payment gateway integration, and a high-performance matching algorithm for optimal route dispatching.
+                        </p>
+<div class="flex gap-4 mt-auto pt-6 border-t border-white/10">
+<button class="flex-1 h-12 rounded bg-primary hover:bg-red-600 text-white font-bold text-xs uppercase tracking-widest transition-all shadow-md font-body">
+                                Live Demo
+                            </button>
+<button class="flex-1 h-12 rounded bg-cerulean/10 hover:bg-cerulean/30 text-frosted-blue border border-cerulean/20 font-bold text-xs uppercase tracking-widest transition-all font-body">
+                                Source
+                            </button>
+</div>
+</div>
+</article>
+<div class="md:col-span-5 flex flex-col gap-6">
+<div class="group p-8 rounded-lg bg-oxford-navy-light/10 border border-oxford-navy-light hover:border-cerulean/50 transition-all flex-1">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-frosted-blue font-body text-xl font-bold">Internship Management System</h3>
+<span class="material-symbols-outlined text-cerulean text-2xl">school</span>
+</div>
+<div class="flex gap-2 mb-4">
+<span class="text-[10px] text-cerulean font-bold uppercase font-body">Vue.js</span>
+<span class="text-[10px] text-cerulean font-bold uppercase font-body">Firebase</span>
+</div>
+<p class="text-honeydew/60 font-body text-sm font-normal mb-4 leading-normal">
+                            A comprehensive portal for tracking student internships, generating reports, and facilitating communication between mentors and students.
+                        </p>
+<a class="text-primary font-bold text-xs uppercase tracking-widest flex items-center gap-1 hover:gap-2 transition-all font-body" href="#">Learn more <span class="material-symbols-outlined text-xs">arrow_right_alt</span></a>
+</div>
+<div class="group p-8 rounded-lg bg-oxford-navy-light/10 border border-oxford-navy-light hover:border-cerulean/50 transition-all flex-1">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-frosted-blue font-body text-xl font-bold">Travel Industry CRM</h3>
+<span class="material-symbols-outlined text-cerulean text-2xl">flight_takeoff</span>
+</div>
+<div class="flex gap-2 mb-4">
+<span class="text-[10px] text-cerulean font-bold uppercase font-body">SaaS</span>
+<span class="text-[10px] text-cerulean font-bold uppercase font-body">PostgreSQL</span>
+</div>
+<p class="text-honeydew/60 font-body text-sm font-normal mb-4 leading-normal">
+                            Custom CRM solution designed for travel agencies to manage leads, bookings, and customer itineraries efficiently.
+                        </p>
+<a class="text-primary font-bold text-xs uppercase tracking-widest flex items-center gap-1 hover:gap-2 transition-all font-body" href="#">Learn more <span class="material-symbols-outlined text-xs">arrow_right_alt</span></a>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-24">
+<div class="flex items-center gap-6 mb-10">
+<h2 class="text-honeydew font-display text-3xl font-extrabold tracking-widest uppercase border-l-4 border-frosted-blue pl-4">Blockchain &amp; Web3</h2>
+<div class="h-px bg-gradient-to-r from-oxford-navy-light to-transparent flex-1"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 group relative p-10 rounded-xl bg-oxford-navy-light/20 border border-oxford-navy-light hover:border-primary/40 transition-all duration-300">
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="size-24 shrink-0 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-5xl text-primary">verified</span>
+</div>
+<div>
+<div class="flex gap-3 mb-3">
+<span class="text-[11px] font-bold text-cerulean uppercase bg-cerulean/10 px-2 py-0.5 rounded font-body">#Solidity</span>
+<span class="text-[11px] font-bold text-cerulean uppercase bg-cerulean/10 px-2 py-0.5 rounded font-body">#Web3</span>
+</div>
+<h3 class="text-honeydew font-display text-3xl font-black mb-4">NFT Based Certification System</h3>
+<p class="text-honeydew/80 font-body text-lg font-light leading-relaxed mb-6">
+                                Decentralized application issuing verifiable academic credentials as NFTs on the Ethereum blockchain. Ensures immutability and instant verification globally, solving the problem of fake degree certificates.
+                            </p>
+<button class="px-6 py-2 rounded border border-primary text-primary font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all font-body">
+                                View Case Study
+                            </button>
+</div>
+</div>
+</div>
+<div class="group relative p-8 rounded-xl bg-oxford-navy-light/10 border border-oxford-navy-light hover:border-frosted-blue/40 transition-all duration-300 flex flex-col justify-center">
+<div class="size-16 rounded-xl bg-cerulean/10 flex items-center justify-center mb-6 border border-cerulean/20">
+<span class="material-symbols-outlined text-3xl text-cerulean">currency_bitcoin</span>
+</div>
+<div class="flex gap-2 mb-3">
+<span class="text-[10px] font-bold text-cerulean uppercase font-body">#D3.js</span>
+<span class="text-[10px] font-bold text-cerulean uppercase font-body">#React</span>
+</div>
+<h3 class="text-frosted-blue font-body text-2xl font-bold mb-4">Crypto Portfolio</h3>
+<p class="text-honeydew/70 font-body text-sm font-medium leading-relaxed mb-6">
+                        Real-time dashboard for tracking cryptocurrency assets across multiple wallets. Features advanced visualizations and historical performance analysis.
+                    </p>
+<a class="inline-flex items-center gap-2 text-primary text-xs font-black uppercase tracking-widest group/link font-body" href="#">
+                        Explore <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-oxford-navy-light py-10 mt-12 bg-oxford-navy-light/10">
+<div class="max-w-[1400px] mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4">
+<div class="size-6 bg-primary/20 text-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-base">terminal</span>
+</div>
+<p class="text-honeydew/60 font-body font-medium text-sm tracking-wide">© 2024 DEV.PORTFOLIO. Built with <span class="text-primary">♥</span> and Code.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-honeydew/40 hover:text-primary transition-colors text-xs font-black uppercase tracking-widest font-body" href="#">GitHub</a>
+<a class="text-honeydew/40 hover:text-primary transition-colors text-xs font-black uppercase tracking-widest font-body" href="#">LinkedIn</a>
+<a class="text-honeydew/40 hover:text-primary transition-colors text-xs font-black uppercase tracking-widest font-body" href="#">Twitter</a>
+</div>
+</div>
+</footer>
+</body></html>

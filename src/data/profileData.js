@@ -176,6 +176,7 @@ export const profileData = {
         "/Ai india summit 2026 guvi buildathon 2.png",
       ],
       role: "AI Developer",
+      category: "ai",
     },
     {
       title: "Jez Cabs Management Platform",
@@ -197,6 +198,7 @@ export const profileData = {
         "https://drive.google.com/file/d/1DDC954-pc7YLPjN39xJjMi5yX5qxQk4T/preview",
       videoPoster: "/Jezcabs.png",
       icon: "fas fa-car",
+      category: "fullstack",
     },
     {
       title: "Tariff Extraction Process",
@@ -211,6 +213,7 @@ export const profileData = {
       images: ["/tariff extraction 1.png", "/tariff extraction 2.png"],
       icon: "fas fa-robot",
       teamSize: 1,
+      category: "ai",
     },
     {
       title: "NFT Based Certification System",
@@ -228,6 +231,7 @@ export const profileData = {
       isPublished: true,
       images: ["/SRM Conference image.jpg", "/certificate-presentation.webp"],
       icon: "fas fa-certificate",
+      category: "blockchain",
     },
     {
       title: "Internship Management System",
@@ -242,6 +246,7 @@ export const profileData = {
       role: "Frontend Developer",
       images: ["/internbyte 1.png"],
       featured: false,
+      category: "fullstack",
     },
     {
       title: "Travel Industry CRM Platform",
@@ -256,6 +261,7 @@ export const profileData = {
       images: ["/crm tripxplo 1.png", "/crm tripxplo 2.png"],
       imageLayout: "split-vertical",
       featured: false,
+      category: "fullstack",
     },
   ],
   stats: {

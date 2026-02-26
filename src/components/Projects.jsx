@@ -1,22 +1,48 @@
-import { memo, useCallback, useState, useEffect } from "react";
+import { memo, useCallback, useState, useEffect, useMemo } from "react";
 import { animate } from "animejs";
 import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
 import SectionHeader from "./ui/SectionHeader";
-import ScrollStack from "./ui/ScrollStack";
 import VideoPreview from "./ui/VideoPreview";
 import VideoModal from "./ui/VideoModal";
-import { formatBoldText } from "../utils/formatText";
 
-const ProjectCardContent = memo(({ project, onVideoExpand }) => {
+// Category configuration: label, accent color, icon
+const CATEGORIES = {
+  ai: {
+    label: "AI & Intelligence",
+    accentBorder: "border-punch-red",
+    accentBg: "bg-punch-red",
+    heroHoverBorder: "hover:border-punch-red/50",
+    heroShadow: "hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]",
+    icon: "fas fa-brain",
+  },
+  fullstack: {
+    label: "Full Stack Systems",
+    accentBorder: "border-cerulean",
+    accentBg: "bg-cerulean",
+    heroHoverBorder: "hover:border-cerulean/50",
+    heroShadow: "hover:shadow-[0_0_30px_rgba(69,123,157,0.2)]",
+    icon: "fas fa-layer-group",
+  },
+  blockchain: {
+    label: "Blockchain & Web3",
+    accentBorder: "border-frosted-blue",
+    accentBg: "bg-frosted-blue",
+    heroHoverBorder: "hover:border-frosted-blue/40",
+    heroShadow: "hover:shadow-[0_0_30px_rgba(168,218,220,0.2)]",
+    icon: "fas fa-link",
+  },
+};
+
+// ---------- Hero Project Card ----------
+const HeroProjectCard = memo(({ project, category, onVideoExpand }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    // Only auto-rotate images if no video and multiple images exist
     if (!project.videoSrc && project.images && project.images.length > 1) {
       const interval = setInterval(() => {
         setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-      }, 3000);
+      }, 4000);
       return () => clearInterval(interval);
     }
   }, [project.images, project.videoSrc]);
@@ -29,170 +55,332 @@ const ProjectCardContent = memo(({ project, onVideoExpand }) => {
     }
   }, [onVideoExpand, project]);
 
-  // Determine poster image for video
   const videoPoster =
     project.videoPoster || (project.images && project.images[0]);
+  const firstImage = project.images && project.images[0];
+  const cat = CATEGORIES[category] || CATEGORIES.ai;
+
+  // Determine column span based on number of sibling cards
+  const heroSpan = "md:col-span-8";
 
   return (
-    <div className="h-full grid md:grid-cols-2">
-      {/* Image/Video Section */}
+    <article
+      className={`${heroSpan} group rounded-xl bg-oxford-navy-light/30 border border-oxford-navy-light ${cat.heroHoverBorder} overflow-hidden shadow-xl transition-all duration-500 ${cat.heroShadow} flex flex-col h-full`}
+    >
+      {/* Image / Video area */}
       <div
-        className={`relative bg-linear-to-br from-cerulean to-oxford-navy-light hidden md:flex items-center justify-center overflow-hidden ${
-          !project.images && !project.videoSrc ? "p-6" : ""
-        }`}
+        className="w-full h-[350px] md:h-[450px] bg-cover bg-center relative overflow-hidden"
+        style={{
+          backgroundImage: firstImage ? `url('${firstImage}')` : undefined,
+        }}
       >
-        {/* Video Preview - shown if videoSrc exists */}
-        {project.videoSrc ? (
-          <VideoPreview
-            videoSrc={project.videoSrc}
-            posterSrc={videoPoster}
-            alt={`${project.title} demo video`}
-            onExpand={handleVideoExpand}
-          />
-        ) : project.images && project.images.length > 0 ? (
-          /* Image carousel - fallback when no video */
-          <div className="absolute inset-0 w-full h-full">
-            {project.imageLayout === "split-vertical" ? (
-              <div className="flex flex-col h-full w-full">
-                {project.images.slice(0, 2).map((img, i) => (
-                  <div
-                    key={i}
-                    className="h-1/2 w-full relative overflow-hidden border-b last:border-b-0 border-frosted-blue/10"
-                  >
-                    <img
-                      src={img}
-                      alt={`${project.title} part ${i + 1}`}
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              project.images.map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  alt={`${project.title} preview ${i + 1}`}
-                  className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
-                    i === currentImageIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))
-            )}
-            {/* Gradient Overlay for text readability if needed, or just style */}
-            <div className="absolute inset-0 bg-oxford-navy/10 group-hover:bg-transparent transition-colors duration-300"></div>
+        {/* Video overlay if project has video */}
+        {project.videoSrc && (
+          <div className="absolute inset-0 z-10">
+            <VideoPreview
+              videoSrc={project.videoSrc}
+              posterSrc={videoPoster}
+              alt={`${project.title} demo video`}
+              onExpand={handleVideoExpand}
+            />
           </div>
-        ) : (
-          /* Icon fallback when no images or video */
-          <>
-            <i
-              className={`${
-                project.icon || "fas fa-code"
-              } text-9xl text-honeydew/30`}
-            ></i>
-            <div className="absolute inset-0 bg-linear-to-br from-punch-red/20 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
-          </>
         )}
-      </div>
 
-      {/* Info Section */}
-      <div className="p-4 md:p-5 flex flex-col justify-center bg-oxford-navy/50">
-        <div className="flex gap-2 flex-wrap lg:mb-6 mb-2">
-          {project.featured && (
-            <span className="bg-punch-red text-honeydew px-3 py-1 rounded-full text-xs font-semibold">
-              Featured
-            </span>
-          )}
-          <span className="bg-frosted-blue/20 text-frosted-blue px-3 py-1 rounded-full text-xs font-semibold">
-            <i
-              className={
-                project.teamSize === 1 ? "fas fa-user" : "fas fa-users"
-              }
-            ></i>{" "}
-            {project.teamSize === 1 ? "Solo" : `Team of ${project.teamSize}`}
-          </span>
-          {project.isPublished && (
-            <span className="bg-cerulean/30 text-cerulean-light px-3 py-1 rounded-full text-xs font-semibold">
-              <i className="fas fa-book"></i> IEEE Published
-            </span>
-          )}
-        </div>
-
-        <h3 className="font-display text-2xl md:text-3xl font-bold lg:mb-4 mb-2 text-white">
-          {project.title}
-        </h3>
-        {Array.isArray(project.description) ? (
-          <ul className="list-disc list-outside ml-5 text-frosted-blue/80 mb-4 space-y-2">
-            {project.description.map((point, idx) => (
-              <li key={idx} className={idx >= 2 ? "hidden md:list-item" : ""}>
-                {formatBoldText(point)}
-              </li>
+        {/* Image carousel for non-video projects */}
+        {!project.videoSrc && project.images && project.images.length > 1 && (
+          <div className="absolute inset-0">
+            {project.images.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt={`${project.title} preview ${i + 1}`}
+                className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
+                  i === currentImageIndex ? "opacity-100" : "opacity-0"
+                }`}
+              />
             ))}
-          </ul>
-        ) : (
-          <p className="text-frosted-blue/80 mb-6 text-base md:text-lg leading-relaxed">
-            {formatBoldText(project.description)}
-          </p>
+          </div>
         )}
-        <div className="flex flex-wrap gap-2 mb-3">
-          {project.tech.map((t, i) => (
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-linear-to-t from-oxford-navy via-oxford-navy/50 to-transparent z-20 pointer-events-none"></div>
+
+        {/* Overlay content */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-linear-to-t from-oxford-navy to-transparent z-30">
+          {/* Tech tags */}
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-3 md:mb-4">
+            {project.tech.slice(0, 4).map((t, i) => (
+              <span
+                key={i}
+                className="px-3 md:px-4 py-1 md:py-1.5 text-[10px] md:text-xs font-bold rounded-full bg-frosted-blue/20 text-frosted-blue border border-frosted-blue/30 backdrop-blur-md uppercase tracking-wider"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+
+          {/* Title */}
+          <h3 className="text-honeydew font-display text-2xl md:text-4xl lg:text-5xl font-black mb-3 md:mb-4 drop-shadow-lg">
+            {project.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-honeydew/90 text-sm md:text-lg font-normal mb-4 md:mb-6 leading-relaxed max-w-3xl line-clamp-3">
+            {Array.isArray(project.description)
+              ? project.description[0].replace(/\*\*/g, "")
+              : project.description.replace(/\*\*/g, "")}
+          </p>
+
+          {/* Action buttons */}
+          <div className="flex flex-wrap gap-3 md:gap-4">
+            {project.liveLink && (
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 md:px-8 h-10 md:h-12 rounded-lg bg-punch-red hover:bg-red-600 text-white font-bold text-xs md:text-sm transition-all flex items-center justify-center gap-2 uppercase tracking-widest shadow-lg shadow-punch-red/20"
+              >
+                View Live Demo
+                <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            )}
+            {project.repoLink && (
+              <a
+                href={project.repoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 md:px-8 h-10 md:h-12 rounded-lg bg-cerulean/20 hover:bg-cerulean/40 text-frosted-blue border border-cerulean/30 font-bold text-xs md:text-sm transition-all flex items-center justify-center gap-2 uppercase tracking-widest"
+              >
+                <i className="fab fa-github text-sm"></i>
+                Source
+              </a>
+            )}
+            {project.ieeeLink && (
+              <a
+                href={project.ieeeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 md:px-8 h-10 md:h-12 rounded-lg bg-cerulean/20 hover:bg-cerulean/40 text-frosted-blue border border-cerulean/30 font-bold text-xs md:text-sm transition-all flex items-center justify-center gap-2 uppercase tracking-widest"
+              >
+                <i className="fas fa-file-alt text-sm"></i>
+                Paper
+              </a>
+            )}
+            {/* Mobile-only video button */}
+            {project.videoSrc && (
+              <button
+                onClick={handleVideoExpand}
+                className="md:hidden px-6 h-10 rounded-lg bg-cerulean/20 hover:bg-cerulean/40 text-frosted-blue border border-cerulean/30 font-bold text-xs transition-all flex items-center justify-center gap-2 uppercase tracking-widest"
+              >
+                <i className="fas fa-play-circle text-sm"></i>
+                Demo
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+});
+
+HeroProjectCard.displayName = "HeroProjectCard";
+
+// ---------- Compact Project Card ----------
+const CompactProjectCard = memo(({ project, onVideoExpand }) => {
+  const handleVideoExpand = useCallback(() => {
+    if (onVideoExpand && project.videoSrc) {
+      const videoPoster =
+        project.videoPoster || (project.images && project.images[0]);
+      onVideoExpand(project.videoSrc, videoPoster, project.title);
+    }
+  }, [onVideoExpand, project]);
+
+  // Get a short description
+  const shortDesc = Array.isArray(project.description)
+    ? project.description[0].replace(/\*\*/g, "").substring(0, 150) + "..."
+    : project.description.replace(/\*\*/g, "").substring(0, 150) + "...";
+
+  // Pick a material-like icon mapping based on project icon
+  const iconMap = {
+    "fas fa-robot": "fas fa-robot",
+    "fas fa-car": "fas fa-car",
+    "fas fa-certificate": "fas fa-certificate",
+    "fas fa-code": "fas fa-code",
+  };
+  const displayIcon = iconMap[project.icon] || project.icon || "fas fa-code";
+
+  return (
+    <div className="group relative rounded-lg bg-oxford-navy-light/10 border border-oxford-navy-light hover:border-frosted-blue/50 p-6 md:p-8 transition-all duration-300 flex-1 flex flex-col justify-center">
+      <div className="flex justify-between items-start mb-4 md:mb-6">
+        <div className="p-2.5 md:p-3 rounded-lg bg-punch-red/10 text-punch-red group-hover:bg-punch-red group-hover:text-white transition-colors">
+          <i className={`${displayIcon} text-xl md:text-2xl`}></i>
+        </div>
+        {/* Tech hashtags */}
+        <div className="flex gap-2 flex-wrap justify-end">
+          {project.tech.slice(0, 2).map((t, i) => (
             <span
               key={i}
-              className="px-3 py-1 bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red"
+              className="text-[10px] text-cerulean font-bold uppercase tracking-tighter"
             >
-              {t}
+              #{t.replace(/\s+/g, "")}
             </span>
           ))}
         </div>
+      </div>
 
-        <div className="flex lg:gap-6 gap-5 mt-auto flex-wrap">
-          {project.liveLink && (
-            <a
-              href={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center lg:text-lg text-[14px]"
-            >
-              <i className="fas fa-external-link-alt lg:mr-2 mr-1"></i>Live Demo
-            </a>
-          )}
-          {project.repoLink && (
-            <a
-              href={project.repoLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center lg:text-lg text-[14px]"
-            >
-              <i className="fab fa-github lg:mr-2 mr-1"></i>Code
-            </a>
-          )}
-          {/* Mobile-only demo video button */}
-          {project.videoSrc && (
-            <button
-              onClick={handleVideoExpand}
-              className="md:hidden text-frosted-blue hover:text-punch-red transition-colors font-medium flex items-center lg:text-lg text-[14px]"
-            >
-              <i className="fas fa-play-circle lg:mr-2 mr-1"></i>Demo Video
-            </button>
-          )}
-          {project.ieeeLink && (
-            <a
-              href={project.ieeeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-frosted-blue hover:text-punch-red transition-colors font-medium hidden md:flex items-center text-lg"
-            >
-              <i className="fas fa-file-alt mr-2"></i>Paper
-            </a>
-          )}
-        </div>
+      <h3 className="text-frosted-blue text-xl md:text-2xl font-bold mb-2 md:mb-3">
+        {project.title}
+      </h3>
+
+      <p className="text-honeydew/70 text-sm md:text-base font-light leading-relaxed mb-4 md:mb-6 line-clamp-3">
+        {shortDesc}
+      </p>
+
+      {/* Badges row */}
+      <div className="flex gap-2 flex-wrap mb-4">
+        {project.featured && (
+          <span className="bg-punch-red text-honeydew px-2.5 py-0.5 rounded-full text-[10px] font-semibold">
+            Featured
+          </span>
+        )}
+        {project.isPublished && (
+          <span className="bg-cerulean/30 text-cerulean-light px-2.5 py-0.5 rounded-full text-[10px] font-semibold">
+            <i className="fas fa-book mr-1"></i>IEEE
+          </span>
+        )}
+        <span className="bg-frosted-blue/20 text-frosted-blue px-2.5 py-0.5 rounded-full text-[10px] font-semibold">
+          <i
+            className={
+              project.teamSize === 1 ? "fas fa-user mr-1" : "fas fa-users mr-1"
+            }
+          ></i>
+          {project.teamSize === 1 ? "Solo" : `Team of ${project.teamSize}`}
+        </span>
+      </div>
+
+      {/* Action links */}
+      <div className="mt-auto flex flex-wrap gap-4">
+        {project.liveLink && (
+          <a
+            href={project.liveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-punch-red text-xs font-black uppercase tracking-widest hover:text-white transition-colors group/link"
+          >
+            Live Demo{" "}
+            <span className="ml-1 group-hover/link:translate-x-1 transition-transform">
+              <i className="fas fa-chevron-right text-[10px]"></i>
+            </span>
+          </a>
+        )}
+        {project.repoLink && (
+          <a
+            href={project.repoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-punch-red text-xs font-black uppercase tracking-widest hover:text-white transition-colors group/link"
+          >
+            Source{" "}
+            <span className="ml-1 group-hover/link:translate-x-1 transition-transform">
+              <i className="fas fa-chevron-right text-[10px]"></i>
+            </span>
+          </a>
+        )}
+        {project.videoSrc && (
+          <button
+            onClick={handleVideoExpand}
+            className="inline-flex items-center text-punch-red text-xs font-black uppercase tracking-widest hover:text-white transition-colors group/link"
+          >
+            Demo Video{" "}
+            <span className="ml-1 group-hover/link:translate-x-1 transition-transform">
+              <i className="fas fa-chevron-right text-[10px]"></i>
+            </span>
+          </button>
+        )}
+        {project.ieeeLink && (
+          <a
+            href={project.ieeeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-punch-red text-xs font-black uppercase tracking-widest hover:text-white transition-colors group/link"
+          >
+            Paper{" "}
+            <span className="ml-1 group-hover/link:translate-x-1 transition-transform">
+              <i className="fas fa-chevron-right text-[10px]"></i>
+            </span>
+          </a>
+        )}
       </div>
     </div>
   );
 });
 
-ProjectCardContent.displayName = "ProjectCardContent";
+CompactProjectCard.displayName = "CompactProjectCard";
 
+// ---------- Category Section ----------
+const CategorySection = memo(({ categoryKey, projects, onVideoExpand }) => {
+  const cat = CATEGORIES[categoryKey];
+  if (!cat || projects.length === 0) return null;
+
+  // Find featured project for hero card, fallback to first project
+  const heroProject = projects.find((p) => p.featured) || projects[0];
+  const sidebarProjects = projects.filter((p) => p !== heroProject);
+
+  return (
+    <section className="mb-16 md:mb-24">
+      {/* Category Header */}
+      <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-10">
+        <h2
+          className={`text-honeydew font-display text-xl md:text-3xl font-extrabold tracking-widest uppercase border-l-4 ${cat.accentBorder} pl-3 md:pl-4`}
+        >
+          {cat.label}
+        </h2>
+        <div className="h-px bg-linear-to-r from-oxford-navy-light to-transparent flex-1"></div>
+      </div>
+
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-stretch">
+        {/* Hero card */}
+        <HeroProjectCard
+          project={heroProject}
+          category={categoryKey}
+          onVideoExpand={onVideoExpand}
+        />
+
+        {/* Sidebar compact cards */}
+        {sidebarProjects.length > 0 && (
+          <div className="md:col-span-4 flex flex-col gap-4 md:gap-6">
+            {sidebarProjects.map((project, i) => (
+              <CompactProjectCard
+                key={i}
+                project={project}
+                onVideoExpand={onVideoExpand}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* If no sidebar cards, let hero take full width */}
+        {sidebarProjects.length === 0 && (
+          <div className="md:col-span-4 flex flex-col gap-6 justify-center items-center">
+            <div className="p-8 rounded-lg bg-oxford-navy-light/10 border border-oxford-navy-light text-center w-full h-full flex flex-col items-center justify-center">
+              <div className={`p-4 rounded-xl ${cat.accentBg}/10 mb-4`}>
+                <i className={`${cat.icon} text-4xl text-frosted-blue/50`}></i>
+              </div>
+              <p className="text-honeydew/40 text-sm font-light">
+                More projects coming soon
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+});
+
+CategorySection.displayName = "CategorySection";
+
+// ---------- Main Projects Component ----------
 const Projects = () => {
   const [videoModal, setVideoModal] = useState({
     isOpen: false,
@@ -240,15 +428,35 @@ const Projects = () => {
 
   const { projects } = profileData;
 
+  // Group projects by category, maintaining order
+  const groupedProjects = useMemo(() => {
+    const groups = {};
+    const categoryOrder = ["ai", "fullstack", "blockchain"];
+
+    for (const cat of categoryOrder) {
+      groups[cat] = [];
+    }
+
+    for (const project of projects) {
+      const cat = project.category || "fullstack";
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push(project);
+    }
+
+    return categoryOrder
+      .filter((cat) => groups[cat].length > 0)
+      .map((cat) => ({ key: cat, projects: groups[cat] }));
+  }, [projects]);
+
   return (
     <section
       id="projects"
       ref={sectionRef}
       className="py-16 md:py-24 bg-oxford-navy-dark"
     >
-      <div className="w-full px-5">
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-10">
+        {/* Header */}
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
           <SectionHeader
             tag="Portfolio"
             title="Projects"
@@ -257,22 +465,18 @@ const Projects = () => {
           />
         </div>
 
-        {/* Scroll Stack */}
-        <div className="w-full flex justify-center">
-          <ScrollStack
-            items={projects}
-            itemContent={(project, index) => (
-              <ProjectCardContent
-                project={project}
-                index={index}
-                onVideoExpand={handleVideoExpand}
-              />
-            )}
+        {/* Category Sections */}
+        {groupedProjects.map(({ key, projects: catProjects }) => (
+          <CategorySection
+            key={key}
+            categoryKey={key}
+            projects={catProjects}
+            onVideoExpand={handleVideoExpand}
           />
-        </div>
+        ))}
       </div>
 
-      {/* Video Modal - rendered at Projects level for proper z-index */}
+      {/* Video Modal */}
       <VideoModal
         isOpen={videoModal.isOpen}
         onClose={handleCloseVideoModal}

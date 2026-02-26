@@ -259,19 +259,18 @@ textarea:focus-visible {
     font-size: 30px !important;
   }
 
-  /* Projects Section - Smaller text for mobile */
-  #projects .font-display {
+  /* Projects Section - Responsive mosaic tweaks */
+  #projects h2.font-display {
+    font-size: 1.1rem !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  #projects h3.font-display {
     font-size: 1.25rem !important;
     line-height: 1.3 !important;
   }
 
-  #projects .text-frosted-blue\/80 {
-    font-size: 0.875rem !important;
-    line-height: 1.4 !important;
-  }
-
-  #projects .bg-punch-red\/15 {
-    font-size: 0.7rem !important;
-    padding: 0.25rem 0.5rem !important;
+  #projects .line-clamp-3 {
+    -webkit-line-clamp: 2;
   }
 }
