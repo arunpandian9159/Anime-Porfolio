@@ -5,8 +5,8 @@ export { default as LogoLoop } from "./LogoLoop";
 export { default as ScrollStack } from "./ScrollStack";
 
 export { default as PerformanceBadge } from "./PerformanceBadge";
-export { default as VideoPreview } from "./VideoPreview";
-export { default as VideoModal } from "./VideoModal";
+export { default as VideoPreview } from "./Video/VideoPreview";
+export { default as VideoModal } from "./Video/VideoModal";
 
 // Components in parent folder
 export { default as Navbar } from "../Navbar";
