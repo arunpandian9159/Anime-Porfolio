@@ -10,7 +10,7 @@ const CategorySection = memo(({ catKey, catProjects, onCardClick }) => {
   if (!cat || !catProjects || catProjects.length === 0) return null;
 
   return (
-    <div className="mb-16 last:mb-0">
+    <div className="mb-12 md:mb-16 last:mb-0">
       {/* Category section title */}
       <div className="flex items-center gap-4 mb-8">
         <div className={`p-2.5 rounded-lg ${cat.iconBg} ${cat.iconText}`}>
@@ -35,7 +35,7 @@ const CategorySection = memo(({ catKey, catProjects, onCardClick }) => {
           </span>
         </div>
         <div
-          className="flex-1 h-px ml-4 opacity-20"
+          className="flex-1 h-px ml-4 opacity-20 hidden md:block"
           style={{
             background: `linear-gradient(to right, var(--color-${cat.color}), transparent)`,
           }}

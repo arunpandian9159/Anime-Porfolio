@@ -233,7 +233,7 @@ textarea:focus-visible {
 .projects-bento-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 @media (min-width: 768px) {
@@ -266,8 +266,11 @@ textarea:focus-visible {
     box-shadow 350ms ease;
 }
 
-.bento-card:hover {
-  transform: translateY(-4px) scale(1.015);
+/* Only apply hover lift on devices with pointer (not touch) */
+@media (hover: hover) {
+  .bento-card:hover {
+    transform: translateY(-4px) scale(1.015);
+  }
 }
 
 /* Category glow effects on hover */

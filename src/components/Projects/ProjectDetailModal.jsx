@@ -50,7 +50,7 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
   const modalContent = (
     <div
       ref={modalRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-oxford-navy-dark/95 backdrop-blur-md p-4 md:p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-oxford-navy-dark/95 backdrop-blur-md p-3 md:p-8"
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
@@ -58,11 +58,11 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
     >
       {/* Modal container */}
       <div
-        className="w-full max-w-[85%] max-h-[90vh] overflow-y-auto rounded-2xl bg-[#0a1628]/98 border border-frosted-blue/10 shadow-2xl"
+        className="w-full max-w-[95%] md:max-w-[85%] max-h-[90vh] overflow-y-auto rounded-2xl bg-[#0a1628]/98 border border-frosted-blue/10 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Title bar */}
-        <div className="flex items-center justify-between px-6 md:px-10 pt-6 md:pt-8 pb-4 border-b border-frosted-blue/10">
+        <div className="flex items-center justify-between px-4 md:px-10 pt-4 md:pt-8 pb-3 md:pb-4 border-b border-frosted-blue/10">
           <h2 className="text-punch-red font-display text-lg md:text-2xl font-bold uppercase tracking-wider leading-tight">
             {project.title}
           </h2>
@@ -76,7 +76,7 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
         </div>
 
         {/* Two-column body */}
-        <div className="flex flex-col md:flex-row gap-6 md:gap-10 p-6 md:p-10">
+        <div className="flex flex-col md:flex-row gap-5 md:gap-10 p-4 md:p-10">
           {/* Left column — Image + Metadata */}
           <div className="w-full md:w-[42%] shrink-0 flex flex-col gap-5">
             {/* Image carousel — hidden when video is available */}
@@ -102,7 +102,7 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
                           (prev) => (prev - 1 + images.length) % images.length,
                         )
                       }
-                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-colors cursor-pointer backdrop-blur-sm"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-9 md:h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-colors cursor-pointer backdrop-blur-sm"
                       aria-label="Previous image"
                     >
                       <i className="fas fa-chevron-left text-sm"></i>
@@ -113,7 +113,7 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
                           (prev) => (prev + 1) % images.length,
                         )
                       }
-                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-colors cursor-pointer backdrop-blur-sm"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-9 md:h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-colors cursor-pointer backdrop-blur-sm"
                       aria-label="Next image"
                     >
                       <i className="fas fa-chevron-right text-sm"></i>
@@ -177,7 +177,7 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
             )}
 
             {/* Role + Team Size metadata cards */}
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               {project.role && (
                 <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl bg-oxford-navy/60 border border-frosted-blue/8">
                   <div className="w-9 h-9 rounded-lg bg-frosted-blue/10 flex items-center justify-center shrink-0">
@@ -230,7 +230,7 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
                       className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${cat.dotClass || "bg-cerulean"}`}
                     ></span>
                     <p
-                      className="text-honeydew/65 text-xl leading-relaxed"
+                      className="text-honeydew/65 text-sm md:text-xl leading-relaxed"
                       dangerouslySetInnerHTML={{
                         __html: desc.replace(
                           /\*\*(.*?)\*\*/g,
@@ -273,13 +273,13 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
             )}
 
             {/* Action buttons — pushed to bottom */}
-            <div className="flex flex-wrap gap-3 mt-auto pt-6 border-t border-white/5">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-auto pt-5 md:pt-6 border-t border-white/5">
               {project.repoLink && (
                 <a
                   href={project.repoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-frosted-blue border border-white/10 font-bold text-sm transition-all duration-200 flex items-center gap-2 uppercase tracking-widest cursor-pointer"
+                  className="px-6 py-3 md:py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-frosted-blue border border-white/10 font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 uppercase tracking-widest cursor-pointer"
                 >
                   <i className="fas fa-code text-xs"></i>
                   View Code
@@ -290,7 +290,7 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
                   href={project.liveLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-2.5 rounded-lg bg-punch-red hover:bg-punch-red-light text-white font-bold text-sm transition-all duration-200 flex items-center gap-2 uppercase tracking-widest shadow-lg shadow-punch-red/15 cursor-pointer"
+                  className="px-6 py-3 md:py-2.5 rounded-lg bg-punch-red hover:bg-punch-red-light text-white font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 uppercase tracking-widest shadow-lg shadow-punch-red/15 cursor-pointer"
                 >
                   Live Link
                   <i className="fas fa-arrow-up-right-from-square text-xs"></i>
@@ -301,7 +301,7 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
                   href={project.ieeeLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-frosted-blue border border-white/10 font-bold text-sm transition-all duration-200 flex items-center gap-2 uppercase tracking-widest cursor-pointer"
+                  className="px-6 py-3 md:py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-frosted-blue border border-white/10 font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 uppercase tracking-widest cursor-pointer"
                 >
                   <i className="fas fa-file-alt text-xs"></i>
                   IEEE Paper

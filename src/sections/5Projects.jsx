@@ -3,7 +3,7 @@ import { animate } from "animejs";
 import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
 import SectionHeader from "../components/ui/SectionHeader";
-import ProjectDetailModal from "../components/ui/ProjectDetailModal";
+import ProjectDetailModal from "../components/Projects/ProjectDetailModal";
 import {
   CATEGORIES,
   CATEGORY_ORDER,

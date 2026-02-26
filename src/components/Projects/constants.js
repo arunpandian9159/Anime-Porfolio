@@ -1,7 +1,7 @@
 // Category configuration
 export const CATEGORIES = {
   ai: {
-    label: "AI & Intelligence",
+    label: "AI",
     color: "punch-red",
     dotClass: "bg-punch-red",
     glowClass: "card-glow-ai",
