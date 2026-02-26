@@ -2,10 +2,10 @@ import { memo, useCallback } from "react";
 import { animate } from "animejs";
 import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
-import SectionHeader from "./ui/SectionHeader";
+import SectionHeader from "../components/ui/SectionHeader";
 
 const EducationCard = memo(({ edu, index }) => {
-  const animationConfig = { 
+  const animationConfig = {
     opacity: [0, 1],
     translateY: [30, 0],
     scale: [0.95, 1],

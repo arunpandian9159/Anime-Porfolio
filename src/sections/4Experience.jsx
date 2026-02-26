@@ -2,7 +2,7 @@ import { memo, useCallback } from "react";
 import { animate } from "animejs";
 import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
-import SectionHeader from "./ui/SectionHeader";
+import SectionHeader from "../components/ui/SectionHeader";
 import { formatBoldText } from "../utils/formatText";
 
 const TimelineItem = memo(({ exp, index }) => {
@@ -112,7 +112,7 @@ const Experience = () => {
           title="Work"
           highlight="Experience"
           className="exp-header"
-        /> 
+        />
 
         {/* Timeline */}
         <div className="relative max-w-3xl mx-auto pl-5 md:pl-8">

@@ -3,8 +3,8 @@ import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 import { animate } from "animejs";
 import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
-import SectionHeader from "./ui/SectionHeader";
-import ProjectDetailModal from "./ui/ProjectDetailModal";
+import SectionHeader from "../components/ui/SectionHeader";
+import ProjectDetailModal from "../components/ui/ProjectDetailModal";
 
 // Category configuration
 const CATEGORIES = {
@@ -133,8 +133,6 @@ const LargeProjectCard = memo(({ project, category, onCardClick }) => {
             }`}
           />
         )}
-
-        {/* Team badge removed from image setup */}
 
         {/* Gradient overlay at bottom of image */}
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-oxford-navy-dark/90 to-transparent pointer-events-none"></div>

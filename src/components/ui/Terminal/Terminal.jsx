@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import TerminalInput from "./TerminalInput";
 import TerminalOutput from "./TerminalOutput";
 import { executeCommand, COMMANDS } from "./commands";
-import "./Terminal.css";
 
 /**
  * Interactive Terminal Modal Component
@@ -137,7 +136,7 @@ const Terminal = ({ isOpen, onClose }) => {
       {/* Terminal Window */}
       <div
         ref={terminalRef}
-        className="relative w-full max-w-3xl h-[70vh] max-h-[600px] bg-[#0d1117] rounded-lg shadow-2xl border border-[#30363d] overflow-hidden flex flex-col animate-terminal-open"
+        className="relative w-full max-w-3xl h-[70vh] max-h-150 bg-[#0d1117] rounded-lg shadow-2xl border border-[#30363d] overflow-hidden flex flex-col animate-terminal-open"
       >
         {/* Title Bar */}
         <div className="flex items-center justify-between px-4 py-2 bg-[#161b22] border-b border-[#30363d]">

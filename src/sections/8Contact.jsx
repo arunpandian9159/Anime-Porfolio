@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { animate, stagger } from "animejs";
 import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
-import SectionHeader from "./ui/SectionHeader";
+import SectionHeader from "../components/ui/SectionHeader";
 
 const Contact = () => {
   const runHeaderAnimation = useCallback(() => {
@@ -17,7 +17,7 @@ const Contact = () => {
       translateY: [30, 0],
       duration: 400,
       delay: 100,
-      easing: "easeOutExpo", 
+      easing: "easeOutExpo",
     });
     animate(".contact-header .title-decoration", {
       width: [0, 80],
