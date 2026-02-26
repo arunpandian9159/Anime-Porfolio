@@ -1,4 +1,4 @@
-import { profileData } from "../../../data/profileData";
+import { profileData } from "../../data/profileData";
 
 /**
  * Command registry for the terminal

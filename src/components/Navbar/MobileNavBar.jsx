@@ -5,13 +5,10 @@ import {
   FaBriefcase,
   FaLaptopCode,
   FaEnvelope,
-} from "react-icons/fa6"; 
+} from "react-icons/fa6";
 
 const MobileNavBar = () => {
   const [activeSection, setActiveSection] = useState("about");
-  const [isProjectsBannerExpanded, setIsProjectsBannerExpanded] =
-    useState(false);
-
   const navItems = [
     { id: "about", label: "About", icon: "home" },
     { id: "skills", label: "Skills", icon: "skills" },
@@ -37,7 +34,7 @@ const MobileNavBar = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  });
 
   const handleNavClick = useCallback((e, sectionId) => {
     e.preventDefault();
@@ -55,22 +52,6 @@ const MobileNavBar = () => {
       }
     }
   }, []);
-
-  const handleBannerClick = () => {
-    setIsProjectsBannerExpanded(!isProjectsBannerExpanded);
-    // Navigate to projects section
-    const target = document.getElementById("projects");
-    if (target) {
-      const offset = 80;
-      const targetPosition =
-        target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top: targetPosition, behavior: "smooth" });
-      setActiveSection("projects");
-    }
-    if (navigator.vibrate) {
-      navigator.vibrate(15);
-    }
-  };
 
   const renderIcon = (iconType, isActive) => {
     const iconClass = `w-5 h-5 transition-all duration-200 ${
@@ -110,7 +91,7 @@ const MobileNavBar = () => {
               <button
                 key={item.id}
                 onClick={(e) => handleNavClick(e, item.id)}
-                className={`relative flex flex-col items-center justify-center flex-1 min-h-[52px] rounded-xl transition-all duration-300 ${
+                className={`relative flex flex-col items-center justify-center flex-1 min-h-13 rounded-xl transition-all duration-300 ${
                   isActive
                     ? "bg-cerulean scale-105 shadow-lg shadow-cerulean/30"
                     : "bg-transparent hover:bg-oxford-navy-light/30"

@@ -1,8 +1,8 @@
 import { useState, lazy, Suspense, useCallback } from "react";
 import { Loader, Navbar } from "./components/ui";
-import { Terminal, TerminalPreview } from "./components/ui/Terminal";
+import { Terminal, TerminalPreview } from "./components/Terminal";
 import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation";
-import MobileNavBar from "./components/MobileNavBar";
+import MobileNavBar from "./components/Navbar/MobileNavBar";
 import Hero from "./sections/1Hero";
 
 // Lazy load below-the-fold components

@@ -1,6 +1,6 @@
 import { memo, useRef, useEffect, useCallback, useState, useMemo } from "react";
 import { createPortal } from "react-dom";
-import { isGoogleDriveUrl, getDriveEmbedUrl } from "../../../utils/videoUtils";
+import { isGoogleDriveUrl, getDriveEmbedUrl } from "../../utils/videoUtils";
 
 /**
  * VideoModal component for expanded video playback

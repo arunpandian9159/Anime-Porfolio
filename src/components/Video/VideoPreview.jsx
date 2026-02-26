@@ -1,5 +1,5 @@
 import { memo, useRef, useState, useEffect, useCallback, useMemo } from "react";
-import { isGoogleDriveUrl } from "../../../utils/videoUtils";
+import { isGoogleDriveUrl } from "../../utils/videoUtils";
 
 /**
  * VideoPreview component with lazy loading and auto-play on hover
