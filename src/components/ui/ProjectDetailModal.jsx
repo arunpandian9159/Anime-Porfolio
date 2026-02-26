@@ -1,5 +1,6 @@
 import { memo, useCallback, useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { isGoogleDriveUrl, getDriveEmbedUrl } from "../../utils/videoUtils";
 
 /**
  * ProjectDetailModal — Two-column modal matching screenshot reference.
@@ -78,8 +79,8 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
         <div className="flex flex-col md:flex-row gap-6 md:gap-10 p-6 md:p-10">
           {/* Left column — Image + Metadata */}
           <div className="w-full md:w-[42%] shrink-0 flex flex-col gap-5">
-            {/* Image carousel */}
-            {images.length > 0 && (
+            {/* Image carousel — hidden when video is available */}
+            {images.length > 0 && !project.videoSrc && (
               <div className="relative w-full aspect-4/3 rounded-xl overflow-hidden bg-oxford-navy/50">
                 {images.map((img, i) => (
                   <img
@@ -137,6 +138,41 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
                     ))}
                   </div>
                 )}
+              </div>
+            )}
+
+            {/* Video Player */}
+            {project.videoSrc && (
+              <div className="w-full rounded-xl overflow-hidden bg-oxford-navy/50 border border-frosted-blue/8">
+                <div className="flex items-center gap-2 px-4 py-2.5 border-b border-frosted-blue/8">
+                  <i className="fas fa-play-circle text-punch-red text-sm"></i>
+                  <span className="font-display text-xs font-bold text-honeydew/60 uppercase tracking-[0.2em]">
+                    Demo Video
+                  </span>
+                </div>
+                <div className="relative w-full aspect-video">
+                  {isGoogleDriveUrl(project.videoSrc) ? (
+                    <iframe
+                      src={getDriveEmbedUrl(project.videoSrc)}
+                      title={`${project.title} demo video`}
+                      className="absolute inset-0 w-full h-full"
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  ) : (
+                    <video
+                      src={project.videoSrc}
+                      poster={
+                        project.videoPoster ||
+                        (project.images && project.images[0])
+                      }
+                      controls
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-contain bg-black"
+                    />
+                  )}
+                </div>
               </div>
             )}
 

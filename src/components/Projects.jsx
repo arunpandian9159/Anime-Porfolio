@@ -4,8 +4,6 @@ import { animate } from "animejs";
 import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
 import SectionHeader from "./ui/SectionHeader";
-import VideoPreview from "./ui/VideoPreview";
-import VideoModal from "./ui/VideoModal";
 import ProjectDetailModal from "./ui/ProjectDetailModal";
 
 // Category configuration
@@ -78,192 +76,156 @@ const cardVariants = {
 };
 
 // ---------- Large Project Card (featured, 2-col span) ----------
-const LargeProjectCard = memo(
-  ({ project, category, onVideoExpand, onCardClick }) => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
-    const cat = CATEGORIES[category] || CATEGORIES.ai;
+const LargeProjectCard = memo(({ project, category, onCardClick }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const cat = CATEGORIES[category] || CATEGORIES.ai;
 
-    useEffect(() => {
-      if (!project.videoSrc && project.images && project.images.length > 1) {
-        const interval = setInterval(() => {
-          setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-        }, 4000);
-        return () => clearInterval(interval);
-      }
-    }, [project.images, project.videoSrc]);
+  useEffect(() => {
+    if (project.images && project.images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [project.images]);
 
-    const handleVideoExpand = useCallback(() => {
-      if (onVideoExpand && project.videoSrc) {
-        const poster =
-          project.videoPoster || (project.images && project.images[0]);
-        onVideoExpand(project.videoSrc, poster, project.title);
-      }
-    }, [onVideoExpand, project]);
+  const firstImage = project.images && project.images[0];
 
-    const videoPoster =
-      project.videoPoster || (project.images && project.images[0]);
-    const firstImage = project.images && project.images[0];
-
-    return (
-      <motion.article
-        variants={cardVariants}
-        className={`bento-card col-span-1 md:col-span-2 row-span-2 group cursor-pointer ${cat.glowClass}`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={() => onCardClick && onCardClick(project, category)}
+  return (
+    <motion.article
+      variants={cardVariants}
+      className={`bento-card col-span-1 md:col-span-2 row-span-2 group cursor-pointer ${cat.glowClass}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => onCardClick && onCardClick(project, category)}
+    >
+      {/* Image / Video area */}
+      <div
+        className="relative w-full h-56 md:h-72 overflow-hidden rounded-t-xl"
+        style={{
+          backgroundImage: firstImage ? `url('${firstImage}')` : undefined,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        {/* Image / Video area */}
-        <div
-          className="relative w-full h-56 md:h-72 overflow-hidden rounded-t-xl"
-          style={{
-            backgroundImage: firstImage ? `url('${firstImage}')` : undefined,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          {project.videoSrc && (
-            <div className="absolute inset-0 z-10">
-              <VideoPreview
-                videoSrc={project.videoSrc}
-                posterSrc={videoPoster}
-                alt={`${project.title} demo video`}
-                onExpand={handleVideoExpand}
-              />
-            </div>
-          )}
-
-          {!project.videoSrc && project.images && project.images.length > 1 && (
-            <div className="absolute inset-0">
-              {project.images.map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  alt={`${project.title} preview ${i + 1}`}
-                  className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
-                    i === currentImageIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-
-          {!project.videoSrc &&
-            project.images &&
-            project.images.length === 1 && (
+        {project.images && project.images.length > 1 && (
+          <div className="absolute inset-0">
+            {project.images.map((img, i) => (
               <img
-                src={firstImage}
-                alt={project.title}
-                className={`absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ${
-                  isHovered ? "scale-105" : "scale-100"
+                key={i}
+                src={img}
+                alt={`${project.title} preview ${i + 1}`}
+                className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
+                  i === currentImageIndex ? "opacity-100" : "opacity-0"
                 }`}
               />
-            )}
+            ))}
+          </div>
+        )}
 
-          {/* Team badge removed from image setup */}
+        {project.images && project.images.length === 1 && (
+          <img
+            src={firstImage}
+            alt={project.title}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ${
+              isHovered ? "scale-105" : "scale-100"
+            }`}
+          />
+        )}
 
-          {/* Gradient overlay at bottom of image */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-oxford-navy-dark/90 to-transparent pointer-events-none"></div>
-        </div>
+        {/* Team badge removed from image setup */}
 
-        {/* Content area */}
-        <div className="p-5 md:p-6 flex flex-col flex-1">
-          <div className="flex justify-between items-start mb-3 gap-2">
-            {/* Tech tags */}
-            <div className="flex flex-wrap gap-1.5 align-middle items-center">
-              {project.tech.slice(0, 5).map((t, i) => (
-                <span
-                  key={i}
-                  className="px-2.5 py-0.5 text-[12px] bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red"
-                >
-                  {t}
-                </span>
-              ))}
-              {project.isPublished && (
-                <span className="px-2.5 py-0.5 text-[10px] bg-cerulean/15 border border-cerulean/30 rounded-full font-bold text-cerulean-light shrink-0 flex items-center h-fit">
-                  <i className="fas fa-book mr-1"></i>IEEE Published
-                </span>
-              )}
-            </div>
+        {/* Gradient overlay at bottom of image */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-oxford-navy-dark/90 to-transparent pointer-events-none"></div>
+      </div>
 
-            {/* Team badge */}
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 shrink-0">
-              <i
-                className={`${project.teamSize === 1 ? "fas fa-user" : "fas fa-users"} text-[10px] text-frosted-blue/80`}
-              ></i>
-              <span className="text-[10px] font-bold text-honeydew/80 uppercase tracking-wider">
-                {project.teamSize === 1
-                  ? "Solo"
-                  : `Team of ${project.teamSize}`}
+      {/* Content area */}
+      <div className="p-5 md:p-6 flex flex-col flex-1">
+        <div className="flex justify-between items-start mb-3 gap-2">
+          {/* Tech tags */}
+          <div className="flex flex-wrap gap-1.5 align-middle items-center">
+            {project.tech.slice(0, 5).map((t, i) => (
+              <span
+                key={i}
+                className="px-2.5 py-0.5 text-[12px] bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red"
+              >
+                {t}
               </span>
-            </div>
+            ))}
+            {project.isPublished && (
+              <span className="px-2.5 py-0.5 text-[10px] bg-cerulean/15 border border-cerulean/30 rounded-full font-bold text-cerulean-light shrink-0 flex items-center h-fit">
+                <i className="fas fa-book mr-1"></i>IEEE Published
+              </span>
+            )}
           </div>
 
-          {/* Title */}
-          <h3 className="text-honeydew font-display text-xl md:text-2xl font-bold mb-2 leading-tight">
-            {project.title}
-          </h3>
-
-          {/* Description — 2 lines */}
-          <p className="text-honeydew/60 text-sm font-normal leading-relaxed mb-4 line-clamp-2">
-            {Array.isArray(project.description)
-              ? project.description[0].replace(/\*\*/g, "")
-              : project.description.replace(/\*\*/g, "")}
-          </p>
-
-          {/* Action buttons */}
-          <div className="flex flex-wrap gap-2.5 mt-auto pt-3 border-t border-white/5">
-            {project.liveLink && (
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="px-4 py-2 rounded-lg bg-punch-red hover:bg-punch-red-light text-white font-bold text-xs transition-all duration-200 flex items-center gap-2 uppercase tracking-widest shadow-lg shadow-punch-red/15 cursor-pointer"
-              >
-                Live Demo
-                <i className="fas fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-            )}
-            {project.repoLink && (
-              <a
-                href={project.repoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-frosted-blue border border-white/10 font-bold text-xs transition-all duration-200 flex items-center gap-2 uppercase tracking-widest cursor-pointer"
-              >
-                <i className="fab fa-github text-sm"></i>
-                Source
-              </a>
-            )}
-            {project.ieeeLink && (
-              <a
-                href={project.ieeeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-frosted-blue border border-white/10 font-bold text-xs transition-all duration-200 flex items-center gap-2 uppercase tracking-widest cursor-pointer"
-              >
-                <i className="fas fa-file-alt text-sm"></i>
-                Paper
-              </a>
-            )}
-            {project.videoSrc && (
-              <button
-                onClick={handleVideoExpand}
-                className="md:hidden px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-frosted-blue border border-white/10 font-bold text-xs transition-all duration-200 flex items-center gap-2 uppercase tracking-widest cursor-pointer"
-              >
-                <i className="fas fa-play-circle text-sm"></i>
-                Demo
-              </button>
-            )}
+          {/* Team badge */}
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 shrink-0">
+            <i
+              className={`${project.teamSize === 1 ? "fas fa-user" : "fas fa-users"} text-[10px] text-frosted-blue/80`}
+            ></i>
+            <span className="text-[10px] font-bold text-honeydew/80 uppercase tracking-wider">
+              {project.teamSize === 1 ? "Solo" : `Team of ${project.teamSize}`}
+            </span>
           </div>
         </div>
-      </motion.article>
-    );
-  },
-);
+
+        {/* Title */}
+        <h3 className="text-honeydew font-display text-xl md:text-2xl font-bold mb-2 leading-tight">
+          {project.title}
+        </h3>
+
+        {/* Description — 2 lines */}
+        <p className="text-honeydew/60 text-sm font-normal leading-relaxed mb-4 line-clamp-2">
+          {Array.isArray(project.description)
+            ? project.description[0].replace(/\*\*/g, "")
+            : project.description.replace(/\*\*/g, "")}
+        </p>
+
+        {/* Action buttons */}
+        <div className="flex flex-wrap gap-2.5 mt-auto pt-3 border-t border-white/5">
+          {project.liveLink && (
+            <a
+              href={project.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="px-4 py-2 rounded-lg bg-punch-red hover:bg-punch-red-light text-white font-bold text-xs transition-all duration-200 flex items-center gap-2 uppercase tracking-widest shadow-lg shadow-punch-red/15 cursor-pointer"
+            >
+              Live Demo
+              <i className="fas fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+          )}
+          {project.repoLink && (
+            <a
+              href={project.repoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-frosted-blue border border-white/10 font-bold text-xs transition-all duration-200 flex items-center gap-2 uppercase tracking-widest cursor-pointer"
+            >
+              <i className="fab fa-github text-sm"></i>
+              Source
+            </a>
+          )}
+          {project.ieeeLink && (
+            <a
+              href={project.ieeeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-frosted-blue border border-white/10 font-bold text-xs transition-all duration-200 flex items-center gap-2 uppercase tracking-widest cursor-pointer"
+            >
+              <i className="fas fa-file-alt text-sm"></i>
+              Paper
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+});
 
 LargeProjectCard.displayName = "LargeProjectCard";
 
@@ -393,125 +355,108 @@ const MediumProjectCard = memo(
 MediumProjectCard.displayName = "MediumProjectCard";
 
 // ---------- Small Project Card (compact, 1-col span) ----------
-const SmallProjectCard = memo(
-  ({ project, category, onVideoExpand, onCardClick }) => {
-    const cat = CATEGORIES[category] || CATEGORIES.ai;
-    const displayIcon = project.icon || cat.icon || "fas fa-code";
+const SmallProjectCard = memo(({ project, category, onCardClick }) => {
+  const cat = CATEGORIES[category] || CATEGORIES.ai;
+  const displayIcon = project.icon || cat.icon || "fas fa-code";
 
-    const shortDesc = Array.isArray(project.description)
-      ? project.description[0].replace(/\*\*/g, "").substring(0, 120) + "..."
-      : project.description.replace(/\*\*/g, "").substring(0, 120) + "...";
+  const shortDesc = Array.isArray(project.description)
+    ? project.description[0].replace(/\*\*/g, "").substring(0, 120) + "..."
+    : project.description.replace(/\*\*/g, "").substring(0, 120) + "...";
 
-    return (
-      <motion.article
-        variants={cardVariants}
-        className={`bento-card col-span-1 group cursor-pointer ${cat.glowClass}`}
-        onClick={() => onCardClick && onCardClick(project, category)}
-      >
-        <div className="p-5 md:p-6 flex flex-col h-full">
-          {/* Top row: icon + category + team */}
-          <div className="flex justify-between items-start mb-4">
-            <div
-              className={`p-2.5 rounded-lg ${cat.iconBg} ${cat.iconText} ${cat.iconHoverBg} group-hover:text-white transition-colors duration-300`}
-            >
-              <i className={`${displayIcon} text-lg`}></i>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1">
-                <i
-                  className={`${project.teamSize === 1 ? "fas fa-user" : "fas fa-users"} text-[9px] text-frosted-blue/60`}
-                ></i>
-                <span className="text-[9px] font-bold text-honeydew/50 uppercase tracking-wider">
-                  {project.teamSize === 1
-                    ? "Solo"
-                    : `Team of ${project.teamSize}`}
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span
-                  className={`w-1.5 h-1.5 rounded-full ${cat.dotClass}`}
-                ></span>
-                <span className="text-[9px] font-bold text-honeydew/50 uppercase tracking-wider">
-                  {cat.label}
-                </span>
-              </div>
-            </div>
+  return (
+    <motion.article
+      variants={cardVariants}
+      className={`bento-card col-span-1 group cursor-pointer ${cat.glowClass}`}
+      onClick={() => onCardClick && onCardClick(project, category)}
+    >
+      <div className="p-5 md:p-6 flex flex-col h-full">
+        {/* Top row: icon + category + team */}
+        <div className="flex justify-between items-start mb-4">
+          <div
+            className={`p-2.5 rounded-lg ${cat.iconBg} ${cat.iconText} ${cat.iconHoverBg} group-hover:text-white transition-colors duration-300`}
+          >
+            <i className={`${displayIcon} text-lg`}></i>
           </div>
-
-          {/* Title */}
-          <h3 className="text-honeydew font-display text-base md:text-lg font-bold mb-2 leading-tight">
-            {project.title}
-          </h3>
-
-          {/* Description — 2 lines */}
-          <p className="text-honeydew/50 text-xs md:text-sm font-normal leading-relaxed mb-4 line-clamp-2">
-            {shortDesc}
-          </p>
-
-          {/* Tech tags */}
-          <div className="flex flex-wrap gap-1.5 mb-3 align-middle items-center">
-            {project.tech.slice(0, 3).map((t, i) => (
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              <i
+                className={`${project.teamSize === 1 ? "fas fa-user" : "fas fa-users"} text-[9px] text-frosted-blue/60`}
+              ></i>
+              <span className="text-[9px] font-bold text-honeydew/50 uppercase tracking-wider">
+                {project.teamSize === 1
+                  ? "Solo"
+                  : `Team of ${project.teamSize}`}
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5">
               <span
-                key={i}
-                className="px-2.5 py-0.5 text-[12px] bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red"
-              >
-                #{t.replace(/\s+/g, "")}
+                className={`w-1.5 h-1.5 rounded-full ${cat.dotClass}`}
+              ></span>
+              <span className="text-[9px] font-bold text-honeydew/50 uppercase tracking-wider">
+                {cat.label}
               </span>
-            ))}
-            {project.isPublished && (
-              <span className="px-2 py-0.5 text-[9px] bg-cerulean/15 border border-cerulean/30 rounded-full font-bold text-cerulean-light shrink-0 flex items-center h-fit">
-                <i className="fas fa-book mr-1"></i>IEEE
-              </span>
-            )}
-          </div>
-
-          {/* Action links */}
-          <div className="mt-auto flex flex-wrap gap-3">
-            {project.liveLink && (
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 text-punch-red text-[11px] font-bold uppercase tracking-widest hover:text-punch-red-light transition-colors cursor-pointer"
-              >
-                Live
-                <i className="fas fa-chevron-right text-[8px]"></i>
-              </a>
-            )}
-            {project.repoLink && (
-              <a
-                href={project.repoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 text-frosted-blue/60 text-[11px] font-bold uppercase tracking-widest hover:text-frosted-blue transition-colors cursor-pointer"
-              >
-                Source
-                <i className="fas fa-chevron-right text-[8px]"></i>
-              </a>
-            )}
-            {project.videoSrc && onVideoExpand && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const poster =
-                    project.videoPoster ||
-                    (project.images && project.images[0]);
-                  onVideoExpand(project.videoSrc, poster, project.title);
-                }}
-                className="inline-flex items-center gap-1 text-frosted-blue/60 text-[11px] font-bold uppercase tracking-widest hover:text-frosted-blue transition-colors cursor-pointer"
-              >
-                Demo
-                <i className="fas fa-chevron-right text-[8px]"></i>
-              </button>
-            )}
+            </div>
           </div>
         </div>
-      </motion.article>
-    );
-  },
-);
+
+        {/* Title */}
+        <h3 className="text-honeydew font-display text-base md:text-lg font-bold mb-2 leading-tight">
+          {project.title}
+        </h3>
+
+        {/* Description — 2 lines */}
+        <p className="text-honeydew/50 text-xs md:text-sm font-normal leading-relaxed mb-4 line-clamp-2">
+          {shortDesc}
+        </p>
+
+        {/* Tech tags */}
+        <div className="flex flex-wrap gap-1.5 mb-3 align-middle items-center">
+          {project.tech.slice(0, 3).map((t, i) => (
+            <span
+              key={i}
+              className="px-2.5 py-0.5 text-[12px] bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red"
+            >
+              #{t.replace(/\s+/g, "")}
+            </span>
+          ))}
+          {project.isPublished && (
+            <span className="px-2 py-0.5 text-[9px] bg-cerulean/15 border border-cerulean/30 rounded-full font-bold text-cerulean-light shrink-0 flex items-center h-fit">
+              <i className="fas fa-book mr-1"></i>IEEE
+            </span>
+          )}
+        </div>
+
+        {/* Action links */}
+        <div className="mt-auto flex flex-wrap gap-3">
+          {project.liveLink && (
+            <a
+              href={project.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1 text-punch-red text-[11px] font-bold uppercase tracking-widest hover:text-punch-red-light transition-colors cursor-pointer"
+            >
+              Live
+              <i className="fas fa-chevron-right text-[8px]"></i>
+            </a>
+          )}
+          {project.repoLink && (
+            <a
+              href={project.repoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1 text-frosted-blue/60 text-[11px] font-bold uppercase tracking-widest hover:text-frosted-blue transition-colors cursor-pointer"
+            >
+              Source
+              <i className="fas fa-chevron-right text-[8px]"></i>
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+});
 
 SmallProjectCard.displayName = "SmallProjectCard";
 
@@ -520,26 +465,11 @@ const CATEGORY_ORDER = ["ai", "fullstack", "blockchain"];
 
 // ---------- Main Projects Component ----------
 const Projects = () => {
-  const [videoModal, setVideoModal] = useState({
-    isOpen: false,
-    videoSrc: null,
-    posterSrc: null,
-    title: "",
-  });
-
   const [projectDetail, setProjectDetail] = useState({
     isOpen: false,
     project: null,
     category: null,
   });
-
-  const handleVideoExpand = useCallback((videoSrc, posterSrc, title) => {
-    setVideoModal({ isOpen: true, videoSrc, posterSrc, title });
-  }, []);
-
-  const handleCloseVideoModal = useCallback(() => {
-    setVideoModal((prev) => ({ ...prev, isOpen: false }));
-  }, []);
 
   const handleProjectClick = useCallback((project, category) => {
     setProjectDetail({ isOpen: true, project, category });
@@ -667,7 +597,6 @@ const Projects = () => {
                           key={index}
                           project={project}
                           category={category}
-                          onVideoExpand={handleVideoExpand}
                           onCardClick={handleProjectClick}
                         />
                       );
@@ -677,7 +606,6 @@ const Projects = () => {
                           key={index}
                           project={project}
                           category={category}
-                          onVideoExpand={handleVideoExpand}
                           onCardClick={handleProjectClick}
                           reverse={index % 2 === 1}
                         />
@@ -688,7 +616,6 @@ const Projects = () => {
                           key={index}
                           project={project}
                           category={category}
-                          onVideoExpand={handleVideoExpand}
                           onCardClick={handleProjectClick}
                         />
                       );
@@ -699,15 +626,6 @@ const Projects = () => {
           );
         })}
       </div>
-
-      {/* Video Modal */}
-      <VideoModal
-        isOpen={videoModal.isOpen}
-        onClose={handleCloseVideoModal}
-        videoSrc={videoModal.videoSrc}
-        posterSrc={videoModal.posterSrc}
-        title={videoModal.title}
-      />
 
       {/* Project Detail Modal */}
       <ProjectDetailModal
