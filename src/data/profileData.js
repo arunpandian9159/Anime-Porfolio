@@ -209,7 +209,7 @@ export const profileData = {
       ],
       tech: ["Python", "Mistral AI", "Google Gemini", "Langchain"],
       role: "AI Engineer Intern",
-      featured: false,
+      featured: true,
       images: ["/tariff extraction 1.png", "/tariff extraction 2.png"],
       icon: "fas fa-robot",
       teamSize: 1,

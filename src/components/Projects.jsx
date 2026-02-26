@@ -204,20 +204,12 @@ const LargeProjectCard = memo(
             {project.title}
           </h3>
 
-          {/* Description — 2 points */}
-          <ul className="text-honeydew/60 text-sm font-normal leading-relaxed mb-4 space-y-1 list-disc pl-4">
-            {Array.isArray(project.description) ? (
-              project.description.slice(0, 2).map((desc, i) => (
-                <li key={i} className="line-clamp-2">
-                  {desc.replace(/\*\*/g, "")}
-                </li>
-              ))
-            ) : (
-              <li className="line-clamp-3">
-                {project.description.replace(/\*\*/g, "")}
-              </li>
-            )}
-          </ul>
+          {/* Description — 2 lines */}
+          <p className="text-honeydew/60 text-sm font-normal leading-relaxed mb-4 line-clamp-2">
+            {Array.isArray(project.description)
+              ? project.description[0].replace(/\*\*/g, "")
+              : project.description.replace(/\*\*/g, "")}
+          </p>
 
           {/* Action buttons */}
           <div className="flex flex-wrap gap-2.5 mt-auto pt-3 border-t border-white/5">
@@ -282,6 +274,10 @@ const MediumProjectCard = memo(
     const cat = CATEGORIES[category] || CATEGORIES.ai;
     const firstImage = project.images && project.images[0];
 
+    const shortDesc = Array.isArray(project.description)
+      ? project.description[0].replace(/\*\*/g, "")
+      : project.description.replace(/\*\*/g, "");
+
     return (
       <motion.article
         variants={cardVariants}
@@ -344,20 +340,9 @@ const MediumProjectCard = memo(
               {project.title}
             </h3>
 
-            {/* Description — 2 points */}
-            <ul className="text-honeydew/55 text-sm font-normal leading-relaxed mb-3 space-y-1 list-disc pl-4">
-              {Array.isArray(project.description) ? (
-                project.description.slice(0, 2).map((desc, i) => (
-                  <li key={i} className="line-clamp-2">
-                    {desc.replace(/\*\*/g, "")}
-                  </li>
-                ))
-              ) : (
-                <li className="line-clamp-3">
-                  {project.description.replace(/\*\*/g, "")}
-                </li>
-              )}
-            </ul>
+            <p className="text-honeydew/55 text-sm font-normal leading-relaxed mb-3 line-clamp-2">
+              {shortDesc}
+            </p>
 
             {/* Action links */}
             <div className="flex flex-wrap gap-2 mt-auto">
@@ -413,6 +398,10 @@ const SmallProjectCard = memo(
     const cat = CATEGORIES[category] || CATEGORIES.ai;
     const displayIcon = project.icon || cat.icon || "fas fa-code";
 
+    const shortDesc = Array.isArray(project.description)
+      ? project.description[0].replace(/\*\*/g, "").substring(0, 120) + "..."
+      : project.description.replace(/\*\*/g, "").substring(0, 120) + "...";
+
     return (
       <motion.article
         variants={cardVariants}
@@ -454,20 +443,10 @@ const SmallProjectCard = memo(
             {project.title}
           </h3>
 
-          {/* Description — 2 points */}
-          <ul className="text-honeydew/50 text-xs md:text-sm font-normal leading-relaxed mb-4 space-y-1 list-disc pl-4">
-            {Array.isArray(project.description) ? (
-              project.description.slice(0, 2).map((desc, i) => (
-                <li key={i} className="line-clamp-2">
-                  {desc.replace(/\*\*/g, "")}
-                </li>
-              ))
-            ) : (
-              <li className="line-clamp-3">
-                {project.description.replace(/\*\*/g, "")}
-              </li>
-            )}
-          </ul>
+          {/* Description — 2 lines */}
+          <p className="text-honeydew/50 text-xs md:text-sm font-normal leading-relaxed mb-4 line-clamp-2">
+            {shortDesc}
+          </p>
 
           {/* Tech tags */}
           <div className="flex flex-wrap gap-1.5 mb-3 align-middle items-center">
