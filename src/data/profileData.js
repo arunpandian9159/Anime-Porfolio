@@ -230,6 +230,7 @@ export const profileData = {
       featured: true,
       isPublished: true,
       images: ["/SRM Conference image.jpg", "/certificate-presentation.webp"],
+      imageLayout: "split-horizontal",
       icon: "fas fa-certificate",
       category: "blockchain",
     },
