@@ -160,23 +160,7 @@ const LargeProjectCard = memo(
               />
             )}
 
-          {/* Category badge — top left */}
-          <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-oxford-navy-dark/70 backdrop-blur-sm border border-white/10">
-            <span className={`w-2 h-2 rounded-full ${cat.dotClass}`}></span>
-            <span className="text-[10px] font-bold text-honeydew/90 uppercase tracking-wider">
-              {cat.label}
-            </span>
-          </div>
-
-          {/* Team badge — top right */}
-          <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-oxford-navy-dark/70 backdrop-blur-sm border border-white/10">
-            <i
-              className={`${project.teamSize === 1 ? "fas fa-user" : "fas fa-users"} text-[10px] text-frosted-blue/80`}
-            ></i>
-            <span className="text-[10px] font-bold text-honeydew/80 uppercase tracking-wider">
-              {project.teamSize === 1 ? "Solo" : `Team of ${project.teamSize}`}
-            </span>
-          </div>
+          {/* Team badge removed from image setup */}
 
           {/* Gradient overlay at bottom of image */}
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-oxford-navy-dark/90 to-transparent pointer-events-none"></div>
@@ -184,16 +168,35 @@ const LargeProjectCard = memo(
 
         {/* Content area */}
         <div className="p-5 md:p-6 flex flex-col flex-1">
-          {/* Tech tags */}
-          <div className="flex flex-wrap gap-1.5 mb-3">
-            {project.tech.slice(0, 5).map((t, i) => (
-              <span
-                key={i}
-                className="px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-frosted-blue/10 text-frosted-blue/80 border border-frosted-blue/15 uppercase tracking-wider"
-              >
-                {t}
+          <div className="flex justify-between items-start mb-3 gap-2">
+            {/* Tech tags */}
+            <div className="flex flex-wrap gap-1.5 align-middle items-center">
+              {project.tech.slice(0, 5).map((t, i) => (
+                <span
+                  key={i}
+                  className="px-2.5 py-0.5 text-[12px] bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red"
+                >
+                  {t}
+                </span>
+              ))}
+              {project.isPublished && (
+                <span className="px-2.5 py-0.5 text-[10px] bg-cerulean/15 border border-cerulean/30 rounded-full font-bold text-cerulean-light shrink-0 flex items-center h-fit">
+                  <i className="fas fa-book mr-1"></i>IEEE Published
+                </span>
+              )}
+            </div>
+
+            {/* Team badge */}
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 shrink-0">
+              <i
+                className={`${project.teamSize === 1 ? "fas fa-user" : "fas fa-users"} text-[10px] text-frosted-blue/80`}
+              ></i>
+              <span className="text-[10px] font-bold text-honeydew/80 uppercase tracking-wider">
+                {project.teamSize === 1
+                  ? "Solo"
+                  : `Team of ${project.teamSize}`}
               </span>
-            ))}
+            </div>
           </div>
 
           {/* Title */}
@@ -201,21 +204,20 @@ const LargeProjectCard = memo(
             {project.title}
           </h3>
 
-          {/* Description — 2 lines */}
-          <p className="text-honeydew/60 text-sm font-normal leading-relaxed mb-4 line-clamp-2">
-            {Array.isArray(project.description)
-              ? project.description[0].replace(/\*\*/g, "")
-              : project.description.replace(/\*\*/g, "")}
-          </p>
-
-          {/* Badges */}
-          <div className="flex gap-2 flex-wrap mb-4">
-            {project.isPublished && (
-              <span className="bg-cerulean/15 text-cerulean-light px-2.5 py-0.5 rounded-full text-[10px] font-bold border border-cerulean/20">
-                <i className="fas fa-book mr-1"></i>IEEE Published
-              </span>
+          {/* Description — 2 points */}
+          <ul className="text-honeydew/60 text-sm font-normal leading-relaxed mb-4 space-y-1 list-disc pl-4">
+            {Array.isArray(project.description) ? (
+              project.description.slice(0, 2).map((desc, i) => (
+                <li key={i} className="line-clamp-2">
+                  {desc.replace(/\*\*/g, "")}
+                </li>
+              ))
+            ) : (
+              <li className="line-clamp-3">
+                {project.description.replace(/\*\*/g, "")}
+              </li>
             )}
-          </div>
+          </ul>
 
           {/* Action buttons */}
           <div className="flex flex-wrap gap-2.5 mt-auto pt-3 border-t border-white/5">
@@ -280,10 +282,6 @@ const MediumProjectCard = memo(
     const cat = CATEGORIES[category] || CATEGORIES.ai;
     const firstImage = project.images && project.images[0];
 
-    const shortDesc = Array.isArray(project.description)
-      ? project.description[0].replace(/\*\*/g, "")
-      : project.description.replace(/\*\*/g, "");
-
     return (
       <motion.article
         variants={cardVariants}
@@ -306,58 +304,60 @@ const MediumProjectCard = memo(
                 }`}
               />
             )}
-            {/* Category badge */}
-            <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-oxford-navy-dark/70 backdrop-blur-sm border border-white/10">
-              <span
-                className={`w-1.5 h-1.5 rounded-full ${cat.dotClass}`}
-              ></span>
-              <span className="text-[9px] font-bold text-honeydew/90 uppercase tracking-wider">
-                {cat.label}
-              </span>
-            </div>
-            {/* Team badge — top right */}
-            <div className="absolute top-3 right-3 z-20 flex items-center gap-1 px-2 py-1 rounded-full bg-oxford-navy-dark/70 backdrop-blur-sm border border-white/10">
-              <i
-                className={`${project.teamSize === 1 ? "fas fa-user" : "fas fa-users"} text-[9px] text-frosted-blue/80`}
-              ></i>
-              <span className="text-[9px] font-bold text-honeydew/80 uppercase tracking-wider">
-                {project.teamSize === 1
-                  ? "Solo"
-                  : `Team of ${project.teamSize}`}
-              </span>
-            </div>
           </div>
 
           {/* Content side */}
           <div className="flex-1 p-5 md:p-6 flex flex-col justify-center">
-            {/* Tech tags */}
-            <div className="flex flex-wrap gap-1.5 mb-2">
-              {project.tech.slice(0, 3).map((t, i) => (
-                <span
-                  key={i}
-                  className="px-2 py-0.5 text-[9px] font-bold rounded-full bg-frosted-blue/10 text-frosted-blue/70 border border-frosted-blue/10 uppercase tracking-wider"
-                >
-                  {t}
+            {/* Top row with Tech tags and Team badge */}
+            <div className="flex justify-between items-start mb-2 gap-2">
+              {/* Tech tags */}
+              <div className="flex flex-wrap gap-1.5 align-middle items-center">
+                {project.tech.slice(0, 3).map((t, i) => (
+                  <span
+                    key={i}
+                    className="px-2.5 py-0.5 text-[12px] bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red"
+                  >
+                    {t}
+                  </span>
+                ))}
+                {project.isPublished && (
+                  <span className="px-2.5 py-0.5 text-[10px] bg-cerulean/15 border border-cerulean/30 rounded-full font-bold text-cerulean-light shrink-0 flex items-center h-fit">
+                    <i className="fas fa-book mr-1"></i>IEEE
+                  </span>
+                )}
+              </div>
+
+              {/* Team badge */}
+              <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-white/5 border border-white/10 shrink-0">
+                <i
+                  className={`${project.teamSize === 1 ? "fas fa-user" : "fas fa-users"} text-[9px] text-frosted-blue/80`}
+                ></i>
+                <span className="text-[9px] font-bold text-honeydew/80 uppercase tracking-wider">
+                  {project.teamSize === 1
+                    ? "Solo"
+                    : `Team of ${project.teamSize}`}
                 </span>
-              ))}
+              </div>
             </div>
 
             <h3 className="text-honeydew font-display text-lg md:text-xl font-bold mb-2 leading-tight">
               {project.title}
             </h3>
 
-            <p className="text-honeydew/55 text-sm font-normal leading-relaxed mb-3 line-clamp-2">
-              {shortDesc}
-            </p>
-
-            {/* Badges */}
-            <div className="flex gap-1.5 flex-wrap mb-3">
-              {project.isPublished && (
-                <span className="bg-cerulean/15 text-cerulean-light px-2 py-0.5 rounded-full text-[9px] font-bold border border-cerulean/20">
-                  <i className="fas fa-book mr-1"></i>IEEE
-                </span>
+            {/* Description — 2 points */}
+            <ul className="text-honeydew/55 text-sm font-normal leading-relaxed mb-3 space-y-1 list-disc pl-4">
+              {Array.isArray(project.description) ? (
+                project.description.slice(0, 2).map((desc, i) => (
+                  <li key={i} className="line-clamp-2">
+                    {desc.replace(/\*\*/g, "")}
+                  </li>
+                ))
+              ) : (
+                <li className="line-clamp-3">
+                  {project.description.replace(/\*\*/g, "")}
+                </li>
               )}
-            </div>
+            </ul>
 
             {/* Action links */}
             <div className="flex flex-wrap gap-2 mt-auto">
@@ -413,10 +413,6 @@ const SmallProjectCard = memo(
     const cat = CATEGORIES[category] || CATEGORIES.ai;
     const displayIcon = project.icon || cat.icon || "fas fa-code";
 
-    const shortDesc = Array.isArray(project.description)
-      ? project.description[0].replace(/\*\*/g, "").substring(0, 120) + "..."
-      : project.description.replace(/\*\*/g, "").substring(0, 120) + "...";
-
     return (
       <motion.article
         variants={cardVariants}
@@ -458,21 +454,36 @@ const SmallProjectCard = memo(
             {project.title}
           </h3>
 
-          {/* Description — 2 lines */}
-          <p className="text-honeydew/50 text-xs md:text-sm font-normal leading-relaxed mb-4 line-clamp-2">
-            {shortDesc}
-          </p>
+          {/* Description — 2 points */}
+          <ul className="text-honeydew/50 text-xs md:text-sm font-normal leading-relaxed mb-4 space-y-1 list-disc pl-4">
+            {Array.isArray(project.description) ? (
+              project.description.slice(0, 2).map((desc, i) => (
+                <li key={i} className="line-clamp-2">
+                  {desc.replace(/\*\*/g, "")}
+                </li>
+              ))
+            ) : (
+              <li className="line-clamp-3">
+                {project.description.replace(/\*\*/g, "")}
+              </li>
+            )}
+          </ul>
 
           {/* Tech tags */}
-          <div className="flex flex-wrap gap-1.5 mb-3">
+          <div className="flex flex-wrap gap-1.5 mb-3 align-middle items-center">
             {project.tech.slice(0, 3).map((t, i) => (
               <span
                 key={i}
-                className="text-[9px] text-cerulean/70 font-bold uppercase tracking-tighter"
+                className="px-2.5 py-0.5 text-[12px] bg-punch-red/15 border border-punch-red/30 rounded-full text-sm text-punch-red"
               >
                 #{t.replace(/\s+/g, "")}
               </span>
             ))}
+            {project.isPublished && (
+              <span className="px-2 py-0.5 text-[9px] bg-cerulean/15 border border-cerulean/30 rounded-full font-bold text-cerulean-light shrink-0 flex items-center h-fit">
+                <i className="fas fa-book mr-1"></i>IEEE
+              </span>
+            )}
           </div>
 
           {/* Action links */}
@@ -584,9 +595,6 @@ const Projects = () => {
   const sectionRef = useIntersectionAnimate(runHeaderAnimation);
 
   const { projects } = profileData;
-
-  // Category display order
-  const CATEGORY_ORDER = ["ai", "fullstack", "blockchain"];
 
   // Group projects by category
   const groupedProjects = useMemo(() => {
