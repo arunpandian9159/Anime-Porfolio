@@ -3,9 +3,9 @@ import { animate } from "animejs";
 import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
 import SectionHeader from "../components/ui/SectionHeader";
-import CertCard from "./Certifications/CertCard";
-import AchievementItem from "./Certifications/AchievementItem";
-import ImageModal from "./Certifications/ImageModal";
+import CertCard from "../components/Certifications/CertCard";
+import AchievementItem from "../components/Certifications/AchievementItem";
+import ImageModal from "../components/Certifications/ImageModal";
 
 const Certifications = () => {
   const [modalImages, setModalImages] = useState(null);

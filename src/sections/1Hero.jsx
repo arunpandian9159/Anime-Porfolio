@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { profileData } from "../data/profileData";
 import { formatBoldText } from "../utils/formatText";
-import PARTICLES from "./Hero/particles";
+import PARTICLES from "../components/Hero/particles";
 
 const Hero = ({ isLoading }) => {
   const hasAnimated = useRef(false);

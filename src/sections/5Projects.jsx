@@ -4,8 +4,12 @@ import { profileData } from "../data/profileData";
 import { useIntersectionAnimate } from "../hooks/useIntersectionAnimate";
 import SectionHeader from "../components/ui/SectionHeader";
 import ProjectDetailModal from "../components/ui/ProjectDetailModal";
-import { CATEGORIES, CATEGORY_ORDER, getCardSize } from "./Projects/constants";
-import CategorySection from "./Projects/CategorySection";
+import {
+  CATEGORIES,
+  CATEGORY_ORDER,
+  getCardSize,
+} from "../components/Projects/constants";
+import CategorySection from "../components/Projects/CategorySection";
 
 const Projects = () => {
   const [projectDetail, setProjectDetail] = useState({
