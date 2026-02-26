@@ -92,6 +92,34 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
                   />
                 ))}
 
+                {/* Left/Right arrow navigation */}
+                {images.length > 1 && (
+                  <>
+                    <button
+                      onClick={() =>
+                        setCurrentImageIndex(
+                          (prev) => (prev - 1 + images.length) % images.length,
+                        )
+                      }
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-colors cursor-pointer backdrop-blur-sm"
+                      aria-label="Previous image"
+                    >
+                      <i className="fas fa-chevron-left text-sm"></i>
+                    </button>
+                    <button
+                      onClick={() =>
+                        setCurrentImageIndex(
+                          (prev) => (prev + 1) % images.length,
+                        )
+                      }
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-colors cursor-pointer backdrop-blur-sm"
+                      aria-label="Next image"
+                    >
+                      <i className="fas fa-chevron-right text-sm"></i>
+                    </button>
+                  </>
+                )}
+
                 {/* Image navigation dots */}
                 {images.length > 1 && (
                   <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
@@ -191,7 +219,7 @@ const ProjectDetailModal = memo(({ isOpen, onClose, project, category }) => {
                 {project.tech.map((t, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1.5 text-xs font-bold rounded-full bg-frosted-blue/8 text-frosted-blue/80 border border-frosted-blue/15 uppercase tracking-wider"
+                    className="px-3 py-1.5 text-xs font-bold rounded-full bg-punch-red/15 text-punch-red border border-punch-red/30 uppercase tracking-wider"
                   >
                     {t}
                   </span>
