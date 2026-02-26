@@ -237,6 +237,83 @@ textarea:focus-visible {
 }
 
 /* ==========================================
+   BENTO GRID — Projects Section
+   ========================================== */
+
+/* Grid layout: 4 cols desktop, 2 tablet, 1 mobile */
+.projects-bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .projects-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .projects-bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Glassmorphism card base */
+.bento-card {
+  background: rgba(29, 53, 87, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(168, 218, 220, 0.08);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px) scale(1.015);
+}
+
+/* Category glow effects on hover */
+.card-glow-ai:hover {
+  border-color: rgba(230, 57, 70, 0.35);
+  box-shadow:
+    0 8px 32px rgba(230, 57, 70, 0.12),
+    0 0 0 1px rgba(230, 57, 70, 0.08);
+}
+
+.card-glow-fullstack:hover {
+  border-color: rgba(69, 123, 157, 0.4);
+  box-shadow:
+    0 8px 32px rgba(69, 123, 157, 0.12),
+    0 0 0 1px rgba(69, 123, 157, 0.08);
+}
+
+.card-glow-blockchain:hover {
+  border-color: rgba(168, 218, 220, 0.35);
+  box-shadow:
+    0 8px 32px rgba(168, 218, 220, 0.1),
+    0 0 0 1px rgba(168, 218, 220, 0.06);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .bento-card {
+    transition: none;
+  }
+  .bento-card:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================
    MOBILE-ONLY RESPONSIVE STYLES
    ========================================== */
 @media (max-width: 767px) {
