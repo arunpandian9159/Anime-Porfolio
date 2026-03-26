@@ -76,6 +76,7 @@ const AchievementItem = memo(({ item, index, onImageClick }) => {
             href={item.paperLink}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View IEEE paper – Blockchain NFT Certification (opens PDF)"
             className="text-punch-red hover:text-punch-red-light transition-colors shrink-0 flex items-center gap-2 px-3 py-1 bg-punch-red/10 rounded-full md:bg-transparent md:p-0"
             onClick={handleLinkClick}
           >
