@@ -231,7 +231,7 @@ const Hero = ({ isLoading }) => {
             <a
               href="#projects"
               className="inline-flex items-center gap-3 bg-punch-red text-honeydew px-5 py-3 md:px-7 md:py-4 rounded font-semibold glow-red transition-all hover:bg-punch-red-light hover:-translate-y-1 hover:shadow-lg"
-              aria-label="View my projects"
+              aria-label="Explore Work – view my projects"
             >
               <span>Explore Work</span>
               <i className="fas fa-rocket" aria-hidden="true"></i>
