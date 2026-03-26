@@ -14,7 +14,7 @@ const PUBLIC_DIR = path.join(__dirname, "..", "public");
 
 const optimizations = [
   {
-    input: "profile.jpg",
+    input: "profile.webp",
     outputs: [
       { name: "profile-256.webp", width: 256, height: 256, format: "webp" },
       { name: "profile-512.webp", width: 512, height: 512, format: "webp" },
@@ -22,43 +22,43 @@ const optimizations = [
     ],
   },
   {
-    input: "Capgemini.png",
+    input: "Capgemini.webp",
     outputs: [{ name: "capgemini.webp", format: "webp", width: 800 }],
   },
   {
-    input: "Learnathon.png",
+    input: "Learnathon.webp",
     outputs: [{ name: "learnathon.webp", format: "webp", width: 800 }],
   },
   {
-    input: "Skill la thon.png",
+    input: "Skill la thon.webp",
     outputs: [{ name: "skill-la-thon.webp", format: "webp", width: 800 }],
   },
   {
-    input: "python-certiport.png",
+    input: "python-certiport.webp",
     outputs: [{ name: "python-certiport.webp", format: "webp", width: 800 }],
   },
   {
-    input: "mongoDB.png",
+    input: "mongoDB.webp",
     outputs: [{ name: "mongodb.webp", format: "webp", width: 800 }],
   },
   {
-    input: "certificate of presentation.png",
+    input: "certificate of presentation.webp",
     outputs: [
       { name: "certificate-presentation.webp", format: "webp", width: 800 },
     ],
   },
   {
-    input: "tripxplo intern certificate.png",
+    input: "tripxplo intern certificate.webp",
     outputs: [
       { name: "tripxplo-intern-certificate.webp", format: "webp", width: 800 },
     ],
   },
   {
-    input: "VEI technologies.jpg",
+    input: "VEI technologies.webp",
     outputs: [{ name: "vei-technologies.webp", format: "webp", width: 800 }],
   },
   {
-    input: "icon-144.png",
+    input: "icon-144.webp",
     outputs: [{ name: "icon-144.webp", format: "webp" }],
   },
 ];
