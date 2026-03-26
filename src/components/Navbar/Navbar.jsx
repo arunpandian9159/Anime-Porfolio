@@ -147,7 +147,7 @@ const Navbar = ({ onTerminalOpen }) => {
                 className={`font-medium transition-all relative ${
                   link.isCta
                     ? "bg-punch-red px-5 py-2 rounded hover:bg-punch-red-light"
-                    : "text-honeydew hover:text-punch-red after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-punch-red after:transition-all hover:after:w-full"
+                    : "text-honeydew/90 hover:text-punch-red after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-punch-red after:transition-all hover:after:w-full"
                 }`}
               >
                 {link.label}
