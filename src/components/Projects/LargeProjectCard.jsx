@@ -48,6 +48,9 @@ const LargeProjectCard = memo(({ project, category, onCardClick }) => {
                 className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
                   i === currentImageIndex ? "opacity-100" : "opacity-0"
                 }`}
+                loading="lazy"
+                width="800"
+                height="400"
               />
             ))}
           </div>
@@ -60,6 +63,9 @@ const LargeProjectCard = memo(({ project, category, onCardClick }) => {
             className={`absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ${
               isHovered ? "scale-105" : "scale-100"
             }`}
+            loading="lazy"
+            width="800"
+            height="400"
           />
         )}
 
