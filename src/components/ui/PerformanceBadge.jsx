@@ -86,7 +86,7 @@ const PerformanceBadge = ({ className = "" }) => {
       </div>
       {loadTime && (
         <span
-          className="text-frosted-blue/40 text-xs"
+          className="text-frosted-blue/70 text-xs"
           aria-label={`Page loaded in ${loadTime} seconds`}
         >
           Loaded in {loadTime}s
