@@ -213,13 +213,13 @@ const GitHubActivity = ({ username, className = "" }) => {
           </div>
 
           {/* Activity Grid */}
-          <div className="flex gap-[3px]">
+          <div className="flex gap-0.75">
             {weeks.map((week, weekIndex) => (
-              <div key={weekIndex} className="flex flex-col gap-[3px]">
+              <div key={weekIndex} className="flex flex-col gap-0.75">
                 {week.map((day, dayIndex) => (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
-                    className={`w-[10px] h-[10px] rounded-sm transition-all duration-200 ${
+                    className={`w-2.5 h-2.5 rounded-sm transition-all duration-200 ${
                       day ? getContributionColor(day.count) : "bg-transparent"
                     } ${
                       day
@@ -247,12 +247,12 @@ const GitHubActivity = ({ username, className = "" }) => {
       {/* Legend */}
       <div className="flex items-center justify-end gap-2 mt-2 text-xs text-gray-500">
         <span>Less</span>
-        <div className="flex gap-[2px]">
-          <div className="w-[10px] h-[10px] rounded-sm bg-gray-800/50"></div>
-          <div className="w-[10px] h-[10px] rounded-sm bg-emerald-900/70"></div>
-          <div className="w-[10px] h-[10px] rounded-sm bg-emerald-700/80"></div>
-          <div className="w-[10px] h-[10px] rounded-sm bg-emerald-500"></div>
-          <div className="w-[10px] h-[10px] rounded-sm bg-emerald-400"></div>
+        <div className="flex gap-0.5">
+          <div className="w-2.5 h-2.5 rounded-sm bg-gray-800/50"></div>
+          <div className="w-2.5 h-2.5 rounded-sm bg-emerald-900/70"></div>
+          <div className="w-2.5 h-2.5 rounded-sm bg-emerald-700/80"></div>
+          <div className="w-2.5 h-2.5 rounded-sm bg-emerald-500"></div>
+          <div className="w-2.5 h-2.5 rounded-sm bg-emerald-400"></div>
         </div>
         <span>More</span>
       </div>
