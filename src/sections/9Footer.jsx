@@ -9,9 +9,9 @@ const Footer = () => {
         </div>
         <p className="text-frosted-blue/80 text-sm md:text-base mb-1 md:mb-2">
           Designed & Built by{" "}
-          <span className="text-punch-red">Arunpandian C</span>
+          <span className="text-punch-red font-semibold">Arunpandian C</span>
         </p>
-        <p className="text-frosted-blue/50 text-xs md:text-sm mb-4 md:mb-6">
+        <p className="text-frosted-blue/75 text-xs md:text-sm mb-4 md:mb-6">
           © 2025 All Rights Reserved
         </p>
         <div className="pt-3 md:pt-4 border-t border-frosted-blue/10">
