@@ -8,6 +8,14 @@ export default defineConfig({
   build: {
     // Enable CSS code splitting
     cssCodeSplit: true,
+    // Minify with terser and remove console logs
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     // Chunk splitting for better caching and parallel loading
     rollupOptions: {
       output: {
@@ -20,9 +28,21 @@ export default defineConfig({
             if (id.includes("animejs")) {
               return "animation";
             }
+            if (id.includes("@fortawesome") || id.includes("react-icons")) {
+              return "icons";
+            }
           }
         },
       },
+    },
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom", "animejs"],
+  },
+  server: {
+    headers: {
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "Cross-Origin-Embedder-Policy": "require-corp",
     },
   },
 });
