@@ -8,8 +8,8 @@ export default defineConfig({
   build: {
     // Enable CSS code splitting
     cssCodeSplit: true,
-    // Minify with terser and remove console logs
-    minify: "terser",
+    // Minify and remove console logs
+    minify: true,
     terserOptions: {
       compress: {
         drop_console: true,
