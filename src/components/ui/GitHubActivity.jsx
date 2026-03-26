@@ -228,6 +228,7 @@ const GitHubActivity = ({ username, className = "" }) => {
                     }`}
                     onMouseEnter={(e) => handleMouseEnter(e, day)}
                     onMouseLeave={handleMouseLeave}
+                    role="img"
                     aria-label={
                       day
                         ? `${day.count} contributions on ${formatDate(
